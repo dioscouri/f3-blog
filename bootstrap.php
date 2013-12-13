@@ -36,7 +36,7 @@ switch ($global_app_name)
         
         // append this app's UI folder to the path, e.g. UI=../apps/blog/admin/views/
         $ui = $f3->get('UI');
-        $ui .= ";" . $f3->get('PATH_ROOT') . "apps/blog/admin/views/";
+        $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Admin/Views/";
         $f3->set('UI', $ui);
         
         // TODO set some app-specific settings, if desired
@@ -47,7 +47,7 @@ switch ($global_app_name)
         
         // append this app's UI folder to the path, e.g. UI=../apps/blog/site/views/
         $ui = $f3->get('UI');
-        $ui .= ";" . $f3->get('PATH_ROOT') . "apps/blog/site/views/";
+        $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Site/Views/";
         $f3->set('UI', $ui);
                 
         // TODO set some app-specific settings, if desired
