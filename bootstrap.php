@@ -34,7 +34,7 @@ switch ($global_app_name)
         $f3->route('DELETE /admin/blog/category/@id', '\Blog\Admin\Controllers\Category->delete');
         $f3->route('GET /admin/blog/category/@id/delete', '\Blog\Admin\Controllers\Category->delete');
         
-        // append this app's UI folder to the path, e.g. UI=../apps/blog/admin/blog/views/
+        // append this app's UI folder to the path
         $ui = $f3->get('UI');
         $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Admin/Views/";
         $f3->set('UI', $ui);
@@ -45,7 +45,7 @@ switch ($global_app_name)
     case "site":
         // TODO register all the routes
         
-        // append this app's UI folder to the path, e.g. UI=../apps/blog/site/views/
+        // append this app's UI folder to the path
         $ui = $f3->get('UI');
         $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Site/Views/";
         $f3->set('UI', $ui);
