@@ -1,6 +1,6 @@
 <?php // echo \Dsc\Debug::dump( $flash->get('old'), false ); ?>
 
-<form id="detail-form" action="./admin/category/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
+<form id="detail-form" action="./admin/blog/category/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -36,7 +36,7 @@
                     </div>
                         
                     &nbsp;
-                    <a class="btn btn-default" href="./admin/categories">Cancel</a>
+                    <a class="btn btn-default" href="./admin/blog/categories">Cancel</a>
                 </div>
 
             </div>

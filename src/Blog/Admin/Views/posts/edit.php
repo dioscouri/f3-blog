@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 
 </script>
 
-<form id="detail-form" action="./admin/post/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
+<form id="detail-form" action="./admin/blog/post/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
     <div class="row">
         <div class="col-md-9">
             <div class="form-group">
@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
                                 </ul>
                             </div>                          
                             &nbsp;
-                            <a class="btn btn-default" href="./admin/posts">Cancel</a>
+                            <a class="btn btn-default" href="./admin/blog/posts">Cancel</a>
                         </div>
 
                     </div>
@@ -137,7 +137,7 @@ jQuery(document).ready(function(){
 
                                 var request = jQuery.ajax({
                                     type: 'post', 
-                                    url: './admin/categories/checkboxes',
+                                    url: './admin/blog/categories/checkboxes',
                                     data: form_data
                                 }).done(function(data){
                                     var lr = jQuery.parseJSON( JSON.stringify(data), false);
@@ -155,7 +155,7 @@ jQuery(document).ready(function(){
                             <div id="addCategoryForm" class="collapse">
                                 <div class="panel-body">
                                     
-                                    <div id="quick-form" action="./admin/category" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
+                                    <div id="quick-form" action="./admin/blog/category" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
                                     
                                     <div id="quick-form-response-container"></div>
                                     

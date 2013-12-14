@@ -34,7 +34,7 @@
     <div class="col-md-6 col-lg-4 input-group">
         <select id="bulk-actions" name="bulk_action" class="form-control">
             <option value="null">-Bulk Actions-</option>
-            <option value="delete" data-action="./admin/categories/delete">Delete</option>
+            <option value="delete" data-action="./admin/blog/categories/delete">Delete</option>
         </select>
         <span class="input-group-btn">
             <button class="btn btn-default bulk-actions" type="button" data-target="bulk-actions">Apply</button>
@@ -64,23 +64,23 @@
             </td>
             
             <td class="">
-                <a href="./admin/category/<?php echo $item->_id; ?>/edit">
+                <a href="./admin/blog/category/<?php echo $item->_id; ?>/edit">
                 <?php echo @str_repeat( "&ndash;", substr_count( @$item->path, "/" ) - 1 ) . " " . $item->title; ?>
                 </a>
             </td>
             
             <td class="">
-                <a href="./admin/category/<?php echo $item->_id; ?>/edit">
+                <a href="./admin/blog/category/<?php echo $item->_id; ?>/edit">
                 <?php echo $item->path; ?>
                 </a>
             </td>
                             
             <td class="text-center">
-                <a class="btn btn-xs btn-secondary" href="./admin/category/<?php echo $item->_id; ?>/edit">
+                <a class="btn btn-xs btn-secondary" href="./admin/blog/category/<?php echo $item->_id; ?>/edit">
                     <i class="fa fa-pencil"></i>
                 </a>
                 &nbsp;
-                <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/category/<?php echo $item->_id; ?>/delete">
+                <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/category/<?php echo $item->_id; ?>/delete">
                     <i class="fa fa-times"></i>
                 </a>
             </td>

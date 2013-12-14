@@ -5,10 +5,10 @@ class Post extends \Admin\Controllers\BaseAuth
 {
     use \Dsc\Traits\Controllers\CrudItem;
 
-    protected $list_route = '/admin/posts';
-    protected $create_item_route = '/admin/post';
-    protected $get_item_route = '/admin/post/{id}';    
-    protected $edit_item_route = '/admin/post/{id}/edit';
+    protected $list_route = '/admin/blog/posts';
+    protected $create_item_route = '/admin/blog/post';
+    protected $get_item_route = '/admin/blog/post/{id}';    
+    protected $edit_item_route = '/admin/blog/post/{id}/edit';
     
     protected function getModel() 
     {
