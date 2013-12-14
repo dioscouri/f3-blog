@@ -34,7 +34,7 @@ class Categories extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('selected', 'null' );
         
         $view = new \Dsc\Template;
-        echo $view->render('categories/list.php');
+        echo $view->render('Blog/Admin/Views::categories/list.php');
     }
     
     public function getDatatable()
@@ -51,7 +51,7 @@ class Categories extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('pagination', $pagination );
     
         $view = new \View;
-        $html = $view->render('categories/list_datatable.php');
+        $html = $view->render('Blog/Admin/Views::categories/list_datatable.php');
         
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
@@ -68,7 +68,7 @@ class Categories extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('selected', 'null' );
         
         $view = new \View;
-        $html = $view->render('categories/list_parents.php');
+        $html = $view->render('Blog/Admin/Views::categories/list_parents.php');
         
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
@@ -97,7 +97,7 @@ class Categories extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('flash', $flash );
         
         $view = new \View;
-        $html = $view->render('categories/checkboxes.php');
+        $html = $view->render('Blog/Admin/Views::categories/checkboxes.php');
     
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
