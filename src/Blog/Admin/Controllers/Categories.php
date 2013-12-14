@@ -19,8 +19,6 @@ class Categories extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('subtitle', '');
         
         $model = $this->getModel();
-        $categories = $model->getList();
-        \Base::instance()->set('categories', $categories );
         
         $state = $model->emptyState()->populateState()->getState();
         \Base::instance()->set('state', $state );
