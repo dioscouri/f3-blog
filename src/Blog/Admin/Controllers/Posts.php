@@ -19,6 +19,6 @@ class Posts extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('pagination', $pagination );
         
         $view = new \Dsc\Template;
-        echo $view->render('posts/list.php');
+        echo $view->render('Blog/Admin/Views::posts/list.php');
     }
 }

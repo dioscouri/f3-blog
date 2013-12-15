@@ -63,7 +63,7 @@ class Post extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('all_tags', $all_tags );
         
         $view = new \Dsc\Template;
-        echo $view->render('posts/create.php');
+        echo $view->render('Blog/Admin/Views::posts/create.php');
     }
     
     protected function displayEdit()
@@ -80,7 +80,7 @@ class Post extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('all_tags', $all_tags );
         
         $view = new \Dsc\Template;
-        echo $view->render('posts/edit.php');
+        echo $view->render('Blog/Admin/Views::posts/edit.php');
     }
     
     /**
