@@ -48,8 +48,8 @@ class Categories extends \Admin\Controllers\BaseAuth
         $pagination = new \Dsc\Pagination($list['total'], $list['limit']);
         \Base::instance()->set('pagination', $pagination );
     
-        $view = new \View;
-        $html = $view->render('Blog/Admin/Views::categories/list_datatable.php');
+        $view = new \Dsc\Template;
+        $html = $view->renderLayout('Blog/Admin/Views::categories/list_datatable.php');
         
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
@@ -65,8 +65,8 @@ class Categories extends \Admin\Controllers\BaseAuth
 
         \Base::instance()->set('selected', 'null' );
         
-        $view = new \View;
-        $html = $view->render('Blog/Admin/Views::categories/list_parents.php');
+        $view = new \Dsc\Template;
+        $html = $view->renderLayout('Blog/Admin/Views::categories/list_parents.php');
         
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
@@ -94,8 +94,8 @@ class Categories extends \Admin\Controllers\BaseAuth
         $flash->store( array( 'metadata'=>array('categories'=>$selected) ) );
         \Base::instance()->set('flash', $flash );
         
-        $view = new \View;
-        $html = $view->render('Blog/Admin/Views::categories/checkboxes.php');
+        $view = new \Dsc\Template;
+        $html = $view->renderLayout('Blog/Admin/Views::categories/checkboxes.php');
     
         return $this->outputJson( $this->getJsonResponse( array(
                 'result' => $html
