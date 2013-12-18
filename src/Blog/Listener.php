@@ -22,6 +22,18 @@ class Listener extends \Prefab
             
             \Dsc\System::instance()->addMessage('Blog added its admin menu items.');
         }
+    }
+    
+    public function onAdminNavigationGetQuickAddItems( $event )
+    {
+        $items = $event->getArgument('items');
         
+        $item = new \stdClass;
+        $item->title = 'Blog Category';
+        $item->form = 'This would be a QUICK ADD form for adding a Blog Category menu item.';
+        
+        $items[] = $item;
+        
+        $event->setArgument('items', $items);
     }
 }
