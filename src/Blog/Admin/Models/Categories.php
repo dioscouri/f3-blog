@@ -27,7 +27,7 @@ class Categories extends \Dsc\Models\Categories
         
         if ($doUpdate) 
         {
-            $id = (string) $update->id;
+            $id = $update->id;
             $title = $update->title;
             
             // update the category in the Posts collection
@@ -50,7 +50,7 @@ class Categories extends \Dsc\Models\Categories
     public function delete( $mapper, $options=array() )
     {
         // If a category is deleted, remove it from any nested 'categories' documents
-        $id = (string) $mapper->id;
+        $id = $mapper->id;
         
         if ($delete = parent::delete( $mapper, $options )) 
         {
