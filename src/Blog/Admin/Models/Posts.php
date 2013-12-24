@@ -95,7 +95,7 @@ class Posts extends \Dsc\Models\Content
                 foreach ($list as $list_item) {
                     $cast = $list_item->cast();
                     $cat = array(
-                        'id' => (string) $cast['_id'],
+                        'id' => $cast['_id'],
                         'title' => $cast['title']
                     );
                     unset($cast);
