@@ -44,7 +44,15 @@ switch ($global_app_name)
         break;
     case "site":
         // TODO register all the routes
-        
+        $f3->route('GET /blog/post/@slug', '\Blog\Site\Controllers\Post->read');
+        $f3->route('GET /blog/post/@slug/@page', '\Blog\Site\Controllers\Post->read');                
+    	$f3->route('GET /blog/category/@slug', '\Blog\Site\Controllers\Category->index');
+    	$f3->route('GET /blog/category/@slug/@page', '\Blog\Site\Controllers\Category->index');
+    	$f3->route('GET /blog/tag/@tag', '\Blog\Site\Controllers\Tag->index');
+    	$f3->route('GET /blog/tag/@tag/@page', '\Blog\Site\Controllers\Tag->index');
+    	$f3->route('GET /blog/author/@id', '\Blog\Site\Controllers\Author->index');
+    	$f3->route('GET /blog/author/@id/@page', '\Blog\Site\Controllers\Author->index');
+    	
         // append this app's UI folder to the path
         $ui = $f3->get('UI');
         $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Site/Views/";
