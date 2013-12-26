@@ -30,7 +30,7 @@ class Post extends \Dsc\Controller
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
     	
-    	\Base::instance()->set('list', $item );
+    	\Base::instance()->set('item', $item );
     	
     	$view = new \Dsc\Template;
     	echo $view->render('Blog/Site/Views::posts/view.php');
