@@ -5,7 +5,7 @@
 			<?php if (!empty($categories)) { ?>
 			<select name="details[url]" class="form-control">
 			<?php foreach ($categories as $one) { ?>
-			    <option value="<?php echo $one->id; ?>">
+			    <option value="./blog/category/<?php echo $one->slug; ?>">
 			    	<?php echo @str_repeat( "&ndash;", substr_count( @$one->path, "/" ) - 1 ) . " " . $one->title; ?>
 			    </option>                    
 			<?php } ?> 

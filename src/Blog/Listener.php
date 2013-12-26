@@ -29,11 +29,9 @@ class Listener extends \Prefab
         $items = $event->getArgument('items');
         $tree = $event->getArgument('tree');
         
-        \Base::instance()->set('tree', $tree );
-        
         $item = new \stdClass;
         $item->title = 'Blog Category';
-        $item->form = \Blog\Admin\Controllers\MenuItemQuickAdd::instance()->category();
+        $item->form = \Blog\Admin\Controllers\MenuItemQuickAdd::instance()->category($event);
         
         $items[] = $item;
         
