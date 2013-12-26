@@ -27,10 +27,13 @@ class Listener extends \Prefab
     public function onAdminNavigationGetQuickAddItems( $event )
     {
         $items = $event->getArgument('items');
+        $tree = $event->getArgument('tree');
+        
+        \Base::instance()->set('tree', $tree );
         
         $item = new \stdClass;
         $item->title = 'Blog Category';
-        $item->form = 'This would be a QUICK ADD form for adding a Blog Category menu item.';
+        $item->form = \Blog\Admin\Controllers\MenuItemQuickAdd::instance()->category();
         
         $items[] = $item;
         

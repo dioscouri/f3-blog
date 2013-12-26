@@ -39,11 +39,23 @@ class Posts extends \Dsc\Models\Content
             $this->filters['_id'] = new \MongoId((string) $filter_id);
         }
         
+        $filter_slug = $this->getState('filter.slug');
+        if (strlen($filter_slug))
+        {
+            $this->filters['metadata.slug'] = $filter_slug;
+        }
+        
         $filter_copy_contains = $this->getState('filter.copy-contains');
         if (strlen($filter_copy_contains))
         {
             $key =  new \MongoRegex('/'. $filter_copy_contains .'/i');
             $this->filters['details.copy'] = $key;
+        }
+        
+        $filter_category_slug = $this->getState('filter.category.slug');
+        if (strlen($filter_category_slug))
+        {
+        	$this->filters['metadata.categories.slug'] = $filter_category_slug;
         }
         
         $this->filters['metadata.type'] = $this->type;
@@ -91,12 +103,13 @@ class Posts extends \Dsc\Models\Content
             
             $categories = array();
             $model = new \Blog\Admin\Models\Categories;
-            if ($list = $model->setState('select.fields', array('title'))->setState('filter.ids', $category_ids)->getList()) {
+            if ($list = $model->setState('select.fields', array('title', 'slug'))->setState('filter.ids', $category_ids)->getList()) {
                 foreach ($list as $list_item) {
                     $cast = $list_item->cast();
                     $cat = array(
                         'id' => $cast['_id'],
-                        'title' => $cast['title']
+                        'title' => $cast['title'],
+                    	'slug' => $cast['slug']
                     );
                     unset($cast);
                     $categories[] = $cat;
