@@ -35,6 +35,12 @@ class Listener extends \Prefab
         
         $items[] = $item;
         
+        $item = new \stdClass;
+        $item->title = 'Blog Tag';
+        $item->form = \Blog\Admin\Controllers\MenuItemQuickAdd::instance()->tag($event);
+        
+        $items[] = $item;
+        
         $event->setArgument('items', $items);
     }
 }
