@@ -45,6 +45,18 @@ class Posts extends \Dsc\Models\Content
             $this->filters['metadata.slug'] = $filter_slug;
         }
         
+        $filter_tag = $this->getState('filter.tag');
+        if (strlen($filter_tag))
+        {
+            $this->filters['metadata.tags'] = $filter_tag;
+        }
+        
+        $filter_creator_id = $this->getState('filter.creator.id');
+        if (strlen($filter_creator_id))
+        {
+            $this->filters['metadata.creator.id'] = $filter_creator_id;
+        }
+        
         $filter_copy_contains = $this->getState('filter.copy-contains');
         if (strlen($filter_copy_contains))
         {
