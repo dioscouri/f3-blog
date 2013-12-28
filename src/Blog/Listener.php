@@ -43,4 +43,21 @@ class Listener extends \Prefab
         
         $event->setArgument('items', $items);
     }
+    
+    public function onDisplayAdminMenusEdit( $event ) 
+    {
+        $item = $event->getArgument('item');
+        $tabs = $event->getArgument('tabs');
+        $content = $event->getArgument('content');
+        
+        // TODO switch this to in_array()
+        if (strpos($item->{'details.type'}, 'blog-') !== false) 
+        {
+            $tabs[] = 'Blog Menu Item Tab';
+            $content[] = 'Additional fields from the Blog Listener';
+        }
+        
+        $event->setArgument('tabs', $tabs);
+        $event->setArgument('content', $content);
+    }
 }
