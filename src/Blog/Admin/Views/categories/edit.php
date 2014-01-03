@@ -1,10 +1,15 @@
 <?php // echo \Dsc\Debug::dump( $flash->get('old'), false ); ?>
 
-<form id="detail-form" action="./admin/blog/category/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
+<form id="detail-form" action="./admin/blog/category/update/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
+            <label>Title</label>
+                 <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label>Slug</label>
+                 <input type="text" name="slug" placeholder="Slug" value="<?php echo $flash->old('slug'); ?>" class="form-control" />
             </div>
             <!-- /.form-group -->
             

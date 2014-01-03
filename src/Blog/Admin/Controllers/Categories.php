@@ -4,7 +4,7 @@ namespace Blog\Admin\Controllers;
 class Categories extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\AdminList;
-    
+
     protected $list_route = '/admin/blog/categories';
 
     protected function getModel()
@@ -72,6 +72,9 @@ class Categories extends \Admin\Controllers\BaseAuth
                 'result' => $html
         ) ) );
     
+    }
+    public function checkboxes() {
+        $this->getCheckboxes();
     }
     
     public function getCheckboxes()

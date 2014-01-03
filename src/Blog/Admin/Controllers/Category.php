@@ -6,9 +6,9 @@ class Category extends \Admin\Controllers\BaseAuth
     use \Dsc\Traits\Controllers\CrudItem;
 
     protected $list_route = '/admin/blog/categories';
-    protected $create_item_route = '/admin/blog/category';
-    protected $get_item_route = '/admin/blog/category/{id}';    
-    protected $edit_item_route = '/admin/blog/category/{id}/edit';
+    protected $create_item_route = '/admin/blog/category/create';
+    protected $get_item_route = '/admin/blog/category/view/{id}';    
+    protected $edit_item_route = '/admin/blog/category/edit/{id}';
     
     protected function getModel() 
     {

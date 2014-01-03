@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 
 </script>
 
-<form id="detail-form" action="./admin/blog/post" class="form" method="post">
+<form id="detail-form" action="./admin/blog/post/add" class="form" method="post">
     <div class="row">
         <div class="col-md-9">
             <div class="form-group">
@@ -146,7 +146,7 @@ jQuery(document).ready(function(){
                             <div id="addCategoryForm" class="collapse">
                                 <div class="panel-body">
                                     
-                                    <div id="quick-form" action="./admin/blog/category" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
+                                    <div id="quick-form" action="./admin/blog/category/add" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
                                     
                                     <div id="quick-form-response-container"></div>
                                     

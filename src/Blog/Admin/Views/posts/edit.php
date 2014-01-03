@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 
 </script>
 
-<form id="detail-form" action="./admin/blog/post/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
+<form id="detail-form" action="./admin/blog/post/update/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
     <div class="row">
         <div class="col-md-9">
             <div class="form-group">

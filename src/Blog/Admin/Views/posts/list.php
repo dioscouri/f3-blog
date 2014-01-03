@@ -70,7 +70,7 @@
                             
                 <td class="">
                     <h5>
-                    <a href="./admin/blog/post/<?php echo $item->id; ?>/edit">
+                    <a href="./admin/blog/post/edit/<?php echo $item->id; ?>">
                     <?php echo $item->{'metadata.title'}; ?>
                     </a>
                     </h5>
@@ -99,11 +99,11 @@
                 </td>
                                 
                 <td class="text-center">
-                    <a class="btn btn-xs btn-secondary" href="./admin/blog/post/<?php echo $item->id; ?>/edit">
+                    <a class="btn btn-xs btn-secondary" href="./admin/blog/post/edit/<?php echo $item->id; ?>">
                         <i class="fa fa-pencil"></i>
                     </a>
                     &nbsp;
-                    <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/<?php echo $item->id; ?>/delete">
+                    <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/delete/<?php echo $item->id; ?>">
                         <i class="fa fa-times"></i>
                     </a>
                 </td>
