@@ -73,9 +73,6 @@ class Categories extends \Admin\Controllers\BaseAuth
         ) ) );
     
     }
-    public function checkboxes() {
-        $this->getCheckboxes();
-    }
     
     public function getCheckboxes()
     {
