@@ -10,7 +10,7 @@
         <?php foreach ($list['subset'] as $item) { $item->_url = './blog/post/' . $item->{'metadata.slug'}; ?>
         <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
 
-            <header class="entry-header">
+            <div class="entry-header">
                 <?php if ($item->{'details.featured_image.slug'}) { ?>
                 <a href="<?php echo $item->_url; ?>">
                 <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'details.featured_image.slug'} ?>">
@@ -50,7 +50,7 @@
                     </p>
                     <?php } ?>
                 </div>
-            </header>
+            </div>
 
             <div class="entry-description">
                 <?php echo $item->{'details.copy'}; ?>

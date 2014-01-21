@@ -1,6 +1,6 @@
 <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
 
-    <header class="entry-header">
+    <div class="entry-header">
         <?php if ($item->{'details.featured_image.slug'}) { ?>
         <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'details.featured_image.slug'} ?>">
         <?php } ?>
@@ -33,7 +33,7 @@
             </p>
             <?php } ?>
         </div>
-    </header>
+    </div>
 
     <div class="entry-description">
         <?php echo $item->{'details.copy'}; ?>
