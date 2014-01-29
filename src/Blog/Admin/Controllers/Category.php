@@ -7,7 +7,7 @@ class Category extends \Admin\Controllers\BaseAuth
 
     protected $list_route = '/admin/blog/categories';
     protected $create_item_route = '/admin/blog/category/create';
-    protected $get_item_route = '/admin/blog/category/view/{id}';    
+    protected $get_item_route = '/admin/blog/category/read/{id}';    
     protected $edit_item_route = '/admin/blog/category/edit/{id}';
     
     protected function getModel() 
