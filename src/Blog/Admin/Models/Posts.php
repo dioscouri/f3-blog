@@ -75,6 +75,19 @@ class Posts extends \Dsc\Models\Content
         return $this->filters;
     }
     
+    public function validate( $values, $options=array(), $mapper=null )
+    {
+        if (empty($values['metadata']['creator']) && empty($mapper->{'metadata.creator'})) {
+            $this->setError('An author is required');
+        }
+        
+        if (empty($values['details']['copy']) && empty($mapper->{'details.copy'})) {
+            $this->setError('Body copy is required');
+        }
+    
+        return parent::validate();
+    }    
+    
     public function save( $values, $options=array(), $mapper=null )
     {
         if (empty($values['publication']['start'])) {
