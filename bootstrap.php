@@ -9,6 +9,9 @@ switch ($global_app_name)
         \Dsc\System::instance()->getDispatcher()->addListener(\Blog\Listener::instance());
         
         // register all the routes
+        $f3->route('GET /admin/blog/settings', '\Blog\Admin\Controllers\Settings->display');
+        $f3->route('POST /admin/blog/settings', '\Blog\Admin\Controllers\Settings->save');
+                
         $f3->route('GET|POST /admin/blog/posts', '\Blog\Admin\Controllers\Posts->display');
         $f3->route('GET|POST /admin/blog/posts/page/@page', '\Blog\Admin\Controllers\Posts->display');
         $f3->route('GET|POST /admin/blog/posts/delete', '\Blog\Admin\Controllers\Posts->delete');

@@ -18,6 +18,7 @@ class Listener extends \Prefab
                     ,json_decode(json_encode(array( 'title'=>'Add New', 'route'=>'/admin/blog/post/create', 'icon'=>'fa fa-plus' )))
                     ,json_decode(json_encode(array( 'title'=>'Categories', 'route'=>'/admin/blog/categories', 'icon'=>'fa fa-folder' )))
                     ,json_decode(json_encode(array( 'title'=>'Add New', 'route'=>'/admin/blog/category/create', 'hidden'=>true )))
+                    ,json_decode(json_encode(array( 'title'=>'Settings', 'route'=>'/admin/blog/settings', 'icon'=>'fa fa-cogs' )))
             );
             $mapper->save();
             
