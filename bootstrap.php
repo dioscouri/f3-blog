@@ -44,7 +44,9 @@ switch ($global_app_name)
                 
         break;
     case "site":
-        // TODO register all the routes
+        // register all the routes
+        $f3->route('GET /blog', '\Blog\Site\Controllers\Home->index');
+        $f3->route('GET /blog/page/@page', '\Blog\Site\Controllers\Home->index');
         $f3->route('GET /blog/post/@slug', '\Blog\Site\Controllers\Post->read');
         $f3->route('GET /blog/post/@slug/@page', '\Blog\Site\Controllers\Post->read');                
         $f3->route('GET /blog/category/@slug', '\Blog\Site\Controllers\Category->index');
