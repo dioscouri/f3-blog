@@ -32,7 +32,7 @@ class Post extends \Dsc\Controller
     	
     	\Base::instance()->set('item', $item );
     	
-    	$view = new \Dsc\Template;
+    	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');
     	 
     }

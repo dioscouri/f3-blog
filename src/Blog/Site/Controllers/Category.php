@@ -40,7 +40,7 @@ class Category extends \Dsc\Controller
     	$pagination = new \Dsc\Pagination($list['total'], $list['limit']);
     	\Base::instance()->set('pagination', $pagination );
     	
-    	$view = new \Dsc\Template;
+    	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/category.php');
     	 
     }

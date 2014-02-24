@@ -39,6 +39,9 @@ switch ($global_app_name)
         $f3->route('GET|DELETE /admin/blog/category/delete/@id', '\Blog\Admin\Controllers\Category->delete');
 
         // append this app's UI folder to the path
+        // new way
+        \Dsc\System::instance()->get('theme')->registerViewPath( __dir__ . '/src/Blog/Admin/Views/', 'Blog/Admin/Views' );
+        // old way        
         $ui = $f3->get('UI');
         $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Admin/Views/";
         $f3->set('UI', $ui);
@@ -60,6 +63,9 @@ switch ($global_app_name)
         $f3->route('GET /blog/author/@id/@page', '\Blog\Site\Controllers\Author->index');
         
         // append this app's UI folder to the path
+        // new way
+        \Dsc\System::instance()->get('theme')->registerViewPath( __dir__ . '/src/Blog/Site/Views/', 'Blog/Site/Views' );
+        // old way        
         $ui = $f3->get('UI');
         $ui .= ";" . $f3->get('PATH_ROOT') . "vendor/dioscouri/f3-blog/src/Blog/Site/Views/";
         $f3->set('UI', $ui);

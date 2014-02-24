@@ -62,7 +62,7 @@ class Post extends \Admin\Controllers\BaseAuth
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
         
-        $view = new \Dsc\Template;
+        $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/create.php');
     }
     
@@ -79,7 +79,7 @@ class Post extends \Admin\Controllers\BaseAuth
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
         
-        $view = new \Dsc\Template;
+        $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/edit.php');
     }
     

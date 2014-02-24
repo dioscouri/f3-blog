@@ -45,7 +45,7 @@ class Category extends \Admin\Controllers\BaseAuth
         
         \Base::instance()->set('selected', null );
         
-        $view = new \Dsc\Template;
+        $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::categories/create.php');        
     }
     
@@ -62,7 +62,7 @@ class Category extends \Admin\Controllers\BaseAuth
         $selected = $flash->old('parent');
         \Base::instance()->set('selected', $selected );
         
-        $view = new \Dsc\Template;
+        $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::categories/edit.php');
     }
     
@@ -85,7 +85,7 @@ class Category extends \Admin\Controllers\BaseAuth
     	$categories = $model->getList();
     	\Base::instance()->set('categories', $categories );
     	
-    	$view = new \Dsc\Template;
+    	$view = \Dsc\System::instance()->get('theme');
     	echo $view->renderLayout('Blog/Admin/Views::categories/quickadd.php');
     }
 }
