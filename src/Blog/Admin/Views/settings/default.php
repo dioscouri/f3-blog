@@ -1,6 +1,7 @@
+<div class="well">
 <form id="settings-form" role="form" method="post" class="form-horizontal clearfix">
 
-    <div class="form-actions clearfix">
+    <div class="clearfix">
         <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
     </div>
     
@@ -69,3 +70,4 @@
     </div>
 
 </form>
+</div>
