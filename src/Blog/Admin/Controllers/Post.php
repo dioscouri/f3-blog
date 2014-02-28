@@ -7,7 +7,7 @@ class Post extends \Admin\Controllers\BaseAuth
 
     protected $list_route = '/admin/blog/posts';
     protected $create_item_route = '/admin/blog/post/create';
-    protected $get_item_route = '/admin/blog/post/view/{id}';    
+    protected $get_item_route = '/admin/blog/post/read/{id}';    
     protected $edit_item_route = '/admin/blog/post/edit/{id}';
     
     protected function getModel() 
