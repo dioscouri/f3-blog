@@ -46,7 +46,7 @@
                 <!-- /.form-group -->
                 
                 <div class="form-group">
-                    <?php echo $this->renderLayout('categories/list_parents.php'); ?>
+                    <?php echo $this->renderLayout('Blog/Admin/Views::categories/list_parents.php'); ?>
                 </div>
                 <!-- /.form-group -->     
         

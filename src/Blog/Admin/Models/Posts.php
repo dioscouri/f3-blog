@@ -85,7 +85,7 @@ class Posts extends \Dsc\Models\Content
             $this->setError('Body copy is required');
         }
     
-        return parent::validate();
+        return parent::validate( $values, $options, $mapper );
     }    
     
     public function save( $values, $options=array(), $mapper=null )
