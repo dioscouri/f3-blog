@@ -9,7 +9,7 @@ switch ($global_app_name)
         \Dsc\System::instance()->getDispatcher()->addListener(\Blog\Listener::instance());
         
     	// register all the routes
-    	\Dsc\System::instance()->get('router')->mount( new \Blog\Admin\Routes );
+    	\Dsc\System::instance()->get('router')->mount( new \Blog\Admin\Routes, 'blog' );
         // append this app's UI folder to the path
         // new way
         \Dsc\System::instance()->get('theme')->registerViewPath( __dir__ . '/src/Blog/Admin/Views/', 'Blog/Admin/Views' );
@@ -23,7 +23,7 @@ switch ($global_app_name)
         break;
     case "site":
     	// register all the routes
-    	\Dsc\System::instance()->get('router')->mount( new \Blog\Site\Routes );
+    	\Dsc\System::instance()->get('router')->mount( new \Blog\Site\Routes, 'blog' );
         // append this app's UI folder to the path
         // new way
         \Dsc\System::instance()->get('theme')->registerViewPath( __dir__ . '/src/Blog/Site/Views/', 'Blog/Site/Views' );
