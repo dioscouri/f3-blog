@@ -29,6 +29,12 @@ class Routes extends \Dsc\Routes\Group{
 		$this->addCrudItem( 'Post' );
 
 		$this->addCrudList( 'Categories', array( 'databable_links' => true ) );
+		$this->add( '/checkboxes', array( 'GET', 'POST' ),
+					array(
+						'controller' => 'Categories',
+						'action' => 'getCheckboxes'
+						)
+					);
 		$this->addCrudItem( 'Category' );
 	}
 }
