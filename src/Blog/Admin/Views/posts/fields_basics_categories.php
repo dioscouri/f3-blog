@@ -42,7 +42,7 @@
                 <div id="addCategoryForm" class="collapse">
                     <div class="panel-body">
                         
-                        <div id="quick-form" action="./admin/blog/category" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
+                        <div id="quick-form" action="./admin/blog/category/create" data-callback="Dsc.refreshCategories" data-message_container="quick-form-response-container">
                         
                         <div id="quick-form-response-container"></div>
                         

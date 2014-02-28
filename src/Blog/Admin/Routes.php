@@ -23,61 +23,10 @@ class Routes extends \Dsc\Routes\Group{
 					'url_prefix' => '/admin/blog'
 				)
 		);
-		
-		$this->add( '/settings', 'GET', array(
-								'controller' => 'Settings',
-								'action' => 'display'
-								));
 
-		$this->add( '/settings', 'POST', array(
-				'controller' => 'Settings',
-				'action' => 'save'
-		));
-
-		$this->add( '/posts', array('GET','POST'), array(
-				'controller' => 'Posts',
-				'action' => 'display'
-		));
-
-		$this->add( '/posts/page/@page', array('GET','POST'), array(
-				'controller' => 'Posts',
-				'action' => 'display'
-		));
-
-		$this->add( '/posts/delete', array('GET','POST'), array(
-				'controller' => 'Posts',
-				'action' => 'delete'
-		));
-
-		$this->add( '/post/create', 'GET', array(
-				'controller' => 'Post',
-				'action' => 'create'
-		));
-
-		$this->add( '/post/add', 'POST', array(
-				'controller' => 'Post',
-				'action' => 'add'
-		));
-
-		$this->add( '/post/read/@id', 'GET', array(
-				'controller' => 'Post',
-				'action' => 'read'
-		));
-
-		$this->add( '/post/edit/@id', 'GET', array(
-				'controller' => 'Post',
-				'action' => 'edit'
-		));
-
-		$this->add( '/post/update/@id', 'GET', array(
-				'controller' => 'Post',
-				'action' => 'update'
-		));
-
-		$this->add( '/post/delete/@id', array('GET', 'DELETE'), array(
-				'controller' => 'Post',
-				'action' => 'delete'
-		));
+		$this->addSettingsRoutes();
+		$this->addCrudList( 'Posts' );
+		$this->addCrudItem( 'Post' );
 
 		$this->add( '/categories', 'GET', array(
 				'controller' => 'Categories',
@@ -96,50 +45,7 @@ class Routes extends \Dsc\Routes\Group{
 				'action' => 'getCheckboxes',
 				'ajax' => true
 		));
-
-		$this->add( '/categories', array( 'GET', 'POST' ), array(
-				'controller' => 'Categories',
-				'action' => 'display'
-		));
-
-		$this->add( '/categories/page/@page', array( 'GET', 'POST' ), array(
-				'controller' => 'Categories',
-				'action' => 'display'
-		));
-
-		$this->add( '/categories/delete', array( 'GET', 'POST' ), array(
-				'controller' => 'Categories',
-				'action' => 'delete'
-		));
-
-		$this->add( '/category/create', 'GET', array(
-				'controller' => 'Category',
-				'action' => 'create'
-		));
-
-		$this->add( '/category/add', 'POST', array(
-				'controller' => 'Category',
-				'action' => 'add'
-		));
-
-		$this->add( '/category/read/@id', 'GET', array(
-				'controller' => 'Category',
-				'action' => 'read'
-		));
-
-		$this->add( '/category/edit/@id', 'GET', array(
-				'controller' => 'Category',
-				'action' => 'edit'
-		));
-
-		$this->add( '/category/update/@id', 'POST', array(
-				'controller' => 'Category',
-				'action' => 'update'
-		));
-
-		$this->add( '/category/delete/@id', array('GET', 'DELETE'), array(
-				'controller' => 'Category',
-				'action' => 'delete'
-		));
+		$this->addCrudList( 'Categories' );
+		$this->addCrudItem( 'Category' );
 	}
 }

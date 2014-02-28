@@ -7,7 +7,7 @@ jQuery(document).ready(function(){
 
 <div class="well">
 
-<form id="detail-form" action="./admin/blog/post/update/<?php echo $item->get( $model->getItemKey() ); ?>" class="form" method="post">
+<form id="detail-form" class="form" method="post">
 
     <div class="clearfix">
 

@@ -3,7 +3,7 @@ namespace Blog\Admin\Controllers;
 
 class Posts extends \Admin\Controllers\BaseAuth 
 {
-    public function display()
+    public function index()
     {
         \Base::instance()->set('pagetitle', 'Posts');
         \Base::instance()->set('subtitle', '');
