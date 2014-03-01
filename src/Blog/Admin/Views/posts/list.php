@@ -19,6 +19,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                <?php /* ?>
                 <ul class="list-filters list-unstyled list-inline">
                     <li>
                         <a class="btn btn-link">Advanced Filtering</a>
@@ -30,14 +31,17 @@
                         <a class="btn btn-link">Quicklink Filter</a>
                     </li>
                 </ul>
+                */ ?>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="filter[keyword]" placeholder="Search..." maxlength="200" value="<?php echo $state->get('filter.keyword'); ?>"> <span class="input-group-btn"> <input class="btn btn-primary" type="submit"
-                        onclick="this.form.submit();" value="Search"
-                    />
-                        <button class="btn btn-danger" type="button" onclick="Dsc.resetFormFilters(this.form);">Reset</button>
-                    </span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="filter[keyword]" placeholder="Search..." maxlength="200" value="<?php echo $state->get('filter.keyword'); ?>"> <span class="input-group-btn"> <input class="btn btn-primary" type="submit"
+                            onclick="this.form.submit();" value="Search"
+                        />
+                            <button class="btn btn-danger" type="button" onclick="Dsc.resetFormFilters(this.form);">Reset</button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,8 +83,8 @@
         </div>
         <!-- /.widget-body-toolbar -->
 
-        <input type="hidden" name="list[order]" value="<?php echo $state->get('list.order'); ?>" /> <input type="hidden" name="list[direction]" value="<?php echo $state->get('list.direction'); ?>" />
-
+        <input type="hidden" name="list[order]" value="<?php echo $state->get('list.order'); ?>" /> 
+        <input type="hidden" name="list[direction]" value="<?php echo $state->get('list.direction'); ?>" />
 
         <div class="table-responsive datatable dt-wrapper dataTables_wrapper">
 
