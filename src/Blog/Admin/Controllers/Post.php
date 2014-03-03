@@ -12,7 +12,7 @@ class Post extends \Admin\Controllers\BaseAuth
     
     protected function getModel() 
     {
-        $model = new \Blog\Admin\Models\Posts;
+        $model = new \Blog\Models\Posts;
         return $model; 
     }
     
@@ -39,7 +39,7 @@ class Post extends \Admin\Controllers\BaseAuth
         $f3 = \Base::instance();
         $f3->set('pagetitle', 'Create Post');
         
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
         \Base::instance()->set('selected', 'null' );
@@ -71,7 +71,7 @@ class Post extends \Admin\Controllers\BaseAuth
         $f3 = \Base::instance();
         $f3->set('pagetitle', 'Edit Post');
 
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
         \Base::instance()->set('selected', 'null' );

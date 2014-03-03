@@ -5,7 +5,7 @@ class Author extends \Dsc\Controller
 {    
     protected function getModel() 
     {
-        $model = new \Blog\Admin\Models\Posts;
+        $model = new \Blog\Models\Posts;
         return $model; 
     }
     

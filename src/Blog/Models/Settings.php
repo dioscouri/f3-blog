@@ -1,8 +1,12 @@
 <?php 
-namespace Blog\Admin\Models;
+namespace Blog\Models;
 
 class Settings extends \Dsc\Models\Settings 
 {
+    public $home = array(
+        'include_categories_widget' => 1
+    );
+    
     protected $type = 'blog.settings';
     
     public function prefab( $source=array(), $options=array() )

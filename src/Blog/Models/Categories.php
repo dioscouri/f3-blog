@@ -1,5 +1,5 @@
 <?php 
-namespace Blog\Admin\Models;
+namespace Blog\Models;
 
 class Categories extends \Dsc\Models\Categories 
 {
@@ -34,7 +34,7 @@ class Categories extends \Dsc\Models\Categories
             $slug = $update->slug;
             
             // update the category in the Posts collection
-            $model = \Blog\Admin\Models\Posts::instance();
+            $model = \Blog\Models\Posts::instance();
             $collection = $model->getCollection();
             $result = $collection->update(
                     array('metadata.categories.id' => $id ),
@@ -59,7 +59,7 @@ class Categories extends \Dsc\Models\Categories
         if ($delete = parent::delete( $mapper, $options )) 
         {
             // delete the category from the Posts collection
-            $model = \Blog\Admin\Models\Posts::instance();
+            $model = \Blog\Models\Posts::instance();
             $collection = $model->getCollection();
             $result = $collection->update(
                     array('metadata.categories.id' => $id ),

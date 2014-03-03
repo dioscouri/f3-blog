@@ -12,7 +12,7 @@ class Category extends \Admin\Controllers\BaseAuth
     
     protected function getModel() 
     {
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         return $model; 
     }
     
@@ -39,7 +39,7 @@ class Category extends \Admin\Controllers\BaseAuth
         $f3 = \Base::instance();
         $f3->set('pagetitle', 'Edit Category');
 
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         $all = $model->emptyState()->getList();
         \Base::instance()->set('all', $all );
         
@@ -54,7 +54,7 @@ class Category extends \Admin\Controllers\BaseAuth
         $f3 = \Base::instance();
         $f3->set('pagetitle', 'Edit Category');
 
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         $categories = $model->emptyState()->getList();
         \Base::instance()->set('categories', $categories );
         

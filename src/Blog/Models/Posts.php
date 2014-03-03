@@ -1,5 +1,5 @@
 <?php 
-namespace Blog\Admin\Models;
+namespace Blog\Models;
 
 class Posts extends \Dsc\Mongo\Collections\Content 
 {
@@ -31,7 +31,7 @@ class Posts extends \Dsc\Mongo\Collections\Content
             unset($this->category_ids);
         
             $categories = array();
-            if ($list = (new \Blog\Admin\Models\Categories)->setState('select.fields', array('title', 'slug'))->setState('filter.ids', $category_ids)->getList()) 
+            if ($list = (new \Blog\Models\Categories)->setState('select.fields', array('title', 'slug'))->setState('filter.ids', $category_ids)->getList()) 
             {
                 foreach ($list as $list_item) {
                     $cat = array(

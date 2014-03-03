@@ -9,7 +9,7 @@ class Categories extends \Admin\Controllers\BaseAuth
 
     protected function getModel()
     {
-        $model = new \Blog\Admin\Models\Categories;
+        $model = new \Blog\Models\Categories;
         return $model;
     }
     

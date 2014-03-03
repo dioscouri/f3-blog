@@ -11,7 +11,7 @@ class Posts extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('pagetitle', 'Posts');
         \Base::instance()->set('subtitle', '');
         
-        $model = new \Blog\Admin\Models\Posts;
+        $model = new \Blog\Models\Posts;
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
         

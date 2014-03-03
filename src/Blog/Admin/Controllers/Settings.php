@@ -99,7 +99,7 @@ class Settings extends \Admin\Controllers\BaseAuth
     
     protected function getModel()
     {
-        $model = new \Blog\Admin\Models\Settings;
+        $model = new \Blog\Models\Settings;
         return $model;
     }
     
