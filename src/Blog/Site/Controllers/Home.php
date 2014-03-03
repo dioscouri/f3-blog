@@ -19,7 +19,7 @@ class Home extends \Dsc\Controller
     	$model = $this->getModel()->populateState();
     	
     	try {
-    		$list = $model->paginate();
+    		$paginated = $model->paginate();
     	} catch ( \Exception $e ) {
     	    // TODO Change to a normal 404 error
     		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
@@ -33,10 +33,7 @@ class Home extends \Dsc\Controller
     	$state = $model->getState();
     	\Base::instance()->set('state', $state );
     	
-    	\Base::instance()->set('list', $list );
-    	
-    	$pagination = new \Dsc\Pagination($list['total'], $list['limit']);
-    	\Base::instance()->set('pagination', $pagination );
+    	\Base::instance()->set('paginated', $paginated );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::home/index.php');

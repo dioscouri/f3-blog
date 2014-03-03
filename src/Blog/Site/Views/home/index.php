@@ -2,15 +2,17 @@
 
     <div>
     
-        <?php if (!empty($list['subset'])) { ?>
+        <?php if (!empty($paginated->items)) { ?>
     
-        <?php foreach ($list['subset'] as $item) { $item->_url = './blog/post/' . $item->{'metadata.slug'}; ?>
+        <?php foreach($paginated->items as $item) { 
+            $item->_url = './blog/post/' . $item->slug; 
+        ?>
         <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
 
             <div class="entry-header">
-                <?php if ($item->{'details.featured_image.slug'}) { ?>
+                <?php if ($item->{'featured_image.slug'}) { ?>
                 <a href="<?php echo $item->_url; ?>">
-                <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'details.featured_image.slug'} ?>">
+                <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
                 </a>
                 <?php } ?>
             
@@ -21,7 +23,7 @@
                 
                 <h2 class="entry-title">
                     <a href="<?php echo $item->_url; ?>">
-                    <?php echo $item->{'metadata.title'}; ?>
+                    <?php echo $item->{'title'}; ?>
                     </a>
                 </h2>
                 <div class="entry-meta lead">
@@ -36,12 +38,12 @@
                     </span>
                     /
                     <span class="comments-link">
-                        <a href="<?php echo $item->_url; ?>#respond" title="Comment on <?php echo $item->{'metadata.title'}; ?>">0 comments</a>
+                        <a href="<?php echo $item->_url; ?>#respond" title="Comment on <?php echo $item->{'title'}; ?>">0 comments</a>
                     </span>
                     
-                    <?php if (!empty($item->{'metadata.tags'})) { ?>
+                    <?php if (!empty($item->{'tags'})) { ?>
                     <p class="tag-links">
-                        <?php foreach ($item->{'metadata.tags'} as $tag) { ?>
+                        <?php foreach ($item->{'tags'} as $tag) { ?>
                         <a class="label label-info" href="./blog/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
                         <?php } ?>
                     </p>
@@ -50,14 +52,14 @@
             </div>
 
             <div class="entry-description">
-                <?php echo $item->{'details.copy'}; ?>
+                <?php echo $item->{'copy'}; ?>
             </div>
 
             <div class="entry-meta">
                 
-                <?php if (!empty($item->{'metadata.categories'})) { ?>
+                <?php if (!empty($item->{'categories'})) { ?>
                 <p class="cat-links">
-                    <?php foreach ($item->{'metadata.categories'} as $category) { ?>
+                    <?php foreach ($item->{'categories'} as $category) { ?>
                     <a class="label label-primary" href="./blog/category/<?php echo $category['slug']; ?>"
                         title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
                     <?php } ?>
@@ -80,15 +82,19 @@
     
     </div>
 
-    <div class="row datatable-footer">
-        <?php if (!empty($list['count']) && $list['count'] > 1) { ?>
-        <div class="col-sm-10">
-            <?php echo (!empty($list['count']) && $list['count'] > 1) ? $pagination->serve() : null; ?>
-        </div>
-        <?php } ?>
-        <div class="col-sm-2 pull-right">
-            <div class="datatable-results-count pull-right">
-            <?php echo $pagination ? $pagination->getResultsCounter() : null; ?>
+    <div class="dt-row dt-bottom-row">
+        <div class="row">
+            <div class="col-sm-10">
+                <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
+                    <?php echo $paginated->serve(); ?>
+                <?php } ?>
+            </div>
+            <div class="col-sm-2">
+                <div class="datatable-results-count pull-right">
+                    <span class="pagination">
+                        <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
