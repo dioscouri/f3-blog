@@ -10,18 +10,18 @@
     <div class="col-md-10">
 
         <div class="form-group">
-            <input type="text" name="metadata[title]" placeholder="Title" value="<?php echo $flash->old('metadata.title'); ?>" class="form-control" />
-            <?php if ($flash->old('metadata.slug')) { ?>
+            <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
+            <?php if ($flash->old('slug')) { ?>
                 <p class="help-block">
                 <label>Slug:</label>
-                <input type="text" name="metadata[slug]" value="<?php echo $flash->old('metadata.slug'); ?>" class="form-control" />
+                <input type="text" name="slug" value="<?php echo $flash->old('slug'); ?>" class="form-control" />
                 </p>
             <?php } ?>
         </div>
         <!-- /.form-group -->
         
         <div class="form-group">
-            <textarea name="details[copy]" class="form-control wysiwyg"><?php echo $flash->old('details.copy'); ?></textarea>
+            <textarea name="copy" class="form-control wysiwyg"><?php echo $flash->old('copy'); ?></textarea>
         </div>
         <!-- /.form-group -->
     

@@ -5,6 +5,9 @@ class Posts extends \Admin\Controllers\BaseAuth
 {
     public function index()
     {
+        // when ACL is ready
+        //$this->checkAccess( __CLASS__, __FUNCTION__ );
+        
         \Base::instance()->set('pagetitle', 'Posts');
         \Base::instance()->set('subtitle', '');
         
@@ -12,11 +15,8 @@ class Posts extends \Admin\Controllers\BaseAuth
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
         
-        $list = $model->paginate();
-        \Base::instance()->set('list', $list );
-        
-        $pagination = new \Dsc\Pagination($list['total'], $list['limit']);       
-        \Base::instance()->set('pagination', $pagination );
+        $paginated = $model->paginate();
+        \Base::instance()->set('paginated', $paginated );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/list.php');

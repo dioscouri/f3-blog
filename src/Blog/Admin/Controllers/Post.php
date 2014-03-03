@@ -3,7 +3,7 @@ namespace Blog\Admin\Controllers;
 
 class Post extends \Admin\Controllers\BaseAuth 
 {
-    use \Dsc\Traits\Controllers\CrudItem;
+    use \Dsc\Traits\Controllers\CrudItemCollection;
 
     protected $list_route = '/admin/blog/posts';
     protected $create_item_route = '/admin/blog/post/create';
@@ -57,7 +57,7 @@ class Post extends \Admin\Controllers\BaseAuth
             }
         }
         
-        $flash->store( $flash->get('old') + array('categories'=>$selected));        
+        $flash->store( (array) $flash->get('old') + array('categories'=>$selected));        
 
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );

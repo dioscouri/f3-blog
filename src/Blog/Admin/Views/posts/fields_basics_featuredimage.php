@@ -10,7 +10,7 @@
     <div class="col-md-10">
 
         <div class="form-group">
-            <?php echo \Assets\Admin\Controllers\Assets::instance()->fetchElementImage('featured_image', $flash->old('details.featured_image.slug'), array('field'=>'details[featured_image][slug]') ); ?>
+            <?php echo \Assets\Admin\Controllers\Assets::instance()->fetchElementImage('featured_image', $flash->old('featured_image.slug'), array('field'=>'featured_image[slug]') ); ?>
         </div>
         <!-- /.form-group -->
     
