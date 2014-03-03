@@ -51,6 +51,15 @@ class Posts extends \Dsc\Mongo\Collections\Content
         return parent::beforeValidate();
     }
     
+    public function validate()
+    {
+        if (empty($this->copy)) {
+            $this->setError('Body copy is required');
+        }
+        
+        return parent::validate();
+    }
+    
     public function generateSlug( $unique=true )
     {
         if (empty($this->title)) {
