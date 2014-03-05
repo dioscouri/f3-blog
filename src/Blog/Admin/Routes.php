@@ -25,8 +25,7 @@ class Routes extends \Dsc\Routes\Group{
 		);
 
 		$this->addSettingsRoutes();
-		$this->addCrudList( 'Posts' );
-		$this->addCrudItem( 'Post' );
+		$this->addCrudGroup( 'Posts', 'Post');
 
 		$this->addCrudList( 'Categories', array( 'databable_links' => true ) );
 		$this->add( '/checkboxes', array( 'GET', 'POST' ),
