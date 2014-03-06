@@ -15,7 +15,7 @@ class MenuItemQuickAdd extends \Admin\Controllers\BaseAuth
 	
 	public function tag($event)
 	{
-	    $model = \Blog\Models\Posts::instance();
+	    $model = new \Blog\Models\Posts;
 	    $tags = $model->getTags();
 	    \Base::instance()->set('tags', $tags );
 	
