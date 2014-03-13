@@ -11,7 +11,7 @@ class Settings extends \Dsc\Models\Settings
     
     public function prefab( $source=array(), $options=array() )
     {
-        $prefab = new \Blog\Prefabs\Settings($source, $options);
+        $prefab = new \Blog\Models\Prefabs\Settings($source, $options);
     
         return $prefab;
     }
