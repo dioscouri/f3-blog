@@ -1,5 +1,5 @@
 <?php 
-class BlogBootstrap extends \Dsc\BaseBootstrap{
+class BlogBootstrap extends \Dsc\Bootstrap{
 	protected $dir = __DIR__;
 	protected $namespace = 'Blog';
 }
