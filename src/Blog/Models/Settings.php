@@ -7,5 +7,5 @@ class Settings extends \Dsc\Mongo\Collections\Settings
         'include_categories_widget' => 1
     );
     
-    public $type = 'blog.settings';
+    protected $__type = 'blog.settings';
 }
