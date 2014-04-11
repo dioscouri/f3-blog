@@ -36,7 +36,7 @@
     </div>
 
     <div class="entry-description">
-        <?php echo $item->{'details.copy'}; ?>
+        <?php echo $item->{'copy'}; ?>
     </div>
 
     <div class="entry-meta">
