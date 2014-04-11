@@ -1,8 +1,8 @@
 <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
 
     <div class="entry-header">
-        <?php if ($item->{'details.featured_image.slug'}) { ?>
-        <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'details.featured_image.slug'} ?>">
+        <?php if ($item->{'featured_image.slug'}) { ?>
+        <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
         <?php } ?>
     
         <?php if ($item->{'metadata.creator.image'}) { ?>
@@ -10,7 +10,7 @@
         <?php } ?>
         
         <h2 class="entry-title">
-            <?php echo $item->{'metadata.title'}; ?>
+            <?php echo $item->{'title'}; ?>
         </h2>
         <div class="entry-meta lead">
             <?php echo date( 'F j, Y', $item->{'publication.start.time'} ); ?>
@@ -25,9 +25,9 @@
                 0 comments
             </span>
             
-            <?php if (!empty($item->{'metadata.tags'})) { ?>
+            <?php if (!empty($item->{'tags'})) { ?>
             <p class="tag-links">
-                <?php foreach ($item->{'metadata.tags'} as $tag) { ?>
+                <?php foreach ($item->{'tags'} as $tag) { ?>
                 <a class="label label-info" href="./blog/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
                 <?php } ?>
             </p>
@@ -41,9 +41,9 @@
 
     <div class="entry-meta">
         
-        <?php if (!empty($item->{'metadata.categories'})) { ?>
+        <?php if (!empty($item->{'categories'})) { ?>
         <p class="cat-links">
-            <?php foreach ($item->{'metadata.categories'} as $category) { ?>
+            <?php foreach ($item->{'categories'} as $category) { ?>
             <a class="label label-primary" href="./blog/category/<?php echo $category['slug']; ?>" title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
             <?php } ?>
         </p>
