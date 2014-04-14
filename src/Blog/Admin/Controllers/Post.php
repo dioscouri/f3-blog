@@ -10,9 +10,18 @@ class Post extends \Admin\Controllers\BaseAuth
     protected $get_item_route = '/admin/blog/post/read/{id}';    
     protected $edit_item_route = '/admin/blog/post/edit/{id}';
     
-    protected function getModel() 
+    protected function getModel( $name = 'post' ) 
     {
-        $model = new \Blog\Models\Posts;
+    	$model = null;
+    	switch( $name ) {
+    		case 'post' :
+    			$model = new \Blog\Models\Posts;
+    			break;
+    		case 'tags':
+    			$model = new \Blog\Models\Posts;
+    			break;
+    			
+    	}
         return $model; 
     }
     

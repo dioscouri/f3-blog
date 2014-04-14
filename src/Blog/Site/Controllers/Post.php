@@ -36,4 +36,31 @@ class Post extends \Dsc\Controller
     	echo $view->render('Blog/Site/Views::posts/view.php');
     	 
     }
+
+
+    /*
+     * This method displays HTML with tag cloud for selected ID
+    *
+    * @param	$id
+    *
+    */
+    public function getTagCloud( $id ){
+    	$model = $this->getModel();
+    	
+    	$id = $model->inputFilter()->clean( $id, "alnum");
+    	 
+    	$item = $model->emptyState()->populateState()->setCondition( "_id", new \MongoId( (string)$id ) )->getItem();
+
+    	if( $item == null ){
+    		throw new \Exception( "Blog post with this ID does not exist" );
+    	}
+    	
+    	$tags = $item->get("tags");
+    	if( empty( $tags ) ||  is_array( $tags ) === false) {
+    		$tags = array();
+    	}
+    	\Base::instance()->set( "tags", $tags );
+    	$view = \Dsc\System::instance()->get('theme');
+    	echo $view->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php');
+    }
 }
