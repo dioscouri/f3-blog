@@ -19,6 +19,12 @@ class Posts extends \Dsc\Mongo\Collections\Content
         {
             $this->setCondition('categories.slug', $filter_category_slug );
         }
+        
+        $filter_category_id = $this->getState('filter.category.id');
+        if (strlen($filter_category_id))
+        {
+            $this->setCondition('categories.id', new \MongoId( (string) $filter_category_id ) );
+        }
 
         return $this;
     }

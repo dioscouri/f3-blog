@@ -33,6 +33,10 @@
                 <!-- /.form-actions -->
                 
                 <hr/>
+                
+                <div class="alert alert-info">
+                    <p><b>URL:</b> <a href="./blog/category<?php echo $flash->old('path'); ?>" target="_blank">./blog/category<?php echo $flash->old('path'); ?></a></p>
+                </div>
             
                 <div class="form-group">
                 <label>Title</label>

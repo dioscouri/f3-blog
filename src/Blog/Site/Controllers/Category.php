@@ -16,12 +16,20 @@ class Category extends \Dsc\Controller
     	// only posts that are published as of now
     	
     	$f3 = \Base::instance();
-    	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
-    	$model = $this->getModel()->populateState()
-            ->setState('filter.category.slug', $slug);
+    	$path = $this->inputfilter->clean( $f3->get('PARAMS.1'), 'string' );
+    	$model = $this->getModel();
     	
     	try {
-    		$paginated = $model->paginate();
+    	    $category = (new \Blog\Models\Categories)->setState('filter.path', $path)->getItem();
+    	    if (empty($category->id)) {
+    	        throw new \Exception;
+    	    }
+    	    $paginated = $model->populateState()
+        	    ->setState('filter.category.id', $category->id)
+        	    //->setState('filter.publication_status', 'published')
+        	    //->setState('filter.published_today', true)
+        	    ->paginate();
+    	    
     	} catch ( \Exception $e ) {
     	    // TODO Change to a normal 404 error
     		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
