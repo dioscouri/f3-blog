@@ -25,13 +25,7 @@
                 0 comments
             </span>
             
-            <?php if (!empty($item->{'tags'})) { ?>
-            <p class="tag-links">
-                <?php foreach ($item->{'tags'} as $tag) { ?>
-                <a class="label label-info" href="./blog/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
-                <?php } ?>
-            </p>
-            <?php } ?>
+            <?php echo $this->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php'); ?>
         </div>
     </div>
 
