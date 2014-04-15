@@ -42,12 +42,12 @@
 					$cat = $cats[0];
 					$highlight = in_array( (string)$cat->get( 'id' ), $selected_categories ) === false ? '' : " highlight";
 					if( $act_level == -1 ){
-						$act_level = count( explode( "/", $cat->get("path") ) );
+						$act_level = count( explode( "/", $cat->get("path") ) ) - 1;
 					}
 					if( $idx != ( $c - 1 ) ) {
 						$next = \Blog\Models\Categories::find( array( "_id" => new \MongoId( (string)$categories[$idx + 1]['id']) ));
 						$item_next = $next[0];
-						$next_level = count( explode( "/", $item_next->{"path"} ) );
+						$next_level = count( explode( "/", $item_next->{"path"} ) ) - 1;
 					} else {
 						$next_level = 0;
 					}
