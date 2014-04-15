@@ -27,6 +27,13 @@ class Post extends \Dsc\Controller
     		return;
     	}
     	
+    	if( empty( $item ) ){
+    		// TODO Change to a normal 404 error
+    		\Dsc\System::instance()->addMessage( "Invalid Post", 'error');
+    		$f3->reroute( '/' );
+    		return;
+    	}
+    	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
     	
