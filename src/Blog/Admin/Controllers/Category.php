@@ -3,8 +3,8 @@ namespace Blog\Admin\Controllers;
 
 class Category extends \Admin\Controllers\BaseAuth 
 {
-    use \Dsc\Traits\Controllers\CrudItem;
-
+    use \Dsc\Traits\Controllers\CrudItemCollection;
+	
     protected $list_route = '/admin/blog/categories';
     protected $create_item_route = '/admin/blog/category/create';
     protected $get_item_route = '/admin/blog/category/read/{id}';    
