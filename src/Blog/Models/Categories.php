@@ -5,12 +5,12 @@ class Categories extends \Dsc\Mongo\Collections\Categories
 {
     protected $__type = 'blog.categories';
 
-    protected function fetchFilters()
+    protected function fetchConditions()
     {
-        $this->filters = parent::fetchFilters();
-    
-        $this->filters['type'] = $this->type;
-    
-        return $this->filters;
+        parent::fetchConditions();
+        
+        $this->setCondition( 'type', $this->__type );
+        
+        return $this;
     }
 }
