@@ -42,4 +42,21 @@ class Post extends \Dsc\Controller
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');
     }
+    
+    /**
+     * This method will generate category tree which can be later used to render category widget
+     * 
+     * @param unknown $categories
+     */
+    public function generateCategoryTree($categories ){
+    	$root = new \stdclass();
+    	$root->nodes = array();
+    	$root->element = null;
+    	
+    	$c = count( $categories );
+    	for( $i = 0; $i < $c; $i++ ){
+    		$pieces = explode( '/', $categories[$i]->{'path'} );
+    	}
+    	
+    }
 }

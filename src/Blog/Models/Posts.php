@@ -3,6 +3,8 @@ namespace Blog\Models;
 
 class Posts extends \Dsc\Mongo\Collections\Content 
 {
+    use \Search\Traits\SearchItem;
+    
     public $categories = array();
     public $featured_image = array();
     
@@ -92,5 +94,24 @@ class Posts extends \Dsc\Mongo\Collections\Content
         }
     
         return $slug;
+    }
+    
+    /**
+     * Converts this to a search item, used in the search template when displaying each search result
+     */
+    public function toSearchItem()
+    {
+        $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
+    
+        $item = new \Search\Models\Item(array(
+            'url' => './blog/post/' . $this->slug,
+            'title' => $this->title,
+            'subtitle' => '',
+            'image' => $image,
+            'summary' => substr( $this->copy, 0, 250 ),
+            'datetime' => $this->{'publication.start.local'},
+        ));
+    
+        return $item;
     }
 }
