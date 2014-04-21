@@ -1,120 +1,140 @@
-<article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
+<div class="blog-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <article class="blog-article">
+                    <h2><a href="<?php echo $item->_url; ?>"><?php echo $item->{'metadata.title'}; ?></a></h2>
 
-    <div class="entry-header">
-        <?php if ($item->{'featured_image.slug'}) { ?>
-        <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
-        <?php } ?>
-    
-        <?php if ($item->{'metadata.creator.image'}) { ?>
-        <img class="entry-avatar" alt="<?php echo $item->{'metadata.creator.name'}; ?>" height="52" width="52" src="<?php echo $item->{'metadata.creator.image'}; ?>">
-        <?php } ?>
-        
-        <h2 class="entry-title">
-            <?php echo $item->{'title'}; ?>
-        </h2>
-        <div class="entry-meta lead">
-            <?php echo date( 'F j, Y', $item->{'publication.start.time'} ); ?>
-            / 
-            <span class="byline">
-                <span class="author vcard">
-                    <a class="url fn n" href="./blog/author/<?php echo $item->{'metadata.creator.id'}; ?>" title="View all posts by <?php echo $item->{'metadata.creator.name'}; ?>" rel="author"><?php echo $item->{'metadata.creator.name'}; ?></a>
-                </span>
-            </span>
-            /
-            <span class="comments-link">
-                0 comments
-            </span>
-            
-            <?php echo $this->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php'); ?>
+                    <?php if ($item->{'details.featured_image.slug'}) { ?>
+                    <a href="<?php echo $item->_url; ?>">
+                    <figure class="flexslider photo-gallery">
+                        <ul class="slides">
+                            <li>
+                                <img class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'details.featured_image.slug'} ?>">
+                            </li>
+                        </ul>
+                    </figure>
+                    </a>
+                    <?php } ?>
+                    
+                    <div class="text">
+                        <div class="left-info">
+                            <span class="bold-text"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>
+                            <?php /*?><span class="bold-text"><a href="#">7 Comment(s)</a></span>*/ ?>
+                            
+                            <div class="info-separator">
+                                <div class="separator-icon photo"></div>
+                            </div>
+                            <?php /* ?>
+                            <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.id'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
+                            */ ?>
+
+                            <div class="blog-stats">
+                                <span><i class="glyphicon glyphicon-eye-open"></i> 151 </span>
+                                <span><i class="glyphicon glyphicon-heart"></i> 87 </span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="text-editor">
+                                <?php echo $item->{'details.copy'}; ?>
+                            </div>
+                            <div class="share-line">
+                                <span class="title">Share: </span>
+                                <div class="share-widget">
+                                    <img src="img/share-widget.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <div class="author-box">
+                    <div class="name-box">
+                        <h3>Martin Doe</h3>
+                        <ul class="social-href">
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Dribble</a></li>
+                            <li><a href="#">E-mail</a></li>
+                        </ul>
+                    </div>
+                    <figure>
+                        <img src="img/author.jpg" alt=""/>
+                    </figure>
+                    <div class="text">
+                        <h4>About the author</h4>
+                        <p>
+                            Etiam nec mi aliquam, congue nulla ac, dictum nulla. Nunc aliquet egestas ipsum, sit amet tincidunt arcu aliquam nec. Donec eget posuere enim, vel vestibulum est. Nulla quis posuere massa. Etiam laoreet justo vitae magna. Suspen
+                            potenti. Morbi nec arcu id nulla tristique.
+                        </p>
+                    </div>
+                </div>
+                <div class="related-posts main-widget">
+                    <div class="widget-title">
+                        <h2>Related Posts</h2>
+                        <div class="slider-controls related-post-controls">
+                            <button class="next"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                            <button class="prev"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="flexslider related-posts-slider">
+                            <ul class="slides">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related01.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">Pellentesque vehicula urna purus</a></h2>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related02.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">Aenean condimentum purus</a></h2>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related03.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">tristique nisl turpisconsequat </a></h2>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related01.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">Pellentesque vehicula urna purus</a></h2>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related02.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">Aenean condimentum purus</a></h2>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <figure>
+                                                <img src="img/related03.jpg" alt=""/>
+                                            </figure>
+                                            <h2><a href="#">tristique nisl turpisconsequat </a></h2>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php echo $this->renderLayout('Blog/Site/Views::posts/view_comments.php'); ?>
+            <aside class="col-sm-4">
+            	<?php 
+            		echo $this->renderLayout('Blog/Site/Views::posts/view_categories.php');
+            		echo $this->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php');
+            	?>
+            </aside>
         </div>
     </div>
-
-    <div class="entry-description">
-        <?php echo $item->{'copy'}; ?>
-    </div>
-
-    <div class="entry-meta">
-        
-        <?php if (!empty($item->{'categories'})) { ?>
-        <p class="cat-links">
-            <?php foreach ($item->{'categories'} as $category) { ?>
-            <a class="label label-primary" href="./blog/category/<?php echo $category['slug']; ?>" title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
-            <?php } ?>
-        </p>
-        <?php } ?>
-
-    </div>
-    
-    <hr />
-
-    <div class="well">
-        <h3>About the Author</h3>
-        <p>Vestibulum molestie at augue eu bibendum. Maecenas tempus est purus, mollis vulputate urna tempor in. Integer lacinia diam at felis aliquam, vel gravida est molestie. Aliquam erat volutpat. Suspendisse ac laoreet turpis. Nunc tincidunt placerat ipsum vel pharetra. Maecenas a
-            mauris massa.</p>
-    </div>
-
-    <hr />
-
-    <div class="social-shares clearfix">
-        <h3>Share</h3>
-
-        <div class="">
-            <ul class="list-unstyled list-inline">
-                <li>
-                    <a href="http://www.facebook.com/share.php?u=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/facebook.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://twitter.com/share?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/twitter.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.stumbleupon.com/submit?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/&amp;title=Egestas%20Tellus%20Sit%20Dolor" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/stumble-upon.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.myspace.com/Modules/PostTo/Pages/?u=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/my-space.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://digg.com/submit?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/&amp;title=Egestas%20Tellus%20Sit%20Dolor" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/digg.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://reddit.com/submit?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/&amp;title=Egestas%20Tellus%20Sit%20Dolor" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/reddit.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/&amp;title=Egestas%20Tellus%20Sit%20Dolor" target="_blank">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/linkedin.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://plus.google.com/share?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/google-plus.png" alt="google-share" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://pinterest.com/pin/create/button/?url=http://themes.goodlayers2.com/ideo/egestas-tellus-sit-dolor/&amp;media=http://themes.goodlayers2.com/ideo/wp-content/uploads/2013/07/photodune-4347985-choose-direction-m.jpg" class="pin-it-button"
-                        count-layout="horizontal" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;">
-                        <img class="no-preload" src="http://themes.goodlayers2.com/ideo/wp-content/themes/ideo-v1-10/images/icon/social-icon-m/pinterest.png" width="32" height="32" style="opacity: 1;" data-scroll="1589">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <hr />
-
-    <div class="comments">
-        <h3>Comments</h3>
-        <p>Disqus or Facebook</p>
-    </div>
-
-</article>
+</div>
