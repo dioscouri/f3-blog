@@ -128,7 +128,9 @@
                     </div>
                 </div>
             </div>
-            <?php echo $this->renderLayout('Blog/Site/Views::posts/view_comments.php'); ?>
+            <?php 
+            	echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayComments', array( 'slug' => $item->{'slug'} ) );
+            ?>
             <aside class="col-sm-4">
             	<?php 
             		echo $this->renderLayout('Blog/Site/Views::posts/view_categories.php');

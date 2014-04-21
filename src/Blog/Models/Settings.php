@@ -19,6 +19,10 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     			"num_posts" => 10,
     			"order" => "reverse_time",
     		),
+    	'disqus' =>
+    		array(
+    		'shortname' => '',
+    		),
     );
     
     protected $__type = 'blog.settings';

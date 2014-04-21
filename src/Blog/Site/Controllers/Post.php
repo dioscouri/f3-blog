@@ -12,7 +12,6 @@ class Post extends \Dsc\Controller
     public function read()
     {
     	// TODO get the slug param.  lookup the blog post.  Check ACL against post.
-    	
     	$f3 = \Base::instance();
     	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
     	$model = $this->getModel()->populateState()
@@ -41,6 +40,34 @@ class Post extends \Dsc\Controller
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');
+    }
+    
+    public function displayComments($slug){
+    	// TODO get the slug param.  lookup the blog post.  Check ACL against post.
+    	$f3 = \Base::instance();
+    	$slug = $this->inputfilter->clean( $slug, 'cmd' );
+    	$model = $this->getModel()->populateState()
+    	->setState('filter.slug', $slug);
+    	 
+    	try {
+    		$item = $model->getItem();
+    	} catch ( \Exception $e ) {
+    		// TODO Change to a normal 404 error
+    		\Dsc\System::instance()->addMessage( "Invalid Item: " . $e->getMessage(), 'error');
+    		$f3->reroute( '/' );
+    		return;
+    	}
+    	 
+    	if( empty( $item ) ){
+    		// TODO Change to a normal 404 error
+    		\Dsc\System::instance()->addMessage( "Invalid Post", 'error');
+    		$f3->reroute( '/' );
+    		return;
+    	}
+    	\Base::instance()->set('item', $item );
+    	 
+    	$view = \Dsc\System::instance()->get('theme');
+    	echo $view->render('Blog/Site/Views::posts/view_comments.php');
     }
     
     /**
