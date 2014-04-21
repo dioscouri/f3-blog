@@ -48,15 +48,52 @@ class Post extends \Dsc\Controller
      * 
      * @param unknown $categories
      */
-    public function generateCategoryTree($categories ){
+    public static function generateCategoryTree($categories ){
     	$root = new \stdclass();
     	$root->nodes = array();
     	$root->element = null;
+    	$root->parent_id = '';
     	
     	$c = count( $categories );
     	for( $i = 0; $i < $c; $i++ ){
     		$pieces = explode( '/', $categories[$i]->{'path'} );
+    		
+    		
+    		$idx = 1;
+    		$act_piece = $pieces[$idx];
+    		$c_p = count( $pieces );
+    		$act_node = & $root;
+    		while( !empty( $act_piece ) ){
+    			if( !isset( $act_node->nodes[$act_piece] ) ) {
+			    	$act_node->nodes[$act_piece] = new \stdclass();
+			    	$act_node->nodes[$act_piece]->nodes = array();
+			    	$act_node->nodes[$act_piece]->element = null;
+			    	$act_node->nodes[$act_piece]->parent_id = $act_node->parent_id;
+    			}
+    			
+    			$idx ++;
+    			$act_node = & $act_node->nodes[$act_piece];
+
+    			if( $idx < $c_p ){
+    				$act_piece = $pieces[$idx];
+    			} else { // we're done with travesing
+    				$act_node->element = $categories[$i];
+    				$act_piece = '';
+    			}
+    		}
     	}
     	
+    	return $root;
+    }
+    
+    public function displayCategoryNode( $node, $selected_categories ){
+    	$orig_node = \Base::instance()->get('node' );
+    	\Base::instance()->set('node', $node );
+    	\Base::instance()->set('selected_categories', $selected_categories );
+    	 
+    	$view = \Dsc\System::instance()->get('theme');
+    	echo $view->renderLayout('Blog/Site/Views::posts/view_category.php');
+    	
+    	\Base::instance()->set('node', $orig_node );
     }
 }

@@ -9,8 +9,7 @@
 					<ul>
 			<?php
 			
-			$categories = (new \Blog\Models\Categories)->getItems();
-			$tree = \Blog\Site\Controllers\Post::generateCategoryTree( $categories );
+			$tree = \Blog\Modules\Categories\Module::generateTree( $categories );
 			$c = count( $categories );
 			
 			if( $c == 0 ){ ?>
@@ -32,14 +31,12 @@
 
 			<?php			
 			} else {
-				$post_categories = $item->get( "categories" );
-
-				$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $post_categories, 'id' );
+				$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $selected_categories, 'id' );
 				
 				$keys = array_keys( $tree->nodes );
 				$c_n = count( $tree->nodes );
 				for( $i = 0; $i < $c_n; $i++ ){
-					\Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategoryNode', array( $tree->nodes[$keys[$i]], $selected_categories ) );
+					\Dsc\Request::internal( '\Blog\Modules\Categories\Module->displayCategoryNode', array( $tree->nodes[$keys[$i]], $selected_categories ) );
 				}
 			}
 				?>
