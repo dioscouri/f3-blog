@@ -57,3 +57,10 @@
 	This part contains all settings for a correct integration with Disqus.
 </p>
 <hr/>
+<div class="form-group">
+	<label class="control-label col-md-3">Disqus Shortname</label>
+	                        
+	<div class="col-md-7">
+		<input type="text" name="social[disqus][shortname]" class="form-control" value="<?php echo $flash->old('social.disqus.shortname'); ?>" placeholder="Your Disqus shortname" >
+	</div>
+</div>
