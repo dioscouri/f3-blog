@@ -9,12 +9,12 @@
 	switch( $type ) {
 		case 'facebook' :
 			{
-				$num_comments = '<div class="fb-comments-count" data-href="'.$post_url.'">0</div>';
+				$num_comments = '<div class="fb-comments-count" data-href="'.$post_url.'"></div>';
 				break;
 			}
 		case 'disqus':
 			{
-				$num_comments = '<a href="'.$post_url.'#disqus_thread" data-disqus-identifier="'.$item->{'id'}.'">First article</a>';
+				$num_comments = '<a href="'.$post_url.'#disqus_thread" data-disqus-identifier="'.$item->{'id'}.'"></a>';
 				break;
 			}
 	}

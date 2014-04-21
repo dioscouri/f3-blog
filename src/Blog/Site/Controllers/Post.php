@@ -35,7 +35,7 @@ class Post extends \Dsc\Controller
     	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
-    	
+    	$item = $model->updateViews($item);
     	\Base::instance()->set('item', $item );
     	
     	$view = \Dsc\System::instance()->get('theme');
@@ -67,7 +67,7 @@ class Post extends \Dsc\Controller
     	\Base::instance()->set('item', $item );
     	 
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Blog/Site/Views::posts/view_comments.php');
+    	echo $view->renderLayout('Blog/Site/Views::posts/view_comments.php');
     }
     
     /**

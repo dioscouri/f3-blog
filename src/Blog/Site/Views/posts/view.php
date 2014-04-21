@@ -3,14 +3,14 @@
         <div class="row">
             <div class="col-sm-8">
                 <article class="blog-article">
-                    <h2><a href="<?php echo $item->_url; ?>"><?php echo $item->{'metadata.title'}; ?></a></h2>
+                    <h2><a href="<?php echo $item->_url; ?>"><?php echo $item->{'title'}; ?></a></h2>
 
-                    <?php if ($item->{'details.featured_image.slug'}) { ?>
+                    <?php if ($item->{'featured_image.slug'}) { ?>
                     <a href="<?php echo $item->_url; ?>">
                     <figure class="flexslider photo-gallery">
                         <ul class="slides">
                             <li>
-                                <img class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'details.featured_image.slug'} ?>">
+                                <img class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
                             </li>
                         </ul>
                     </figure>
@@ -30,13 +30,13 @@
                             */ ?>
 
                             <div class="blog-stats">
-                                <span><i class="glyphicon glyphicon-eye-open"></i> 151 </span>
+                                <span><i class="glyphicon glyphicon-eye-open"></i> <?php echo (int)$item->{'views'}; ?> </span>
                                 <span><i class="glyphicon glyphicon-heart"></i> 87 </span>
                             </div>
                         </div>
                         <div class="right">
                             <div class="text-editor">
-                                <?php echo $item->{'details.copy'}; ?>
+                                <?php echo $item->{'copy'}; ?>
                             </div>
                             <div class="share-line">
                                 <span class="title">Share: </span>
@@ -127,10 +127,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <?php 
             	echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayComments', array( 'slug' => $item->{'slug'} ) );
             ?>
+            </div>
             <aside class="col-sm-4">
             	<?php 
             		echo $this->renderLayout('Blog/Site/Views::posts/view_categories.php');
