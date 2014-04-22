@@ -43,6 +43,9 @@
                                 <div class="share-widget">
                                     <img src="img/share-widget.png" alt=""/>
                                 </div>
+                                <div>
+                                <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
