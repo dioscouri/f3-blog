@@ -106,6 +106,26 @@
 	</div>
 </div>
 
+<h4 class="">Facebook Share</h4>
+<div class="form-group">
+	<label class="control-label col-md-3">Layout</label>
+	                        
+	<div class="col-md-7">
+		<select name="social[facebook][share][layout]" class="form-control">
+			<option value="standard" <?php if ($flash->old('social.facebook.share.layout') == 'standard') { echo "selected"; } ?>>Standard</option>
+			<option value="button" <?php if ($flash->old('social.facebook.share.layout') == 'button' ) { echo "selected"; } ?>>Button</option>
+			<option value="button_count" <?php if ($flash->old('social.facebook.share.layout') == 'button_count' ) { echo "selected"; } ?>>Button with count</option>
+			<option value="box_count" <?php if ($flash->old('social.facebook.share.layout') == 'box_count' ) { echo "selected"; } ?>>Box with count</option>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-md-3">Width of Widget</label>
+	                        
+	<div class="col-md-7">
+		<input type="text" name="social[facebook][share][width]" class="form-control" value="<?php echo $flash->old('social.facebook.share.width'); ?>" placeholder="Width of this widget" >
+	</div>
+</div>
 
 <h3 class="text-primary">Disqus</h3>
 <p class="help-block">

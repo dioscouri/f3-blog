@@ -44,8 +44,7 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		$result .= '<div class="fb-comments-count" data-href="'.$options['post_url'].'"></div>';
 		return $result;
 	}
-	
-	
+		
 	/**
 	 * Returns script required to register a social tool
 	 * 
@@ -65,8 +64,6 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 			'data-colorscheme' => $options['theme'],
 			'data-layout' => $options['layout'],
 			'data-show-faces' => $options['show_faces'],
-			'data-width' => $options['width'],
-				
 		);
 			
 		if( !empty( $options['width'] ) ){
@@ -77,6 +74,32 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		return $result;
 	}
 
+	/**
+	 * Returns script required to register a social tool
+	 *
+	 * @param $options		Additional options
+	 *
+	 * @return		Script required to register tool
+	 */
+	public function share($options){
+		$result = '';
+		if( $this->requiresAdding( 'base' ) ) {
+			$result = $this->base( $options );
+		}
+	
+		$attributes = array(
+				'data-href' => $options['post_url'],
+				'data-type' => $options['layout'],
+		);
+
+		if( !empty( $options['width'] ) ){
+			$attributes = array( 'data-width' => $options['width'] ) + $attributes;
+		}
+	
+		$result .= '<div class="fb-share-button" '.$this->convertArrayToAttributes( $attributes ).'></div>';
+		return $result;
+	}
+	
 	/**
 	 * Returns script required to register a social tool
 	 *

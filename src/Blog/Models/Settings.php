@@ -21,11 +21,15 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     					"order" => "reverse_time",
     						),
     			"likes" => array(
+    					"action" => "like",
+    					"layout" => "standard",
     					"theme" => 'dark',
-    					"mobile" => "autodetect",
-    					"num_posts" => 10,
-    					"order" => "reverse_time",
+    					"width" => "",
     					"show_faces" => "false",
+    						),
+    			"share" => array(
+    					"layout" => 'standard',
+    					"width" => '',
     						),
     			),
     	'disqus' =>

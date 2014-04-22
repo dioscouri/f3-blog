@@ -14,6 +14,14 @@ $options = array(
 
 $social_buttons []= \Blog\Lib\Social::instance()->getTool( 'facebook:like', $options );;
 
+$options = array(
+		'layout' => $settings->get( 'social.facebook.share.layout' ),
+		'width' => $settings->get( 'social.facebook.share.width' ),
+		'post_url' => $url,
+);
+
+$social_buttons []= \Blog\Lib\Social::instance()->getTool( 'facebook:share', $options );;
+
 foreach( $social_buttons as $social ){
 	echo $social;
 }
