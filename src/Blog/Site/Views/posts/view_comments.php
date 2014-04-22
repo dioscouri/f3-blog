@@ -25,13 +25,13 @@ if( ( $type = $settings->get( "general.comments" ) ) != 'null' ) {
 			break;
 	}
 
-	$num_comments = \Blog\Lib\Social::instance()->getTool( $type.':count_comments', $options );
 	$comments = \Blog\Lib\Social::instance()->getTool( $type.':comments', $options );;
+	$num_comments = \Blog\Lib\Social::instance()->getTool( $type.':count_comments', $options );
 ?>
 
 <div class="blog-comments main-widget">
 	<div class="widget-title">
-		<h2>Comments (<?php echo $num_comments?>)</h2>
+		<h2>Comments ( <?php echo $num_comments?>)</h2>
 	</div>
 	<div class="widget-content">
 		<?php echo $comments; ?>
