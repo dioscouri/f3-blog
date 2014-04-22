@@ -7,20 +7,20 @@ if( ( $type = $settings->get( "general.comments" ) ) != 'null' ) {
 	switch( $type ){
 		case 'facebook' :
 			$options = array(
-			'mobile' => $settings->get( 'social.facebook.mobile' ),
-			'num_posts' => $settings->get( 'social.facebook.num_posts' ),
-			'theme' => $settings->get( 'social.facebook.theme' ),
-			'order' => $settings->get( 'social.facebook.order' ),
-			'post_url' => $url,
+				'mobile' => $settings->get( 'social.facebook.comments.mobile' ),
+				'num_posts' => $settings->get( 'social.facebook.comments.num_posts' ),
+				'theme' => $settings->get( 'social.facebook.comments.theme' ),
+				'order' => $settings->get( 'social.facebook.comments.order' ),
+				'post_url' => $url,
 			);
 			break;
 
 		case 'disqus':
 			$options = array(
-			'shortname' => $settings->get( 'social.disqus.shortname' ),
-			'title' => $item->{'title'},
-			'id' => $item->{'id'},
-			'post_url' => $url,
+				'shortname' => $settings->get( 'social.disqus.comments.shortname' ),
+				'title' => $item->{'title'},
+				'id' => $item->{'id'},
+				'post_url' => $url,
 			);
 			break;
 	}

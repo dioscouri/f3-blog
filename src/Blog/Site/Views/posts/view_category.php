@@ -8,7 +8,6 @@
 	
 	<?php
 	} else { // this is any node (not a leaf) so render it	
-//	$parent_panel_id = $node->parent_id == '' ? 'accordion' : 'collapse-'.$node->parent_id ;
 	$parent_panel_id = '';
 	$act_panel_id = 'collapse-'.(string)($node->element->{'id'});
 ?>

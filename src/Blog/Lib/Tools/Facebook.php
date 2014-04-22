@@ -58,11 +58,24 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		if( $this->requiresAdding( 'base' ) ) {
 			$result = $this->base( $options );
 		}
+
+		$attributes = array(
+			'data-action' => $options['action'],
+			'data-href' => $options['post_url'],
+			'data-colorscheme' => $options['theme'],
+			'data-layout' => $options['layout'],
+			'data-show-faces' => $options['show_faces'],
+			'data-width' => $options['width'],
+				
+		);
 			
-		$result .= '';
+		if( !empty( $options['width'] ) ){
+			$attributes = array( 'data-width' => $options['width'] ) + $attributes;
+		}
+		
+		$result .= '<div class="fb-like" '.$this->convertArrayToAttributes( $attributes ).'></div>';
 		return $result;
 	}
-	
 
 	/**
 	 * Returns script required to register a social tool
@@ -76,16 +89,16 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		if( $this->requiresAdding( 'base' ) ) {
 			$result = $this->base( $options );
 		}
-		$mobile = $options['mobile'];
-		$num_posts = $options['num_posts'];
-		$theme = $options[ 'theme' ];
-		$order = $options[ 'order'];
-		$url = $options['post_url'];
-				
-		$result .= '<div class="fb-comments"
-						data-href="'.$url.'" data-numposts="'.$num_posts.
-						'" data-colorscheme="'.$theme.'" data-order-by="'.$order.
-						'" data-mobile="'.$mobile.'"></div>';
+		
+		$attributes = array(
+			'data-href' => $options['post_url'],
+			'data-numposts' => $options['num_posts'],
+			'data-colorscheme' => $options[ 'theme' ], 
+			'data-order-by' => $options[ 'order'],
+			'data-mobile' => $options['mobile'],
+		);
+		
+		$result .= '<div class="fb-comments" '.$this->convertArrayToAttributes( $attributes ).' ></div>';
 		return $result;
 	}
 	
@@ -93,6 +106,6 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 	 * This method returnd array of supported tools
 	 */
 	public function getSupported(){
-		return array( 'like', 'comments', 'count_comments' );
+		return array( 'share', 'like', 'comments', 'count_comments' );
 	}
 }

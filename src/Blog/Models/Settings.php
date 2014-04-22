@@ -14,15 +14,28 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     public $social = array(
     	'facebook' =>
     		array(
-    			"theme" => 'dark',
-    			"mobile" => "autodetect",
-    			"num_posts" => 10,
-    			"order" => "reverse_time",
-    		),
+    			"comments" => array(
+    					"theme" => 'dark',
+    					"mobile" => "autodetect",
+    					"num_posts" => 10,
+    					"order" => "reverse_time",
+    						),
+    			"likes" => array(
+    					"theme" => 'dark',
+    					"mobile" => "autodetect",
+    					"num_posts" => 10,
+    					"order" => "reverse_time",
+    					"show_faces" => "false",
+    						),
+    			),
     	'disqus' =>
     		array(
-    		'shortname' => '',
-    		),
+    				"comments" =>
+    						array(
+    								'shortname' => '',
+    						),
+    				
+    			),
     );
     
     protected $__type = 'blog.settings';

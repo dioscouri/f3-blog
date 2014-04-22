@@ -37,6 +37,23 @@ abstract class Tool extends \Dsc\Singleton {
 	}
 	
 	/**
+	 * This method turns array with attributes into a string with HTML attributes
+	 * 
+	 * @param $attr 	Array with attributes
+	 * 
+	 * @return	HTML string with attributes
+	 */
+	protected function convertArrayToAttributes( $attr ){
+		$joined_attributes = array();
+		foreach( $attr as $name => $val ){
+			$joined_attributes []= $name.'="'.$val.'"';
+		}
+		
+		return implode( ' ', $joined_attributes );
+		
+	}
+	
+	/**
 	 * This method returnd array of supported tools
 	 */
 	abstract public function getSupported();
