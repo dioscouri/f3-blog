@@ -35,6 +35,19 @@ $options = array(
 );
 $social_buttons []= \Blog\Lib\Social::instance()->getTool( 'twitter:tweet', $options );;
 
+
+$options = array(
+	'type' => $settings->get( 'social.pinterest.type' ),
+	'position' => $settings->get( 'social.pinterest.position' ),
+	'color' => $settings->get( 'social.pinterest.color' ),
+	'shape' => $settings->get( 'social.pinterest.shape' ),
+	'size' => $settings->get( 'social.pinterest.size' ),
+	'desc' => $item->{'title'},
+	'post_url' => $url,
+	'image' => \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].'/~lpolak/tienda/public/asset/'. $item->{'featured_image.slug'},
+	);
+	$social_buttons []= \Blog\Lib\Social::instance()->getTool( 'pinterest:pinit', $options );;
+
 foreach( $social_buttons as $social ){
 	echo $social;
 }

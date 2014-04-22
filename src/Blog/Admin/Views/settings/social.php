@@ -178,6 +178,59 @@
 </div>
 
 
+<h3 class="text-primary">Pinterest</h3>
+<p class="help-block">
+	This part contains all settings for a correct integration with Pinterest.
+</p>
+<hr/>
+
+<h4>Pin it! Button</h4>
+<div class="form-group">
+	<label class="control-label col-md-3">Shape of Button</label>
+	
+	<div class="col-md-7">
+		<select name="social[pinterest][shape]" class="form-control">
+			<option value="rect" <?php if ($flash->old('social.pinterest.shape') == 'rect') { echo "selected"; } ?>>Rectangle</option>
+			<option value="round" <?php if ($flash->old('social.pinterest.shape') == 'round' ) { echo "selected"; } ?>>Circle</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Size of Button</label>
+	                        
+	<div class="col-md-7">
+		<select name="social[pinterest][size]" class="form-control">
+			<option value="small" <?php if ($flash->old('social.pinterest.size') == 'small') { echo "selected"; } ?>>Small</option>
+			<option value="large" <?php if ($flash->old('social.pinterest.size') == 'large' ) { echo "selected"; } ?>>Large</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Position of Count</label>
+	<div class="col-md-7">
+		<select name="social[pinterest][position]" class="form-control">
+			<option value="beside" <?php if ($flash->old('social.pinterest.position') == 'beside') { echo "selected"; } ?>>Beside the Button</option>
+			<option value="above" <?php if ($flash->old('social.pinterest.position') == 'above' ) { echo "selected"; } ?>>Above the Button</option>
+			<option value="none" <?php if ($flash->old('social.pinterest.position') == 'none' ) { echo "selected"; } ?>>Hide</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Color of Button</label>
+	
+	<div class="col-md-7">
+		<select name="social[pinterest][color]" class="form-control">
+			<option value="red" <?php if ($flash->old('social.pinterest.color') == 'red') { echo "selected"; } ?>>Red</option>
+			<option value="white" <?php if ($flash->old('social.pinterest.color') == 'white' ) { echo "selected"; } ?>>White</option>
+			<option value="gray" <?php if ($flash->old('social.pinterest.color') == 'gray' ) { echo "selected"; } ?>>Gray</option>
+		</select>
+	</div>
+</div>
+
+
 <h3 class="text-primary">Disqus</h3>
 <p class="help-block">
 	This part contains all settings for a correct integration with Disqus.

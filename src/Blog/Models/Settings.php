@@ -51,6 +51,13 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     							'count' => 'vertical',
     					),
     			),
+    	'pinterest' =>
+    		array(
+    				'position' => 'none',
+    				'color' => 'red',
+    				'shape' => 'rect',
+    				'size' => 'Small',
+    			)
     );
     
     protected $__type = 'blog.settings';
