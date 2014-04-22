@@ -102,7 +102,7 @@
 	<label class="control-label col-md-3">Width of Widget</label>
 	                        
 	<div class="col-md-7">
-		<input type="text" name="social[facebook][like][width]" class="form-control" value="<?php echo $flash->old('social.facebook.like.width'); ?>" placeholder="Width of this widget" >
+		<input type="text" name="social[facebook][like][width]" class="form-control" value="<?php echo $flash->old('social.facebook.like.width'); ?>" placeholder="Width of this widget (Empty means auto)" >
 	</div>
 </div>
 
@@ -123,7 +123,7 @@
 	<label class="control-label col-md-3">Width of Widget</label>
 	                        
 	<div class="col-md-7">
-		<input type="text" name="social[facebook][share][width]" class="form-control" value="<?php echo $flash->old('social.facebook.share.width'); ?>" placeholder="Width of this widget" >
+		<input type="text" name="social[facebook][share][width]" class="form-control" value="<?php echo $flash->old('social.facebook.share.width'); ?>" placeholder="Width of this widget (Empty means auto)" >
 	</div>
 </div>
 
@@ -145,7 +145,7 @@
 	<label class="control-label col-md-3">Twitter Username</label>
 	
 	<div class="col-md-7">
-		<input type="text" name="social[twitter][tweet][tweet]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.via'); ?>" placeholder="Your Twitter Username" >
+		<input type="text" name="social[twitter][tweet][via]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.via'); ?>" placeholder="Your Twitter Username" >
 	</div>
 </div>
 

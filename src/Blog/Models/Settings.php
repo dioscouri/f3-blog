@@ -46,7 +46,7 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     					array(
     							'button_text' => 'Tweet',
     							'lang' => 'en',
-    							'via' => '@asingh',
+    							'via' => 'asingh',
     							'tweet' => 'Checkout this ... ',
     							'count' => 'vertical',
     					),
