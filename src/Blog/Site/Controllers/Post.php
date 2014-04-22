@@ -35,7 +35,7 @@ class Post extends \Dsc\Controller
     	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
-    	$item = $model->updateViews($item);
+    	$item->hit();
     	\Base::instance()->set('item', $item );
     	
     	$view = \Dsc\System::instance()->get('theme');

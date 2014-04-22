@@ -114,30 +114,12 @@ class Posts extends \Dsc\Mongo\Collections\Content
     
         return $item;
     }
-    
-    
+
     /**
      * This method update number of views for this post
      */
-    public function updateViews($item = '') {
-    	$model = $this;
-    	if( is_object( $item ) &&  $item instanceof \Blog\Models\Posts ){
-    		$model->bind( $item );
-    	} else if( is_string( $item ) ) {
-    		if( !empty( $id ) ) {
-    			$model->emptyState()->populateState()->setState( 'filter.id', $id );
-    			$item = $model->getItem();
-    			$model->bind( $item );
-    		}
-    	}
-    	
-    	if( isset( $model->views ) ){
-    		$model->views = (int)($model->views) + 1;
-    	} else {
-    		$model->views = 1;
-    	}
-    	
-    	$model->save();
-    	return $model;
+    public function hit() {
+  		$this->views = (int)$this->views + 1;
+		return $this->save();
     }
 }
