@@ -11,16 +11,27 @@ $options = array(
 		'width' => $settings->get( 'social.facebook.like.width' ),
 		'post_url' => $url,
 );
-
 $social_buttons []= \Blog\Lib\Social::instance()->getTool( 'facebook:like', $options );;
+
 
 $options = array(
 		'layout' => $settings->get( 'social.facebook.share.layout' ),
 		'width' => $settings->get( 'social.facebook.share.width' ),
 		'post_url' => $url,
 );
-
 $social_buttons []= \Blog\Lib\Social::instance()->getTool( 'facebook:share', $options );;
+
+
+$options = array(
+		'button_text' => $settings->get( 'social.twitter.tweet.button_text' ),
+		'lang' => $settings->get( 'social.twitter.tweet.lang' ),
+		'via' => $settings->get( 'social.twitter.tweet.via' ),
+		'post_url' => $url,
+		'text' => $settings->get( 'social.twitter.tweet.tweet' ),
+		'count_box' => $settings->get( 'social.twitter.tweet.count' ),
+		'hashtags' => array( 'a', 'b'),
+);
+$social_buttons []= \Blog\Lib\Social::instance()->getTool( 'twitter:tweet', $options );;
 
 foreach( $social_buttons as $social ){
 	echo $social;

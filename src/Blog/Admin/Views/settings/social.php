@@ -127,10 +127,63 @@
 	</div>
 </div>
 
+<h3 class="text-primary">Twitter</h3>
+<p class="help-block">
+	This part contains all settings for a correct integration with Twitter.
+</p>
+<hr/>
+
+<h4>Twitter Tweet Button</h4>
+<div class="form-group">
+	<label class="control-label col-md-3">Text on Tweet Button</label>
+	<div class="col-md-7">
+		<input type="text" name="social[twitter][tweet][button_text]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.button_text'); ?>" placeholder="Text on Tweet Button" >
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Twitter Username</label>
+	
+	<div class="col-md-7">
+		<input type="text" name="social[twitter][tweet][tweet]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.via'); ?>" placeholder="Your Twitter Username" >
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Tweet Text</label>
+	
+	<div class="col-md-7">
+		<input type="text" name="social[twitter][tweet][tweet]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.tweet'); ?>" placeholder="Tweet Text" >
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Position of Tweet Count Box</label>
+	                        
+	<div class="col-md-7">
+		<select name="social[twitter][tweet][count]" class="form-control">
+			<option value="horizontal" <?php if ($flash->old('social.twitter.tweet.count') == 'horizontal') { echo "selected"; } ?>>Horizontal</option>
+			<option value="vertical" <?php if ($flash->old('social.twitter.tweet.count') == 'vertical' ) { echo "selected"; } ?>>Vertical</option>
+			<option value="none" <?php if ($flash->old('social.twitter.tweet.count') == 'none' ) { echo "selected"; } ?>>Hide</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Language of widget</label>
+	
+	<div class="col-md-7">
+		<input type="text" name="social[twitter][tweet][lang]" class="form-control" value="<?php echo $flash->old('social.twitter.tweet.lang'); ?>" placeholder="Language of widget" >
+	</div>
+</div>
+
+
 <h3 class="text-primary">Disqus</h3>
 <p class="help-block">
 	This part contains all settings for a correct integration with Disqus.
 </p>
+<hr/>
+
 <h4>Disqus Comments</h4>
 <div class="form-group">
 	<label class="control-label col-md-3">Disqus Shortname</label>
@@ -139,5 +192,3 @@
 		<input type="text" name="social[disqus][comments][shortname]" class="form-control" value="<?php echo $flash->old('social.disqus.comments.shortname'); ?>" placeholder="Your Disqus shortname" >
 	</div>
 </div>
-
-<hr/>

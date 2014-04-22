@@ -32,6 +32,9 @@ class Social extends \Dsc\Singleton{
 			case 'disqus' : {
 				$instance = \Blog\Lib\Tools\Disqus::instance();
 			}
+			case 'twitter' : {
+				$instance = \Blog\Lib\Tools\Twitter::instance();
+			}
 		}
 		
 		if( $instance != null ) {

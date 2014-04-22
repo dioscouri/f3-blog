@@ -40,6 +40,17 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     						),
     				
     			),
+    	'twitter' =>
+    		array(
+    				'tweet'  =>
+    					array(
+    							'button_text' => 'Tweet',
+    							'lang' => 'en',
+    							'via' => '@asingh',
+    							'tweet' => 'Checkout this ... ',
+    							'count' => 'vertical',
+    					),
+    			),
     );
     
     protected $__type = 'blog.settings';
