@@ -54,6 +54,6 @@ class Twitter extends \Blog\Lib\Tools\Tool{
 	 * This method returnd array of supported tools
 	 */
 	public function getSupported(){
-		return array( 'tweet', 'mention', 'follow' );
+		return array( 'tweet' );
 	}
 }

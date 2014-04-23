@@ -48,6 +48,16 @@ $options = array(
 	);
 	$social_buttons []= \Blog\Lib\Social::instance()->getTool( 'pinterest:pinit', $options );;
 
+
+$options = array(
+	'type' => $settings->get( 'social.tumblr.share.type' ),
+	'color' => $settings->get( 'social.tumblr.share.color' ),
+	'text' => $settings->get( 'social.pinterest.text' ),
+	'title' => $item->{'title'},
+	'post_url' => $url,
+);
+$social_buttons []= \Blog\Lib\Social::instance()->getTool( 'tumblr:share', $options );;
+	
 foreach( $social_buttons as $social ){
 	echo $social;
 }

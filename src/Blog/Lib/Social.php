@@ -31,12 +31,19 @@ class Social extends \Dsc\Singleton{
 			}
 			case 'disqus' : {
 				$instance = \Blog\Lib\Tools\Disqus::instance();
+				break;
 			}
 			case 'twitter' : {
 				$instance = \Blog\Lib\Tools\Twitter::instance();
+				break;
 			}
 			case 'pinterest' : {
 				$instance = \Blog\Lib\Tools\Pinterest::instance();
+				break;
+			}
+			case 'tumblr' : {
+				$instance = \Blog\Lib\Tools\Tumblr::instance();
+				break;
 			}
 		}
 		

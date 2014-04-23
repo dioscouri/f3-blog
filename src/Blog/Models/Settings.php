@@ -57,8 +57,17 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     				'color' => 'red',
     				'shape' => 'rect',
     				'size' => 'Small',
-    			)
-    );
+    			),
+    	'tumblr' =>
+    		array(
+    				'share'  =>
+    					array(
+    							'type' => '4',
+    							'color' => '',
+    							'text' => 'Share on Tumblr',
+    					),
+    			),
+    	);
     
     protected $__type = 'blog.settings';
 }

@@ -1,13 +1,7 @@
 <h2 class="">Social Mediad Settings</h2>
-<p class="help-block">
-	This part sets up integration with social medias.
-</p>
 <hr/>
 
 <h3 class="text-primary">Facebook</h3>
-<p class="help-block">
-	This part contains all settings for a correct integration with Facebook.
-</p>
 <hr/>
 <h4 class="">Facebook Comments</h4>
 <div class="form-group">
@@ -128,9 +122,6 @@
 </div>
 
 <h3 class="text-primary">Twitter</h3>
-<p class="help-block">
-	This part contains all settings for a correct integration with Twitter.
-</p>
 <hr/>
 
 <h4>Twitter Tweet Button</h4>
@@ -179,9 +170,6 @@
 
 
 <h3 class="text-primary">Pinterest</h3>
-<p class="help-block">
-	This part contains all settings for a correct integration with Pinterest.
-</p>
 <hr/>
 
 <h4>Pin it! Button</h4>
@@ -230,18 +218,38 @@
 	</div>
 </div>
 
-
-<h3 class="text-primary">Disqus</h3>
-<p class="help-block">
-	This part contains all settings for a correct integration with Disqus.
-</p>
+<h3 class="text-primary">Tumblr</h3>
 <hr/>
 
-<h4>Disqus Comments</h4>
+<h4>Share Link Button</h4>
+
 <div class="form-group">
-	<label class="control-label col-md-3">Disqus Shortname</label>
-	                        
+	<label class="control-label col-md-3">Type of Button</label>
 	<div class="col-md-7">
-		<input type="text" name="social[disqus][comments][shortname]" class="form-control" value="<?php echo $flash->old('social.disqus.comments.shortname'); ?>" placeholder="Your Disqus shortname" >
+		<select name="social[tumblr][share][type]" class="form-control">
+			<option value="1" <?php if ($flash->old('social.tumblr.share.type') == '1') { echo "selected"; } ?>>tumblr +</option>
+			<option value="2" <?php if ($flash->old('social.tumblr.share.type') == '2' ) { echo "selected"; } ?>>tumblr</option>
+			<option value="3" <?php if ($flash->old('social.tumblr.share.type') == '3' ) { echo "selected"; } ?>>t + text</option>
+			<option value="4" <?php if ($flash->old('social.tumblr.share.type') == '4' ) { echo "selected"; } ?>>t</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Color of Button</label>
+	
+	<div class="col-md-7">
+		<select name="social[tumblr][share][color]" class="form-control">
+			<option value="" <?php if ($flash->old('social.tumblr.share.color') == '' ) { echo "selected"; } ?>>Colorful</option>
+			<option value="T" <?php if ($flash->old('social.tumblr.share.color') == 'T' ) { echo "selected"; } ?>>Grayscale</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-3">Button Text</label>
+	
+	<div class="col-md-7">
+		<input type="text" name="social[tumblr][share][text]" class="form-control" value="<?php echo $flash->old('social.tumblr.share.text'); ?>" placeholder="Button Text" >
 	</div>
 </div>
