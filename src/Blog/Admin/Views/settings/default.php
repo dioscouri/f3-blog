@@ -17,6 +17,9 @@
                     <a href="#tab-home" data-toggle="tab"> Home View </a>
                 </li>
                 <li>
+                    <a href="#tab-post" data-toggle="tab"> Post Page Settings </a>
+                </li>
+                <li>
                     <a href="#tab-social" data-toggle="tab"> Social Media </a>
                 </li>
                 <?php if (!empty($this->event)) { foreach ((array) $this->event->getArgument('tabs') as $key => $title ) { ?>
@@ -37,6 +40,10 @@
             
             	<div class="tab-pane fade in" id="tab-home">
 	                <?php echo $this->renderLayout('Blog/Admin/Views::settings/home.php'); ?>
+                </div>
+                
+            	<div class="tab-pane fade in" id="tab-post">
+	                <?php echo $this->renderLayout('Blog/Admin/Views::settings/post.php'); ?>
                 </div>
                 
                 <div class="tab-pane fade in" id="tab-social">

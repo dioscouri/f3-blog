@@ -69,5 +69,11 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     			),
     	);
     
+    public $post = array(
+    			'social' => array(
+    				'facebook:like', 'twitter:tweet', 'pinterest:pinit', 'tumblr:share'
+    			),
+       		);
+    
     protected $__type = 'blog.settings';
 }
