@@ -16,7 +16,10 @@ class Home extends \Dsc\Controller
     	// only posts that are published as of now
     	
     	$f3 = \Base::instance();
-    	$model = $this->getModel()->populateState();
+    	$model = $this->getModel()->populateState()
+    	->setState('filter.publication_status', 'published')
+    	->setState('filter.published_today', true)    	
+    	;
     	
     	try {
     		$paginated = $model->paginate();
