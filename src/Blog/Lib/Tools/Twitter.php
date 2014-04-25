@@ -33,20 +33,20 @@ class Twitter extends \Blog\Lib\Tools\Tool{
 		}
 	
 		$attributes = array(
-				'data-lang' => $options['lang'],
+				'data-lang' => $this->getOptionsValue( $options, 'lang', 'social.twitter.tweet.lang' ),
 				'data-url' => $options['post_url'],
-				'data-via' => $options['via'], // user twitter name (@asingh)
-				'data-text' => $options['text'], // actual tweet
-				'data-count' => $options['count_box'],
+				'data-via' => $this->getOptionsValue( $options, 'via', 'social.twitter.tweet.via' ), // user twitter name (@asingh)
+				'data-text' => $this->getOptionsValue( $options, 'text', 'social.twitter.tweet.tweet' ), // actual tweet
+				'data-count' => $this->getOptionsValue( $options, 'count_box', 'social.twitter.tweet.count' ),
 		);
-
 		if( !empty( $options['hashtags'] ) ){
 			if( !is_array( $options['hashtags'] ) ){
 				$options['hashtags'] = array( $options['hashtags'] );
 			}
 			$attributes['data-hashtags'] = implode( ',', $options['hashtags'] );
 		}
-		$result .= '<a href="https://twitter.com/share" class="twitter-share-button"  '.$this->convertArrayToAttributes( $attributes ).'>'.$options['button_text'].'</a>';
+		$button_text = $this->getOptionsValue( $options, 'button_text', 'social.twitter.tweet.button_text' );
+		$result .= '<a href="https://twitter.com/share" class="twitter-share-button"  '.$this->convertArrayToAttributes( $attributes ).'>'.$button_text.'</a>';
 		return $result;
 	}
 	

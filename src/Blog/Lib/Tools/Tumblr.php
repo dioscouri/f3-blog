@@ -34,11 +34,12 @@ class Tumblr extends \Blog\Lib\Tools\Tool{
 		$source = urlencode( $options['post_url'] );
 		$caption = urlencode( $options['title'] );
 		$click_through = urlencode( $options['post_url'] );
-		$text = $options['text'];
+		$text = $this->getOptionsValue( $options, 'text', 'social.tumblr.share.text' );
 		
-		$img = 'share_'.$options['type'].$options['color'];
-		
-		switch( $options['type'] ) {
+		$type = $this->getOptionsValue( $options, 'type', 'social.tumblr.share.type' );
+		$color = $this->getOptionsValue( $options, 'color', 'social.tumblr.share.color' );
+		$img = 'share_'.$type.$color;
+		switch( $type ) {
 			case '1':
 				{
 					$css_style = '81';

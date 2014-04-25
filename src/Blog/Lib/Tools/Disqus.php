@@ -10,7 +10,7 @@ class Disqus extends \Blog\Lib\Tools\Tool{
 	 */
 	private function common( $options, $script ) {
 		
-		$shortname = $options['shortname'];
+		$shortname = $this->getOptionsValue( $options, 'shortname', 'social.disqus.comments.shortname' );
 		$title = $options['title'];
 		$identifier = $options['id'];
 		

@@ -15,6 +15,11 @@ abstract class Tool extends \Dsc\Singleton {
 	protected $tools = array();
 	
 	/**
+	 * Settings model;
+	 */
+	protected $settings = null;
+	
+	/**
 	 * Determines, if the tool needs to be added, or it is already there
 	 * 
 	 * @param	$tool	Name of tool
@@ -50,7 +55,30 @@ abstract class Tool extends \Dsc\Singleton {
 		}
 		
 		return implode( ' ', $joined_attributes );
-		
+	}
+
+	/**
+	 * This method sets settings model for this tool
+	 *
+	 * @param $model 	Settings model
+	 */
+	public function setSettings( $model ){
+		$this->settings = $model;
+	}
+	
+	/**
+	 * This method tries to get a value from provided options array. If it fails, it resorts to Settings model
+	 * 
+	 * @param $options 			Array with options
+	 * @param $key				Key in array with options
+	 * @param $key_settings		Key in settings
+	 */
+	protected function getOptionsValue( $options, $key, $key_settings ){
+		if( isset( $options[$key] ) ){
+			return $options[$key];
+		} else {
+			return $this->settings->{$key_settings};
+		}
 	}
 	
 	/**

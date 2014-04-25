@@ -32,13 +32,14 @@ class Pinterest extends \Blog\Lib\Tools\Tool{
 			$result = $this->base( $options );
 		}
 	
+		$size = $this->getOptionsValue( $options, 'size', 'social.pinterest.size' );
 		$attributes = array(
 				'data-pin-do' => 'buttonPin',
-				'data-pin-config' => $options['position'],
-				'data-pin-color' => $options['color'],
-				'data-pin-shape' => $options['shape'],
+				'data-pin-config' => $this->getOptionsValue( $options, 'position', 'social.pinterest.position' ),
+				'data-pin-color' => $this->getOptionsValue( $options, 'color', 'social.pinterest.color' ),
+				'data-pin-shape' => $this->getOptionsValue( $options, 'shape', 'social.pinterest.shape' ),
 		);
-		if( $options['size'] == 'large' ){
+		if( $size == 'large' ){
 			$attributes['data-pin-height'] = '32';
 		}
 		
@@ -46,21 +47,21 @@ class Pinterest extends \Blog\Lib\Tools\Tool{
 		$image = urlencode($options['image']);
 		$desc = urlencode($options['desc']);
 		$img_link = 'pinit_fg_en_';
-		if( $options['shape'] == 'round' ){
+		if( $attributes['data-pin-shape'] == 'round' ){
 
 			unset( $attributes['data-pin-color'] );
 			unset( $attributes['data-pin-config'] );
 			
 			$img_link .= 'round_red_';
-			if( $options['size'] == 'large' ){
+			if( $size  == 'large' ){
 				$img_link .= '32';
 			} else {
 				$img_link .= '16';
 			}
 		} else {
 			unset( $attributes['data-pin-shape'] );
-			$img_link .= 'rect_'.$options['color'].'_';
-			if( $options['size'] == 'large' ){
+			$img_link .= 'rect_'.$attributes['data-pin-color'].'_';
+			if( $size == 'large' ){
 				$img_link .= '28';
 			} else {
 				$img_link .= '20';

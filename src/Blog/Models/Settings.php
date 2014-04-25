@@ -20,7 +20,7 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     					"num_posts" => 10,
     					"order" => "reverse_time",
     						),
-    			"likes" => array(
+    			"like" => array(
     					"action" => "like",
     					"layout" => "standard",
     					"theme" => 'dark',

@@ -59,15 +59,15 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		}
 
 		$attributes = array(
-			'data-action' => $options['action'],
+			'data-action' => $this->getOptionsValue( $options, 'action', 'social.facebook.like.action' ),
 			'data-href' => $options['post_url'],
-			'data-colorscheme' => $options['theme'],
-			'data-layout' => $options['layout'],
-			'data-show-faces' => $options['show_faces'],
+			'data-colorscheme' => $this->getOptionsValue( $options, 'theme', 'social.facebook.like.theme' ),
+			'data-layout' => $this->getOptionsValue( $options, 'layout', 'social.facebook.like.layout' ),
+			'data-show-faces' => $this->getOptionsValue( $options, 'show_faces', 'social.facebook.like.show_faces' ),
 		);
 			
-		if( !empty( $options['width'] ) ){
-			$attributes = array( 'data-width' => $options['width'] ) + $attributes;
+		if( !empty( $this->getOptionsValue( $options, 'width', 'social.facebook.like.width' ) ) ){
+			$attributes['data-width'] = $this->getOptionsValue( $options, 'width', 'social.facebook.like.width' );
 		}
 		
 		$result .= '<div class="fb-like" '.$this->convertArrayToAttributes( $attributes ).'></div>';
@@ -89,13 +89,13 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 	
 		$attributes = array(
 				'data-href' => $options['post_url'],
-				'data-type' => $options['layout'],
+				'data-type' => $this->getOptionsValue( $options, 'layout', 'social.facebook.share.layout' ),
 		);
 
-		if( !empty( $options['width'] ) ){
-			$attributes = array( 'data-width' => $options['width'] ) + $attributes;
+		if( !empty( $this->getOptionsValue( $options, 'width', 'social.facebook.share.width' ) ) ){
+			$attributes['data-width'] = $this->getOptionsValue( $options, 'width', 'social.facebook.share.width' );
 		}
-	
+			
 		$result .= '<div class="fb-share-button" '.$this->convertArrayToAttributes( $attributes ).'></div>';
 		return $result;
 	}
@@ -115,10 +115,10 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		
 		$attributes = array(
 			'data-href' => $options['post_url'],
-			'data-numposts' => $options['num_posts'],
-			'data-colorscheme' => $options[ 'theme' ], 
-			'data-order-by' => $options[ 'order'],
-			'data-mobile' => $options['mobile'],
+			'data-numposts' => $this->getOptionsValue( $options, 'num_posts', 'social.facebook.comments.num_posts' ),
+			'data-colorscheme' => $this->getOptionsValue( $options, 'theme', 'social.facebook.comments.theme' ), 
+			'data-order-by' => $this->getOptionsValue( $options, 'order', 'social.facebook.comments.order' ),
+			'data-mobile' => $this->getOptionsValue( $options, 'mobile', 'social.facebook.comments.mobile' ),
 		);
 		
 		$result .= '<div class="fb-comments" '.$this->convertArrayToAttributes( $attributes ).' ></div>';

@@ -4,6 +4,14 @@ namespace Blog\Lib;
 
 class Social extends \Dsc\Singleton{
 	
+	private static function getSettings(){
+		static $item = null;
+		if( $item == null ){
+			$item = \Blog\Models\Settings::fetch()->populateState()->getItem();
+		}
+		return $item;
+	}
+	
 	/**
 	 * Returns script required for social tool
 	 * @param $name		Name of the tool (in form "network:part" like "facebook:like")
@@ -52,6 +60,7 @@ class Social extends \Dsc\Singleton{
 			if( in_array( $command[1], $supported ) === false ) {
 				return '';
 			}
+			$instance->setSettings( static::getSettings() );
 			return $instance->$command[1]( $options );
 		}
 		
