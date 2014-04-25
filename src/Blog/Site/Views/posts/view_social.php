@@ -13,7 +13,7 @@ $options = array(
 		'post_url' => $url,
 		'hashtags' => $item->{'tags'},
 		'desc' => $item->{'title'},
-		'image' => \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].'/~lpolak/tienda/public/asset/'. $item->{'featured_image.slug'},
+		'image' => \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].'/asset/'. $item->{'featured_image.slug'},
 		'title' => $item->{'title'},		
 	);
 
