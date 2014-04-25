@@ -1,6 +1,3 @@
-<?php 
-	$current_tags = array();
-?>
 <div class="blog-page">
     <div class="container">
         <div class="row">
@@ -39,9 +36,6 @@
 	                                <?php 
 	                                	for( $i = 0, $c = count( $item->{'tags'} ); $i < $c; $i++  ) {
 											$tag = $item->{'tags.'.$i};
-	                                		if( in_array( $tag, $current_tags ) === false ) {
-												$current_tags []= $tag;
-											}
 	                               	?>
                                 		<a href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a><?php 
                     						if( $i != $c -1 ){

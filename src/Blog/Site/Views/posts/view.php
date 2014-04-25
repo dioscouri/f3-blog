@@ -25,15 +25,27 @@
                             <div class="info-separator">
                                 <!--  <div class="separator-icon photo"></div>  -->
                             </div>
-                            <?php /* ?>
-                            <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.id'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
-                            */ ?>
+                            <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
 
+							<?php if(!empty( $item->{'tags'} ) ) { ?>
+                                <span class="small-text">tags: 
+	                                <?php 
+                                	for( $i = 0, $c = count( $item->{'tags'} ); $i < $c; $i++  ) {
+										$tag = $item->{'tags.'.$i};
+                            	   	?>
+                                		<a href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a><?php 
+                    						if( $i != $c -1 ){
+												echo ', ';
+											}
+                    					}
+                    				?>
+	                            </span>
+                            <?php } ?>
                             <div class="blog-stats">
                                 <span><i class="glyphicon glyphicon-eye-open"></i> <?php echo (int)$item->{'views'}; ?> </span>
                              <!-- <span><i class="glyphicon glyphicon-heart"></i> 87 </span>  -->
                             </div>
-                        </div>
+                       	</div>
                         <div class="right">
                             <div class="text-editor">
                                 <?php echo $item->{'copy'}; ?>
