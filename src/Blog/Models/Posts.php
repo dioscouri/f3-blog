@@ -38,6 +38,18 @@ class Posts extends \Dsc\Mongo\Collections\Content
     
     protected function beforeValidate()
     {
+    	$result = parent::beforeValidate();
+    	
+    	// add username for blog posts so we dont have to look up their usernames all the time
+    	if (!$this->get('metadata.creator.username'))
+    	{
+    		$creator = (new \Users\Models\Users)->populateState()
+    				->setState( 'filter.id', $this->{'metadata.creator.id'} )
+    				->getItem();
+    		
+    			$this->set('metadata.creator.username', $creator->{'username'});
+   		}
+    	
         if (!empty($this->category_ids))
         {
             $category_ids = $this->category_ids;
@@ -61,7 +73,7 @@ class Posts extends \Dsc\Mongo\Collections\Content
         unset($this->parent);
         unset($this->new_category_title);
 
-        return parent::beforeValidate();
+        return $this->checkErrors();
     }
     
     public function validate()

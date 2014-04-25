@@ -148,8 +148,10 @@
             </div>
             <aside class="col-sm-4">
             	<?php 
-            		echo $this->renderLayout('Blog/Site/Views::posts/view_categories.php');
-            		echo $this->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php');
+            		$categories = (new \Blog\Models\Categories)->getItems();
+					$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $item->get( "categories" ), 'id' );
+            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, $selected_categories ) );
+            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud', array( $item->{'tags'} ) );
             	?>
             </aside>
         </div>

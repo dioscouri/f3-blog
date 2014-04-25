@@ -36,9 +36,11 @@ class Tag extends \Dsc\Controller
     	\Base::instance()->set('state', $state );
     	
     	\Base::instance()->set('paginated', $paginated );
+    	\Base::instance()->set('tag', $tag );
+    	 
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Blog/Site/Views::posts/category.php');
+    	echo $view->render('Blog/Site/Views::tags/view.php');
     	 
     }
 }

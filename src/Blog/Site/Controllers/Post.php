@@ -130,11 +130,24 @@ class Post extends \Dsc\Controller
     	return $root;
     }
     
-    public function displayCategoryNode( $node, $selected_categories ){
+    public function displayCategories($categories, $selected_categories ){
+    	\Base::instance()->set('selected_categories', $selected_categories );
+    	\Base::instance()->set('categories', $categories );
+    	 
+    	$view = \Dsc\System::instance()->get('theme');
+    	echo $view->renderLayout('Blog/Site/Views::posts/view_categories.php');
+    }
+    
+    public function displayTagCloud( $tags ){
+    	\Base::instance()->set('tags', $tags );
+    	
+    	$view = \Dsc\System::instance()->get('theme');
+    	echo $view->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php');
+    }
+    
+    public function displayCategoryNode( $node ){
     	$orig_node = \Base::instance()->get('node' );
     	\Base::instance()->set('node', $node );
-    	\Base::instance()->set('selected_categories', $selected_categories );
-    	 
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->renderLayout('Blog/Site/Views::posts/view_category.php');
     	

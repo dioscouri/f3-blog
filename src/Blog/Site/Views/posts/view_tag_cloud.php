@@ -4,8 +4,8 @@
 	</div>
 	<div class="widget-content">
 		<ul class='tag-cloud'>
-            <?php if (!empty($item->{'tags'})) {
-					foreach( $item->{'tags'} as $tag ) { ?>
+            <?php if (!empty($tags )) {
+					foreach( $tags as $tag ) { ?>
 				<li><a href="./blog/tag/<?php echo $tag; ?>" class="btn btn-default" rel="tag"><?php echo $tag;?></a></li>
 				<?php
 				}
