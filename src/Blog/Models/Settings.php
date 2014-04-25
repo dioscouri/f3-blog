@@ -70,7 +70,7 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     	);
     
     public $post = array(
-    			'social' => array(
+    			'social_networks' => array(
     				'facebook:like', 'twitter:tweet', 'pinterest:pinit', 'tumblr:share'
     			),
        		);

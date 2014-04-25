@@ -3,9 +3,17 @@ namespace Blog\Site\Controllers;
 
 class Post extends \Dsc\Controller 
 {    
-    protected function getModel() 
+    protected function getModel($name = 'posts') 
     {
-        $model = new \Blog\Models\Posts;
+        $model = null;
+        switch( $name ) {
+        	case 'posts':
+        		$model = new \Blog\Models\Posts;
+        		break;
+        	case 'users':
+        		$model = new \Users\Models\Users;
+        		break;
+        }
         return $model; 
     }
     
@@ -33,10 +41,16 @@ class Post extends \Dsc\Controller
     		return;
     	}
     	
+    	
+    	$author = $this->getModel( 'users' )->populateState()
+    			->setState( 'filter.id', $item->{'metadata.creator.id'} )
+    			->getItem();
+    	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
     	$item->hit();
     	\Base::instance()->set('item', $item );
+    	\Base::instance()->set( 'author', $author );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');

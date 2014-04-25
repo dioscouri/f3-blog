@@ -40,34 +40,57 @@
                             </div>
                             <div class="share-line">
                                 <span class="title">Share: </span>
-                                <div class="share-widget">
-                                    <img src="img/share-widget.png" alt=""/>
-                                </div>
-                                <div>
                                 <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </article>
                 <div class="author-box">
                     <div class="name-box">
-                        <h3>Martin Doe</h3>
+                        <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></h3>
                         <ul class="social-href">
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Dribble</a></li>
-                            <li><a href="#">E-mail</a></li>
-                        </ul>
+                        
+                        <?php if( strlen( $author->{'social.facebook.profile.profileURL'} ) ) { ?>
+                            <li><a href="<?php echo $author->{'social.facebook.profile.profileURL'}; ?>" target="_blank">Facebook</a></li>
+                        <?php 
+							}
+							if( strlen( $author->{'social.twitter.profile.profileURL'} ) ) {
+                        ?>
+                            <li><a href="<?php echo $author->{'social.twitter.profile.profileURL'}; ?>" target="_blank">Twitter</a></li>
+                        <?php 
+							}
+							if( strlen( $author->{'social.twitter.profile.profileURL'} ) ) {
+                        ?>
+                            <li><a href="<?php echo $author->{'social.twitter.profile.profileURL'} ?>" target="_blank">Dribble</a></li>
+                        <?php 
+							}
+							if( strlen( $author->{'social.google.profile.profileURL'} ) ) {
+                        ?>
+                            <li><a href="<?php echo $author->{'social.google.profile.profileURL'} ?>" target="_blank">Google +</a></li>
+                        <?php 
+							}
+							if( strlen( $author->{'email'} ) ) {
+                        ?>
+                            <li><a href="mailto:<?php echo $author->{'email'}?>">E-mail</a></li>
+                        <?php } ?>
+                    </ul>
                     </div>
                     <figure>
-                        <img src="img/author.jpg" alt=""/>
+                    	<?php 
+                    		$img = $author->getProfilePicture(); 
+                    		if( $img == '' ){
+								$img = './dsc/images/empty_profile.png';
+							}
+                    	?>
+                    	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
+							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'metadata.creator.name'}; ?>" class="img-rounded">
+						</a>
                     </figure>
                     <div class="text">
                         <h4>About the author</h4>
                         <p>
-                            Etiam nec mi aliquam, congue nulla ac, dictum nulla. Nunc aliquet egestas ipsum, sit amet tincidunt arcu aliquam nec. Donec eget posuere enim, vel vestibulum est. Nulla quis posuere massa. Etiam laoreet justo vitae magna. Suspen
-                            potenti. Morbi nec arcu id nulla tristique.
+                        	<strong><?php echo $item->{'metadata.creator.name'}; ?></strong> /
+                        	<?php echo $author->{'blog.bio.short'}?>
                         </p>
                     </div>
                 </div>
