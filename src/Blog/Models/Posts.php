@@ -96,6 +96,22 @@ class Posts extends \Dsc\Mongo\Collections\Content
         return $slug;
     }
     
+    public function getRelatedPosts($limit = 12){
+    	$model = clone $this;
+  		$model->emptyState()->populateState()
+  				->setCondition( '_id', array( '$ne' => new \MongoId( (string) $this->id ) ) );
+
+  		$categories = array();
+  		if( !empty( $model->{'categories'} ) ){
+  			$categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $model->{'categories'}, 'id' );  			
+  		}
+   		$model->setCondition( 'categories', array( '$elemMatch' => array( 'id' => array( '$in' => $categories ) ) ) )
+   				->setParam('limit', $limit )
+   				->setState('list.sort', array('publication.start.time' => -1 ) );
+
+   		return $model->getItems(true);
+    }
+    
     /**
      * Converts this to a search item, used in the search template when displaying each search result
      */

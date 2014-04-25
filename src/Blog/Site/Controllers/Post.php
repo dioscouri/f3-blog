@@ -46,11 +46,14 @@ class Post extends \Dsc\Controller
     			->setState( 'filter.id', $item->{'metadata.creator.id'} )
     			->getItem();
     	
+    	$related = $item->getRelatedPosts();    	
+    	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
     	$item->hit();
-    	\Base::instance()->set('item', $item );
+    	\Base::instance()->set( 'item', $item );
     	\Base::instance()->set( 'author', $author );
+    	\Base::instance()->set( 'related', $related );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');

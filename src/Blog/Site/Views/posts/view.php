@@ -98,8 +98,8 @@
                     <div class="widget-title">
                         <h2>Related Posts</h2>
                         <div class="slider-controls related-post-controls">
-                            <button class="next"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                            <button class="prev"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                            <button class="prev"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                            <button class="next"><i class="glyphicon glyphicon-chevron-right"></i></button>
                         </div>
                     </div>
                     <div class="widget-content">
@@ -107,48 +107,31 @@
                             <ul class="slides">
                                 <li>
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related01.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">Pellentesque vehicula urna purus</a></h2>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related02.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">Aenean condimentum purus</a></h2>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related03.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">tristique nisl turpisconsequat </a></h2>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related01.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">Pellentesque vehicula urna purus</a></h2>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related02.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">Aenean condimentum purus</a></h2>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <figure>
-                                                <img src="img/related03.jpg" alt=""/>
-                                            </figure>
-                                            <h2><a href="#">tristique nisl turpisconsequat </a></h2>
-                                        </div>
-                                    </div>
-                                </li>
+<?php if( empty( $related ) ) { ?>
+
+<?php } else {
+	$i = 0;
+	foreach( $related as $post ) {
+		if( $i  % 3 == 0 && $i ){ ?>
+			</div>
+		</li>		
+        <li>
+        	<div class="row">
+        <?php } ?>
+			<div class="col-sm-4">
+				<figure>
+					<img src="./asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
+				</figure>
+				<h2><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h2>
+			</div>
+	<?php
+	$i++;
+	}
+		if( $i %3 != 0 ) { ?>
+		</div>
+	</li>
+<?php	}
+	 } ?>
                             </ul>
                         </div>
                     </div>
