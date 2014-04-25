@@ -45,7 +45,9 @@ class Author extends \Dsc\Controller
     	}
 
     	$model_posts = $this->getModel( 'posts' )->populateState()
-    					->setState('filter.creator.id', $author->{'id'});
+    					->setState('filter.creator.id', $author->{'id'})
+    					->setState( 'filter.published_today', true )
+    					->setState( 'filter.publication_status', 'published' );
     	 
     	
     	try {

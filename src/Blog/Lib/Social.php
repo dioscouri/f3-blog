@@ -7,7 +7,7 @@ class Social extends \Dsc\Singleton{
 	private static function getSettings(){
 		static $item = null;
 		if( $item == null ){
-			$item = \Blog\Models\Settings::fetch()->populateState()->getItem();
+			$item = \Blog\Models\Settings::fetch();
 		}
 		return $item;
 	}

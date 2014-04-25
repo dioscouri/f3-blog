@@ -18,7 +18,7 @@ class Category extends \Dsc\Controller
     	$f3 = \Base::instance();
     	$path = $this->inputfilter->clean( $f3->get('PARAMS.1'), 'string' );
     	$model = $this->getModel();
-    	
+		    	 
     	try {
     	    $category = (new \Blog\Models\Categories)->setState('filter.path', $path)->getItem();
     	    if (empty($category->id)) {
@@ -26,8 +26,8 @@ class Category extends \Dsc\Controller
     	    }
     	    $paginated = $model->populateState()
         	    ->setState('filter.category.id', $category->id)
-        	    //->setState('filter.publication_status', 'published')
-        	    //->setState('filter.published_today', true)
+        	    ->setState('filter.publication_status', 'published')
+        	    ->setState('filter.published_today', true)
         	    ->paginate();
     	    
     	} catch ( \Exception $e ) {

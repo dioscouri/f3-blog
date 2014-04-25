@@ -18,8 +18,10 @@ class Tag extends \Dsc\Controller
     	$f3 = \Base::instance();
     	$tag = $this->inputfilter->clean( $f3->get('PARAMS.tag') );
     	$model = $this->getModel()->populateState()
-            ->setState('filter.tag', $tag);
-    	
+            ->setState('filter.tag', $tag)
+    		->setState( 'filter.published_today', true )
+    		->setState( 'filter.publication_status', 'published' );
+    	 
     	try {
     		$paginated = $model->paginate();
     	} catch ( \Exception $e ) {
