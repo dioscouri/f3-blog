@@ -44,9 +44,10 @@ class Category extends \Dsc\Controller
     	\Base::instance()->set('state', $state );
     	
         \Base::instance()->set('paginated', $paginated );
+        \Base::instance()->set('category', $category );
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Blog/Site/Views::posts/category.php');
+    	echo $view->render('Blog/Site/Views::categories/view.php');
     	 
     }
 }

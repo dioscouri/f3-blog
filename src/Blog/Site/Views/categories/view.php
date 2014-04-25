@@ -5,7 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-            	<h1>Tag <em>"<?php echo $tag; ?>"</em></h1>
+            	<h1>Category <em>"<?php echo $category->{'title'}; ?>"</em></h1>
+            
                 <?php if (!empty($paginated->items)) { ?>
             
                 <?php foreach ($paginated->items as $item) { 
@@ -67,10 +68,9 @@
                     </article>
                     
                 <?php }
-				
-				} else { ?>
+					} else { ?>
                     
-                        <div class="">No posts found.</div>
+                        <div class="">No items found.</div>
                     
                 <?php } ?>
                 
@@ -98,7 +98,7 @@
             <aside class="col-sm-4">
             	<?php 
             		$categories = (new \Blog\Models\Categories)->getItems();
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, array() ) );
+            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, array( $category->id ) ) );
             		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud', array( $current_tags ) );
             	?>
             </aside>
