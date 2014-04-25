@@ -23,7 +23,7 @@
                             <?php /*?><span class="bold-text"><a href="#">7 Comment(s)</a></span>*/ ?>
                             
                             <div class="info-separator">
-                                <div class="separator-icon photo"></div>
+                                <!--  <div class="separator-icon photo"></div>  -->
                             </div>
                             <?php /* ?>
                             <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.id'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
@@ -31,7 +31,7 @@
 
                             <div class="blog-stats">
                                 <span><i class="glyphicon glyphicon-eye-open"></i> <?php echo (int)$item->{'views'}; ?> </span>
-                                <span><i class="glyphicon glyphicon-heart"></i> 87 </span>
+                             <!-- <span><i class="glyphicon glyphicon-heart"></i> 87 </span>  -->
                             </div>
                         </div>
                         <div class="right">

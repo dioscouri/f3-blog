@@ -31,7 +31,7 @@
                             <div class="left-info">
                                 <span class="bold-text"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>
                                 <div class="info-separator">
-                                    <div class="separator-icon photo"></div>
+                                    <!--  <div class="separator-icon photo"></div>  -->
                                 </div>
                                 <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
                                 <?php if(!empty( $item->{'tags'} ) ) { ?>
@@ -60,7 +60,7 @@
                                     <a href="<?php echo $url; ?>" class="read-more">Read More &gt;</a>
                                     <div class="blog-stats">
                                         <span><i class="glyphicon glyphicon-eye-open"></i> <?php echo (int)$item->{'views'}; ?> </span>
-                                        <span><i class="glyphicon glyphicon-heart"></i> 87 </span>
+                                        <!--  <span><i class="glyphicon glyphicon-heart"></i> 87 </span>  -->
                                     </div>
                                 </div>
                             </div>

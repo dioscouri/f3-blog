@@ -30,7 +30,7 @@
                             <div class="left-info">
                                 <span class="bold-text"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>
                                 <div class="info-separator">
-                                    <div class="separator-icon photo"></div>
+                                   <!-- <div class="separator-icon photo"></div>  -->
                                 </div>
                                 <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
                                 <?php if(!empty( $item->{'tags'} ) ) { ?>
