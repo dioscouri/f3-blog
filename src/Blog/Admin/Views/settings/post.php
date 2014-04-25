@@ -22,12 +22,6 @@
 		    </div>
 		    <div class="checkbox">
 		        <label>
-		            <input type="checkbox" name="post[social_networks][]" class="icheck-input" value="twitter:tweet" <?php if (in_array('twitter:tweet', $flash->old('post.social_networks') )) { echo "checked='checked'"; } ?>>
-		            Twitter Tweet Button
-		        </label>
-		    </div>
-		    <div class="checkbox">
-		        <label>
 		            <input type="checkbox" name="post[social_networks][]" class="icheck-input" value="pinterest:pinit" <?php if (in_array('pinterest:pinit', $flash->old('post.social_networks') )) { echo "checked='checked'"; } ?>>
 		            Pinterest Pin it! Button
 		        </label>
@@ -38,6 +32,12 @@
 		            Tumblr Button
 		        </label>
 		    </div>
-	    </div>
+		    <div class="checkbox">
+		        <label>
+		            <input type="checkbox" name="post[social_networks][]" class="icheck-input" value="twitter:tweet" <?php if (in_array('twitter:tweet', $flash->old('post.social_networks') )) { echo "checked='checked'"; } ?>>
+		            Twitter Tweet Button
+		        </label>
+		    </div>
+		</div>
 	</div>
 </div>

@@ -1,3 +1,4 @@
+<span class="title">Share</span>
 <?php 
 $social_buttons = array();
 $url =  \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -76,10 +77,8 @@ foreach( $social_networks as $button ) {
 ?>
 <div class="widget widget-share">
 	<div class="widget-content">
-		<ul class='social-share'>
-            <?php foreach( $social_buttons as $button ) { ?>
-				<li><?php echo $button; ?></li>
-			<?php } ?>
-		</ul>
+		<?php foreach( $social_buttons as $button ) { ?>
+			<div class="share-button pull-left"><?php echo $button; ?></div>
+		<?php } ?>
 	</div>
 </div>

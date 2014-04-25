@@ -39,7 +39,6 @@
                                 <?php echo $item->{'copy'}; ?>
                             </div>
                             <div class="share-line">
-                                <span class="title">Share: </span>
                                 <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
                             </div>
                         </div>
