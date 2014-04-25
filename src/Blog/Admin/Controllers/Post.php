@@ -17,10 +17,6 @@ class Post extends \Admin\Controllers\BaseAuth
     		case 'post' :
     			$model = new \Blog\Models\Posts;
     			break;
-    		case 'tags':
-    			$model = new \Blog\Models\Posts;
-    			break;
-    			
     	}
         return $model; 
     }

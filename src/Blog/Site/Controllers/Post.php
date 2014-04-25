@@ -138,9 +138,8 @@ class Post extends \Dsc\Controller
     	echo $view->renderLayout('Blog/Site/Views::posts/view_categories.php');
     }
     
-    public function displayTagCloud( $tags ){
-    	\Base::instance()->set('tags', $tags );
-    	
+    public function displayTagCloud(){
+		\Base::instance()->set('tags', $this->getModel()->getTags() );
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->renderLayout('Blog/Site/Views::posts/view_tag_cloud.php');
     }

@@ -99,7 +99,7 @@
             	<?php 
             		$categories = (new \Blog\Models\Categories)->getItems();
             		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, array() ) );
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud', array( $current_tags ) );
+            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud' );
             	?>
             </aside>
         </div>

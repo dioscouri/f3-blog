@@ -150,7 +150,7 @@
             		$categories = (new \Blog\Models\Categories)->getItems();
 					$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $item->get( "categories" ), 'id' );
             		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, $selected_categories ) );
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud', array( $item->{'tags'} ) );
+            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud' );
             	?>
             </aside>
         </div>
