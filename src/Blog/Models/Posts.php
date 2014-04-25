@@ -46,8 +46,11 @@ class Posts extends \Dsc\Mongo\Collections\Content
     		$creator = (new \Users\Models\Users)->populateState()
     				->setState( 'filter.id', $this->{'metadata.creator.id'} )
     				->getItem();
-    		
-    			$this->set('metadata.creator.username', $creator->{'username'});
+    		if( empty( $creator ) ){
+    			$this->set('metadata.creator.username', 'RafaelDiazTushman');
+    		} else {
+				$this->set('metadata.creator.username', $creator->{'username'});
+    		}
    		}
     	
         if (!empty($this->category_ids))
