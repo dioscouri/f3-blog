@@ -86,7 +86,7 @@
                     	<?php 
                     		$img = $author->getProfilePicture(); 
                     		if( $img == '' ){
-								$img = './dsc/images/empty_profile.png';
+								$img = './minify/Users/Assets/images/empty_profile.png';
 							}
                     	?>
                     	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
