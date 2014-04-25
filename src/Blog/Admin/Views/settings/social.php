@@ -305,3 +305,18 @@
 		</div>
 	</div>
 </div>
+
+<h3 class="text-primary">Disqus</h3>
+<hr/>
+
+<h4 class="text-danger">Comments Plugin</h4>
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-md-4">
+			<label class="control-label">Shortname</label>
+			
+			<input type="text" name="social[disqus][comments][shortname]" class="form-control" value="<?php echo $flash->old('social.disqus.commnents.shortname'); ?>" placeholder="Your Disqus Shortname" >
+		</div>
+	</div>
+</div>
