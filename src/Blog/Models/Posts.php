@@ -7,6 +7,11 @@ class Posts extends \Dsc\Mongo\Collections\Content
     
     public $categories = array();
     public $featured_image = array();
+    protected $__config = array(
+    		'default_sort' => array(
+    				'publication.start.time' => -1
+    		),
+    );    
     
     protected $__type = 'blog.posts';
     
@@ -106,8 +111,7 @@ class Posts extends \Dsc\Mongo\Collections\Content
   			$categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $model->{'categories'}, 'id' );  			
   		}
    		$model->setCondition( 'categories', array( '$elemMatch' => array( 'id' => array( '$in' => $categories ) ) ) )
-   				->setParam('limit', $limit )
-   				->setState('list.sort', array('publication.start.time' => -1 ) );
+   				->setParam('limit', $limit );
 
    		return $model->getItems(true);
     }
@@ -129,6 +133,20 @@ class Posts extends \Dsc\Mongo\Collections\Content
         ));
     
         return $item;
+    }
+    
+    /**
+     * This method returns extract of this post. In this case, it looks for the first paragraph
+     */
+    public function getExtract(){
+    	$desc = '';
+	    preg_match('%(<p[^>]*>.*?</p>)%i', $this->{'copy'}, $regs);
+	    if( count( $regs ) ) {
+	    	$desc = $regs[1];
+	    } else {
+	    	$desc = $this->{'copy'};
+	    }
+    	return $desc;
     }
 
     /**

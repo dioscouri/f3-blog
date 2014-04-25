@@ -26,7 +26,7 @@ class Author extends \Dsc\Controller
     	$id = $this->inputfilter->clean( $f3->get('PARAMS.id'), 'alnum' );
     	
     	$model_author = $this->getModel( 'users' )->populateState()
-            ->setState('filter.username', $id)->getItem();
+            ->setState('filter.username', $id);
     	
         try {
     		$author = $model_author->getItem();
@@ -45,7 +45,7 @@ class Author extends \Dsc\Controller
     	}
 
     	$model_posts = $this->getModel( 'posts' )->populateState()
-    					->setState('filter.creator.id', $model_author->{'id'});
+    					->setState('filter.creator.id', $author->{'id'});
     	 
     	
     	try {
@@ -61,7 +61,7 @@ class Author extends \Dsc\Controller
     	\Base::instance()->set('state', $state );
     	
     	\Base::instance()->set( 'paginated', $paginated );
-    	\Base::instance()->get( 'author', $author );
+    	\Base::instance()->set( 'author', $author );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::author/view.php');

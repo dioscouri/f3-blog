@@ -45,6 +45,7 @@
                         </div>
                     </div>
                 </article>
+                <?php if( !empty( $author ) ) { ?>
                 <div class="author-box">
                     <div class="name-box">
                         <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></h3>
@@ -57,11 +58,6 @@
 							if( strlen( $author->{'social.twitter.profile.profileURL'} ) ) {
                         ?>
                             <li><a href="<?php echo $author->{'social.twitter.profile.profileURL'}; ?>" target="_blank">Twitter</a></li>
-                        <?php 
-							}
-							if( strlen( $author->{'social.twitter.profile.profileURL'} ) ) {
-                        ?>
-                            <li><a href="<?php echo $author->{'social.twitter.profile.profileURL'} ?>" target="_blank">Dribble</a></li>
                         <?php 
 							}
 							if( strlen( $author->{'social.google.profile.profileURL'} ) ) {
@@ -94,22 +90,30 @@
                         </p>
                     </div>
                 </div>
+                <?php }?>
                 <div class="related-posts main-widget">
+                
                     <div class="widget-title">
                         <h2>Related Posts</h2>
+<?php if( !empty( $related ) ) { ?>
                         <div class="slider-controls related-post-controls">
                             <button class="prev"><i class="glyphicon glyphicon-chevron-left"></i></button>
                             <button class="next"><i class="glyphicon glyphicon-chevron-right"></i></button>
                         </div>
+<?php } ?>
                     </div>
                     <div class="widget-content">
-                        <div class="flexslider related-posts-slider">
+<?php if( empty( $related ) ) { ?>
+                    
+                    <h3>No related posts ...</h3>
+
+<?php } else { ?>
+                    <div class="flexslider related-posts-slider">
                             <ul class="slides">
                                 <li>
                                     <div class="row">
-<?php if( empty( $related ) ) { ?>
 
-<?php } else {
+<?php
 	$i = 0;
 	foreach( $related as $post ) {
 		if( $i  % 3 == 0 && $i ){ ?>
@@ -120,9 +124,11 @@
         <?php } ?>
 			<div class="col-sm-4">
 				<figure>
-					<img src="./asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
+					<a href="./blog/post/<?php echo $post->{'slug'}; ?>">
+						<img src="./asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
+					</a>
 				</figure>
-				<h2><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h2>
+				<h2 class="text-center"><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h2>
 			</div>
 	<?php
 	$i++;
@@ -130,10 +136,10 @@
 		if( $i %3 != 0 ) { ?>
 		</div>
 	</li>
-<?php	}
-	 } ?>
+<?php	} ?>
                             </ul>
                         </div>
+<?php } ?>
                     </div>
                 </div>
             <?php 
