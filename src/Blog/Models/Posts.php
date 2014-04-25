@@ -46,8 +46,9 @@ class Posts extends \Dsc\Mongo\Collections\Content
     		$creator = (new \Users\Models\Users)->populateState()
     				->setState( 'filter.id', $this->{'metadata.creator.id'} )
     				->getItem();
-    		if( empty( $creator ) ){
-    			$this->set('metadata.creator.username', 'RafaelDiazTushman');
+    		
+    		if( empty( $creator->username ) ){
+    			$this->setError('A creator with a username is required');
     		} else {
 				$this->set('metadata.creator.username', $creator->{'username'});
     		}
