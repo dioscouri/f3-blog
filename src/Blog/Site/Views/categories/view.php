@@ -18,7 +18,9 @@
                         <figure class="flexslider photo-gallery">
                             <ul class="slides">
                                 <li>
-                                    <img class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                                	<a href="<?php echo $url; ?>" alt="<?php echo $item->{'title'}; ?>">
+	                                    <img class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                                    </a>
                                 </li>
                             </ul>
                         </figure>
