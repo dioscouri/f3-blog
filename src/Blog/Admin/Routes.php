@@ -1,15 +1,8 @@
 <?php
 namespace Blog\Admin;
 
-/**
- * Group class is used to keep track of a group of routes with similar aspects (the same controller, the same f3-app and etc)
- */
 class Routes extends \Dsc\Routes\Group
 {
-    /**
-     * Initializes all routes for this group
-     * NOTE: This method should be overriden by every group
-     */
     public function initialize()
     {
         $this->setDefaults( array(
@@ -18,12 +11,15 @@ class Routes extends \Dsc\Routes\Group
         ) );
         
         $this->addSettingsRoutes();
+        
         $this->addCrudGroup( 'Posts', 'Post' );
+        
         $this->addCrudGroup( 'Categories', 'Category', array(
             'datatable_links' => true,
             'get_parent_link' => true 
         ) );
-        $this->add( '/checkboxes', array(
+        
+        $this->add( '/categories/checkboxes', array(
             'GET',
             'POST' 
         ), array(
