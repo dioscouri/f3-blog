@@ -25,7 +25,7 @@
                             <div class="info-separator">
                                 <!--  <div class="separator-icon photo"></div>  -->
                             </div>
-                            <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
+                            <span class="small-text">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
 
 							<?php if(!empty( $item->{'tags'} ) ) { ?>
                                 <span class="small-text">tags: 
@@ -59,7 +59,7 @@
                 <?php if( !empty( $author ) ) { ?>
                 <div class="author-box">
                     <div class="name-box">
-                        <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></h3>
+                        <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>
                         <ul class="social-href">
                         
                         <?php if( strlen( $author->{'social.facebook.profile.profileURL'} ) ) { ?>
@@ -96,7 +96,7 @@
                     <div class="text">
                         <h4>About the author</h4>
                         <p>
-                        	<strong><?php echo $item->{'metadata.creator.name'}; ?></strong> /
+                        	<strong><?php echo $item->{'author.name'}; ?></strong> /
                         	<?php echo $author->{'blog.bio.short'}?>
                         </p>
                     </div>

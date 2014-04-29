@@ -33,6 +33,17 @@ class Posts extends \Dsc\Mongo\Collections\Content
             $this->setCondition('categories.id', new \MongoId( (string) $filter_category_id ) );
         }
 
+        $filter_author_id = $this->getState('filter.author.id');
+        if (strlen($filter_author_id))
+        {
+            $this->setCondition('author.id', new \MongoId( (string) $filter_author_id ) );
+        }
+        
+        $filter_author_username = $this->getState('filter.author.username');
+        if (strlen($filter_author_username))
+        {
+            $this->setCondition('author.username', (string) $filter_author_username  );
+        }
         return $this;
     }
     
@@ -41,18 +52,20 @@ class Posts extends \Dsc\Mongo\Collections\Content
     	$result = parent::beforeValidate();
     	
     	// add username for blog posts so we dont have to look up their usernames all the time
-    	if (!$this->get('metadata.creator.username'))
+    	if (!$this->get('author'))
     	{
-    		$creator = (new \Users\Models\Users)->populateState()
-    				->setState( 'filter.id', $this->{'metadata.creator.id'} )
-    				->getItem();
-    		
-    		if( empty( $creator->username ) ){
-    			$this->setError('A creator with a username is required');
-    		} else {
-				$this->set('metadata.creator.username', $creator->{'username'});
-    		}
-   		}
+    		$this->author = $this->{'metadata.creator'};
+    		$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->{'author.id'} )->getItem();
+    		$this->{'author.username'} = $user->username;
+    	} else {
+   			if( $this->get('author.id') ) {
+   				$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->get('author.id') )->getItem();
+  				$this->{'author.name'} = $user->fullName();
+   				$this->{'author.username'} = $user->username;
+   			} else {
+   				$this->setError( "Author is required" );
+   			}
+    	}
     	
         if (!empty($this->category_ids))
         {
