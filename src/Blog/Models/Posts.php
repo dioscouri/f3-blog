@@ -54,10 +54,18 @@ class Posts extends \Dsc\Mongo\Collections\Content
     	// add username for blog posts so we dont have to look up their usernames all the time
     	if (!$this->get('author'))
     	{
-    		$this->author = $this->{'metadata.creator'};
-    		$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->{'author.id'} )->getItem();
-    		$this->{'author.username'} = $user->username;
-    	} else {
+    		$this->{'author.id'} = $this->{'metadata.creator.id'}; 
+    		$this->{'author.name'} = $this->{'metadata.creator.name'}; 
+    		$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->{'metadata.creator.id'} )->getItem();
+    		if( empty( $user ) ){
+    			$act_user = \Dsc\System::instance()->get('auth')->getIdentity();
+    			$this->{'author.username'} = $act_user->username;
+    			$this->{'author.name'} = $act_user->fullName();
+    			$this->{'author.id'} = $act_user->id;
+    		} else {
+    			$this->{'author.username'} = $user->{'username'};
+    		}
+    	} else{
    			if( $this->get('author.id') ) {
    				$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->get('author.id') )->getItem();
   				$this->{'author.name'} = $user->fullName();

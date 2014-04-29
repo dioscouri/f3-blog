@@ -45,11 +45,10 @@ class Post extends \Dsc\Controller
     	
     	
     	$author = $this->getModel( 'users' )->populateState()
-    			->setState( 'filter.id', $item->{'metadata.creator.id'} )
+    			->setState( 'filter.id', $item->{'author.id'} )
     			->getItem();
     	
     	$related = $item->getRelatedPosts();    	
-    	
     	\Base::instance()->set('pagetitle', $item->title);
     	\Base::instance()->set('subtitle', '');
     	$item->hit();

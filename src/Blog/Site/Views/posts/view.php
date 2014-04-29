@@ -90,7 +90,7 @@
 							}
                     	?>
                     	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
-							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'metadata.creator.name'}; ?>" class="img-rounded">
+							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'author.name'}; ?>" class="img-rounded">
 						</a>
                     </figure>
                     <div class="text">
