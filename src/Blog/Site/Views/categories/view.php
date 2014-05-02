@@ -32,7 +32,7 @@
                                 <div class="info-separator">
                                     <!--  <div class="separator-icon photo"></div>  -->
                                 </div>
-                                <span class="small-text">by <a href="./blog/author/<?php echo $item->{'metadata.creator.username'}; ?>"><?php echo $item->{'metadata.creator.name'}; ?></a></span>
+                                <span class="small-text">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
                                 <?php if(!empty( $item->{'tags'} ) ) { ?>
                                 <span class="small-text">tags: 
 	                                <?php 

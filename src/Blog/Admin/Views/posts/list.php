@@ -137,6 +137,7 @@
                             <div><?php echo ucwords( $item->{'publication.status'} ); ?></div>
                             <div><?php if ($item->{'publication.start_date'}) { echo "Up: " . $item->{'publication.start_date'}; } ?></div>
                             <div><?php if ($item->{'publication.end_date'}) { echo "Down: " . $item->{'publication.end_date'}; } ?></div>
+                            <div>By <a href="./admin/user/edit/<?php echo $item->{'author.id'}; ?>" alt="<?php echo $item->{'author.name'}; ?>" ><?php echo $item->{'author.name'}; ?></a></a></div>
                         </td>
 
                         <td class="text-center"><a class="btn btn-xs btn-secondary" href="./admin/blog/post/edit/<?php echo $item->id; ?>">

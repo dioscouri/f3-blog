@@ -10,14 +10,39 @@
     <div class="col-md-10">
 
         <div class="form-group">
-            <label>Status:</label>
-
-            <select name="publication[status]" class="form-control">
-                <option value="draft" <?php if ($flash->old('publication.status') == 'draft') { echo "selected='selected'"; } ?>>Draft</option>
-                <option value="pending" <?php if ($flash->old('publication.status') == 'pending') { echo "selected='selected'"; } ?>>Pending Review</option>
-                <option value="published" <?php if ($flash->old('publication.status') == 'published') { echo "selected='selected'"; } ?>>Published</option>
-            </select>
-        
+        	<div class="row">
+	        	<div class="col-md-6">
+		            <label>Status:</label>
+		
+		            <select name="publication[status]" class="form-control">
+		                <option value="draft" <?php if ($flash->old('publication.status') == 'draft') { echo "selected='selected'"; } ?>>Draft</option>
+		                <option value="pending" <?php if ($flash->old('publication.status') == 'pending') { echo "selected='selected'"; } ?>>Pending Review</option>
+		                <option value="published" <?php if ($flash->old('publication.status') == 'published') { echo "selected='selected'"; } ?>>Published</option>
+		            </select>
+	        	</div>
+	        	
+	        	<div class="col-md-6">
+		            <label>Author:</label>
+		
+		            <select name="author[id]" class="form-control">
+		            <?php 
+		            	$authors_opts = array();
+		            	if( !empty( $authors ) ) {
+							foreach( $authors as $author ) {
+								$authors_opts []= array(
+									'text' => $author->fullName(),
+									'value' => $author->{'id'},
+								);
+							}
+						}
+						$act_author = empty( $flash->old('author.id') )
+											? \Dsc\System::instance()->get('auth')->getIdentity()->id
+											: $flash->old('author.id');
+		            echo \Dsc\Html\Select::options( $authors_opts, $act_author );
+					?>
+		            </select>
+	        	</div>
+        	</div>
         </div>
         <div class="form-group">
             <label>Start:</label>

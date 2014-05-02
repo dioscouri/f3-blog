@@ -66,9 +66,18 @@ class Post extends \Admin\Controllers\BaseAuth
 
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
+        \Base::instance()->set( 'authors', $this->getListAuthors() );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/create.php');
+    }
+    
+    /**
+     * This method returns array with list user who can be blog post authors
+     */
+    private function getListAuthors(){
+    	$list = (new \Users\Models\Users)->populateState()->getItems();
+    	return $list;
     }
     
     protected function displayEdit()
@@ -83,6 +92,7 @@ class Post extends \Admin\Controllers\BaseAuth
         
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
+        \Base::instance()->set( 'authors', $this->getListAuthors() );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/edit.php');
