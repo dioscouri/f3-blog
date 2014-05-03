@@ -68,8 +68,10 @@ class Posts extends \Dsc\Mongo\Collections\Content
     	} else{
    			if( $this->get('author.id') ) {
    				$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->get('author.id') )->getItem();
-  				$this->{'author.name'} = $user->fullName();
-   				$this->{'author.username'} = $user->username;
+   				if (!empty($user->id)) {
+   				    $this->{'author.name'} = $user->fullName();
+   				    $this->{'author.username'} = $user->username;   					
+   				}
    			} else {
    				$this->setError( "Author is required" );
    			}

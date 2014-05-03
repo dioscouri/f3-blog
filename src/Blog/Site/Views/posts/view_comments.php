@@ -1,5 +1,5 @@
 <?php
-$settings = \Blog\Models\Settings::fetch()->populateState()->getItem();
+$settings = \Blog\Models\Settings::fetch();
 if( ( $type = $settings->get( "general.comments" ) ) != 'null' ) {
 
 	$url =  \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];

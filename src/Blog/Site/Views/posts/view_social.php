@@ -2,7 +2,7 @@
 <?php 
 $social_buttons = array();
 $url =  \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-$settings = \Blog\Models\Settings::fetch()->populateState()->getItem();
+$settings = \Blog\Models\Settings::fetch();
 $social_networks = $settings->get( 'post.social_networks' );
 
 if( count( $social_networks ) == 0 ){
