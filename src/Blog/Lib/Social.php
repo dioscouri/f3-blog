@@ -53,6 +53,10 @@ class Social extends \Dsc\Singleton{
 				$instance = \Blog\Lib\Tools\Tumblr::instance();
 				break;
 			}
+			case 'google' : {
+			    $instance = \Blog\Lib\Tools\Google::instance();
+			    break;
+			}			
 		}
 		
 		if( $instance != null ) {

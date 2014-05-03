@@ -1,6 +1,6 @@
 <?php
 $settings = \Blog\Models\Settings::fetch();
-if( ( $type = $settings->get( "general.comments" ) ) != 'null' ) {
+if ( $type = $settings->get( "general.comments" ) ) {
 
 	$url =  \Base::instance()->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 	$options = array();
@@ -31,7 +31,7 @@ if( ( $type = $settings->get( "general.comments" ) ) != 'null' ) {
 
 <div class="blog-comments main-widget">
 	<div class="widget-title">
-		<h2>Comments ( <?php echo $num_comments?>)</h2>
+		<h4>Comments (<?php echo $num_comments?>)</h4>
 	</div>
 	<div class="widget-content">
 		<?php echo $comments; ?>

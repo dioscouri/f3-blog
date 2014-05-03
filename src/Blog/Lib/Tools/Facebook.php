@@ -16,7 +16,7 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 			$this->setAdded( 'base' );
 
 			return '
-				<div id="fb-root"></div>
+				<div id="fb-root" style="position:absolute;bottom:0px;left:0px;"></div>
 				<script>(function(d, s, id) {
 				  var js, fjs = d.getElementsByTagName(s)[0];
 				  if (d.getElementById(id)) return;
@@ -41,7 +41,7 @@ class Facebook extends \Blog\Lib\Tools\Tool{
 		if( $this->requiresAdding( 'base' ) ) {
 			$result = $this->base( $options );
 		}
-		$result .= '<div class="fb-comments-count" data-href="'.$options['post_url'].'"></div>';
+		$result .= '<span class="fb-comments-count" data-href="'.$options['post_url'].'"></span>';
 		return $result;
 	}
 		

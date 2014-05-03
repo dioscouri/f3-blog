@@ -1,6 +1,6 @@
 <div class="widget widget-category">
 	<div class="widget-title">
-		<h2>Categories</h2>
+		<h4>Categories</h4>
 	</div>
 	<div class="widget-content">
 		<div class="accordion">
