@@ -10,7 +10,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
         <div class="row">
             <div class="col-sm-<?php echo !empty($aside) ? '8' : '12'; ?>">
                 <article class="blog-article">
-                    <h2><a href="<?php echo $item->_url; ?>"><?php echo $item->{'title'}; ?></a></h2>
+                    <h2><?php echo $item->{'title'}; ?></h2>
                     
                     <div class="share-wrapper">
                         <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
@@ -92,10 +92,10 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     </figure>
                     <div class="text">
                         <h4>About the author</h4>
-                        <p>
+                        <div>
                         	<strong><?php echo $item->{'author.name'}; ?></strong> /
                         	<?php echo $author->{'blog.bio.short'}?>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <?php }?>
@@ -104,7 +104,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 <div class="related-posts main-widget">
                 
                     <div class="widget-title">
-                        <h2>Related Posts</h2>
+                        <h4>Related Posts</h4>
 
                         <div class="slider-controls related-post-controls">
                             <button class="prev"><i class="glyphicon glyphicon-chevron-left"></i></button>
@@ -132,7 +132,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                                 						<img src="./asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
                                 					</a>
                                 				</figure>
-                                				<h2 class="text-center"><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h2>
+                                				<h5><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h5>
                                 			</div>
                                 	<?php
                                 	$i++;
@@ -153,7 +153,6 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 </div>
             </div>
             
-            <?php // TODO Determine if this should be displayed ?>
             <?php if (!empty($aside)) { ?>
             <aside class="col-sm-4">
             	<?php 
