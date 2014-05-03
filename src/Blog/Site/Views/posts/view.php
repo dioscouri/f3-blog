@@ -34,7 +34,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
         						<?php if(!empty( $item->{'tags'} ) ) { ?>
                                     <p class="tags"> 
                                         <?php foreach ( $item->{'tags'} as $tag ) { ?>
-                                    		<a class="label label-primary" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                                    		<a class="label label-primary tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
                                         <?php } ?>
                                     </p>
                                 <?php } ?>                        
@@ -42,7 +42,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                                 <?php if (!empty($item->{'categories'})) { ?>
                                 <p class="categories"> 
                                     <?php foreach ($item->{'categories'} as $category) { ?>
-                                    <a class="label label-info" href="./blog/category/<?php echo $category['slug']; ?>"
+                                    <a class="label label-info category" href="./blog/category/<?php echo $category['slug']; ?>"
                                         title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
                                     <?php } ?>
                                 </p>
