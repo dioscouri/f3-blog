@@ -5,10 +5,10 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 }
 ?>
 
-<div class="blog-page">
+<div class="blog-post">
     <div class="container">
         <div class="row">
-            <div class="col-sm-<?php echo !empty($aside) ? '8' : '12'; ?>">
+            <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">
                 <article class="blog-article">
                     <h2><?php echo $item->{'title'}; ?></h2>
                     
@@ -18,31 +18,38 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
                     <figure>
-                        <img style="width:100%;" class="entry-featured img-responsive" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
+                        <img style="width:100%;" class="entry-featured img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
                     </figure>
                     <?php } ?>
                     
                     <div class="row">
                         <div class="col-md-2">
                             <div class="byline">
-                                <div class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></div>                            
-                                <div class="author">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></div>
+                                <div class="publication-date"><p><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></p></div>                            
+                                <div class="author"><p>by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></p></div>
                             </div>
+
+                            <div class="entry-meta">
                             
-							<?php if(!empty( $item->{'tags'} ) ) { ?>
-                                <div class="small-text">tags: 
-	                                <?php 
-                                	for( $i = 0, $c = count( $item->{'tags'} ); $i < $c; $i++  ) {
-										$tag = $item->{'tags.'.$i};
-                            	   	?>
-                                		<a class="tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a><?php 
-                    						if( $i != $c -1 ){
-												echo ', ';
-											}
-                    					}
-                    				?>
-	                            </div>
-                            <?php } ?>
+        						<?php if(!empty( $item->{'tags'} ) ) { ?>
+                                    <p class="tags"> 
+                                        <?php foreach ( $item->{'tags'} as $tag ) { ?>
+                                    		<a class="label label-primary" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                                        <?php } ?>
+                                    </p>
+                                <?php } ?>                        
+                                
+                                <?php if (!empty($item->{'categories'})) { ?>
+                                <p class="categories"> 
+                                    <?php foreach ($item->{'categories'} as $category) { ?>
+                                    <a class="label label-info" href="./blog/category/<?php echo $category['slug']; ?>"
+                                        title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
+                                    <?php } ?>
+                                </p>
+                                <?php } ?>
+                
+                            </div>                            
+
                        	</div>
                        	
                         <div class="col-md-10">                        
@@ -154,7 +161,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
             </div>
             
             <?php if (!empty($aside)) { ?>
-            <aside class="col-sm-4">
+            <aside class="col-sm-3">
             	<?php 
             		$categories = (new \Blog\Models\Categories)->getItems();
 					$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $item->get( "categories" ), 'id' );

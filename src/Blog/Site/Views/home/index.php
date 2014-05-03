@@ -1,4 +1,4 @@
-<div class="blog-page">
+<div class="blog-home">
     <div class="container">    
         <?php if (!empty($paginated->items)) { ?>    
             <?php foreach($paginated->items as $item) { 
@@ -7,63 +7,62 @@
             <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
     
                 <div class="entry-header">
-                    <?php if ($item->{'featured_image.slug'}) { ?>
-                    <a href="<?php echo $item->_url; ?>">
-                    <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
-                    </a>
-                    <?php } ?>
-                
-                    <?php if ($item->{'metadata.creator.image'}) { ?>
-                    <img class="entry-avatar" alt="<?php echo $item->{'metadata.creator.name'}; ?>" height="52" width="52"
-                        src="<?php echo $item->{'metadata.creator.image'}; ?>">
-                    <?php } ?>
-                    
                     <h2 class="entry-title">
                         <a href="<?php echo $item->_url; ?>">
                         <?php echo $item->{'title'}; ?>
                         </a>
                     </h2>
-                    <div class="entry-meta lead">
-                        <a href="<?php echo $item->_url; ?>" title="<?php echo date( 'g:i a', $item->{'publication.start.time'} ); ?>"
-                            rel="bookmark"><?php echo date( 'F j, Y', $item->{'publication.start.time'} ); ?></a>
-                        /
-                        <span class="byline">
-                            <span class="author vcard">
-                                <a class="url fn n" href="./blog/author/<?php echo $item->{'metadata.creator.id'}; ?>"
-                                    title="View all posts by <?php echo $item->{'metadata.creator.name'}; ?>" rel="author"><?php echo $item->{'metadata.creator.name'}; ?></a>
-                            </span>
-                        </span>
-                        /
-                        <span class="comments-link">
-                            <a href="<?php echo $item->_url; ?>#respond" title="Comment on <?php echo $item->{'title'}; ?>">0 comments</a>
-                        </span>
-                        
-                        <?php if (!empty($item->{'tags'})) { ?>
-                        <p class="tag-links">
-                            <?php foreach ($item->{'tags'} as $tag) { ?>
-                            <a class="label label-info" href="./blog/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
-                            <?php } ?>
-                        </p>
-                        <?php } ?>
-                    </div>
-                </div>
-    
-                <div class="entry-description">
-                    <?php echo $item->{'copy'}; ?>
-                </div>
-    
-                <div class="entry-meta">
                     
-                    <?php if (!empty($item->{'categories'})) { ?>
-                    <p class="cat-links">
-                        <?php foreach ($item->{'categories'} as $category) { ?>
-                        <a class="label label-primary" href="./blog/category/<?php echo $category['slug']; ?>"
-                            title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
-                        <?php } ?>
-                    </p>
+                    <?php /* TODO Share from list view? or no? ?>
+                    <div class="share-wrapper">
+                        <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
+                    </div>   
+                    */ ?>                     
+                    
+                    <?php if ($item->{'featured_image.slug'}) { ?>
+                    <a href="<?php echo $item->_url; ?>">
+                        <img style="width:100%;" class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                    </a>
                     <?php } ?>
-    
+                
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="byline">
+                            <div class="publication-date"><p><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></p></div>                            
+                            <div class="author"><p>by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></p></div>
+                        </div>
+                        
+                        <div class="entry-meta">
+                        
+    						<?php if(!empty( $item->{'tags'} ) ) { ?>
+                                <p class="tags"> 
+                                    <?php foreach ( $item->{'tags'} as $tag ) { ?>
+                                		<a class="label label-primary" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                                    <?php } ?>
+                                </p>
+                            <?php } ?>                        
+                            
+                            <?php if (!empty($item->{'categories'})) { ?>
+                            <p class="categories"> 
+                                <?php foreach ($item->{'categories'} as $category) { ?>
+                                <a class="label label-info" href="./blog/category/<?php echo $category['slug']; ?>"
+                                    title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
+                                <?php } ?>
+                            </p>
+                            <?php } ?>
+            
+                        </div>
+                                
+                   	</div>
+                   	
+                    <div class="col-md-10">                        
+                        <div class="copy-wrapper">
+                            <?php echo $item->{'copy'}; ?>
+                        </div>
+                    </div>
+                </div>    
                 
                 <hr />
                 
