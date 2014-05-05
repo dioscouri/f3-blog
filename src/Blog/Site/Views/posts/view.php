@@ -12,9 +12,14 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 <article class="blog-article">
                     <h2><?php echo $item->{'title'}; ?></h2>
                     
+                    <p class="byline">
+                        <span class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>                            
+                        <span class="author">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
+                    </p>
+                    
                     <div class="share-wrapper">
                         <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
-                    </div>                        
+                    </div>                    
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
                     <figure>
@@ -22,43 +27,32 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     </figure>
                     <?php } ?>
                     
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="byline">
-                                <div class="publication-date"><p><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></p></div>                            
-                                <div class="author"><p>by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></p></div>
-                            </div>
-
-                            <div class="entry-meta">
-                            
-        						<?php if(!empty( $item->{'tags'} ) ) { ?>
-                                    <p class="tags"> 
-                                        <?php foreach ( $item->{'tags'} as $tag ) { ?>
-                                    		<a class="label label-primary tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
-                                        <?php } ?>
-                                    </p>
-                                <?php } ?>                        
-                                
-                                <?php if (!empty($item->{'categories'})) { ?>
-                                <p class="categories"> 
-                                    <?php foreach ($item->{'categories'} as $category) { ?>
-                                    <a class="label label-info category" href="./blog/category/<?php echo $category['slug']; ?>"
-                                        title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
-                                    <?php } ?>
-                                </p>
-                                <?php } ?>
-                
-                            </div>                            
-
-                       	</div>
-                       	
-                        <div class="col-md-10">                        
-                            <div class="copy-wrapper">
-                                <?php echo $item->{'copy'}; ?>
-                            </div>
-                        </div>
+                    <div class="copy-wrapper">
+                        <?php echo $item->{'copy'}; ?>
                     </div>
+                    
                 </article>
+                
+                <div class="entry-meta">
+                
+					<?php if(!empty( $item->{'tags'} ) ) { ?>
+                        <p class="tags"> 
+                            <?php foreach ( $item->{'tags'} as $tag ) { ?>
+                        		<a class="label label-primary tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                            <?php } ?>
+                        </p>
+                    <?php } ?>                        
+                    
+                    <?php if (!empty($item->{'categories'})) { ?>
+                    <p class="categories"> 
+                        <?php foreach ($item->{'categories'} as $category) { ?>
+                        <a class="label label-info category" href="./blog/category/<?php echo $category['slug']; ?>"
+                            title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
+                        <?php } ?>
+                    </p>
+                    <?php } ?>
+    
+                </div>
                 
                 <?php if( !empty( $author ) ) { ?>
                 <div class="author-box">
