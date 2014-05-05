@@ -1,6 +1,6 @@
 <h3 class="">Home View Settings</h3>
 <p class="help-block">
-	The home view is the 'landing page' for your blog, available at <a href="./blog" target="_blank">/blog</a>.  It will include the latest posts from all your categories.
+	The home view is the 'landing page' for your blog, available at <a href="/blog" target="_blank">/blog</a>.  It will include the latest posts from all your categories.
 </p>
 <hr/>
                     

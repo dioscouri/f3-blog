@@ -26,7 +26,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 	                    	<?php 
 	                    		$img = $author->getProfilePicture(); 
 	                    		if( $img == '' ){
-									$img = './minify/Users/Assets/images/empty_profile.png';
+									$img = '/minify/Users/Assets/images/empty_profile.png';
 								}
 	                    	?>
 	                    	

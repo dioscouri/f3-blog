@@ -160,10 +160,10 @@ class Posts extends \Dsc\Mongo\Collections\Content
      */
     public function toSearchItem()
     {
-        $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
+        $image = (!empty($this->{'featured_image.slug'})) ? '/asset/thumb/' . $this->{'featured_image.slug'} : null;
     
         $item = new \Search\Models\Item(array(
-            'url' => './blog/post/' . $this->slug,
+            'url' => '/blog/post/' . $this->slug,
             'title' => $this->title,
             'subtitle' => '',
             'image' => $image,
