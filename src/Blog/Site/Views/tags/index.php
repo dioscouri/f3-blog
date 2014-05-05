@@ -1,11 +1,11 @@
 <?php $aside = false;
-// are there tags?  // are there categories? // TODO: is a module published in the blog-home-aside position? 
+// are there tags?  // are there categories? // TODO: is a module published in the blog-tag-aside position? 
 if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find()) {
 	$aside = true;
 }
 ?>
 
-<div id="blog-home" class="blog-posts">
+<div id="blog-tag" class="blog-posts">
     <div class="container">    
         <div class="row">
             <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">    

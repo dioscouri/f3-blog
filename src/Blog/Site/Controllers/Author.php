@@ -56,7 +56,7 @@ class Author extends \Dsc\Controller
     		$paginated = null;
     	}
     	
-    	\Base::instance()->set('pagetitle', 'Posts');
+    	\Base::instance()->set('pagetitle', $author->fullName() . ' | Blog' );
     	\Base::instance()->set('subtitle', '');
     	
     	$state = $model_posts->getState();
@@ -66,7 +66,7 @@ class Author extends \Dsc\Controller
     	\Base::instance()->set( 'author', $author );
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Blog/Site/Views::author/view.php');
+    	echo $view->render('Blog/Site/Views::author/index.php');
     	 
     }
 }

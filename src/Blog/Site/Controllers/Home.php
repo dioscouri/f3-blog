@@ -30,7 +30,7 @@ class Home extends \Dsc\Controller
     		return;
     	}
     	
-    	\Base::instance()->set('pagetitle', 'Posts');
+    	\Base::instance()->set('pagetitle', 'Blog');
     	\Base::instance()->set('subtitle', '');
     	
     	$state = $model->getState();

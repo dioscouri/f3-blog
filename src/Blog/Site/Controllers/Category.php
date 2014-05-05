@@ -36,8 +36,8 @@ class Category extends \Dsc\Controller
     		$f3->reroute( '/' );
     		return;
     	}
-    	
-    	\Base::instance()->set('pagetitle', 'Posts');
+
+    	\Base::instance()->set('pagetitle', $category->title . ' | Blog' );
     	\Base::instance()->set('subtitle', '');
     	
     	$state = $model->getState();
@@ -47,7 +47,7 @@ class Category extends \Dsc\Controller
         \Base::instance()->set('category', $category );
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Blog/Site/Views::categories/view.php');
+    	echo $view->render('Blog/Site/Views::categories/index.php');
     	 
     }
 }
