@@ -81,11 +81,11 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 </div>
                             
             	<?php 
-            		$categories = (new \Blog\Models\Categories)->getItems();
-					//$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $item->get( "categories" ), 'id' );
-            		$selected_categories = array();
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, $selected_categories ) );
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud' );
+            		// display the categories
+            		echo $this->renderView('Blog/Site/Views::categories/widget.php');
+            		
+            		// display the tag cloud
+            		echo $this->renderView('Blog/Site/Views::tags/cloud.php');
             	?>
             </aside>
             <?php } ?>

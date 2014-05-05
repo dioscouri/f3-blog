@@ -1,4 +1,6 @@
-<?php $aside = false;
+<?php
+$settings = \Blog\Models\Settings::fetch(); 
+$aside = false;
 // are there tags?  // are there categories? // TODO: is a module published in the blog-post-aside position? 
 if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find()) {
 	$aside = true;
@@ -18,7 +20,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     </p>
                     
                     <div class="share-wrapper">
-                        <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
+                        <?php echo $this->renderLayout('Blog/Site/Views::posts/social.php'); ?>
                     </div>                    
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
@@ -148,19 +150,25 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 </div>
                 <?php } ?>
                 
-                
-                <div>
-                <?php echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayComments', array( 'slug' => $item->{'slug'} ) ); ?>
-                </div>
+                <?php
+                if ( $type = $settings->get( "general.comments" ) ) 
+                {
+                    ?><hr /><?php
+                    // display the comments
+                    $this->item = $item;
+                    echo $this->renderView('Blog/Site/Views::posts/comments.php');
+                }
+                ?>
             </div>
             
             <?php if (!empty($aside)) { ?>
             <aside class="col-sm-3">
             	<?php 
-            		$categories = (new \Blog\Models\Categories)->getItems();
-					$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $item->get( "categories" ), 'id' );
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayCategories', array( $categories, $selected_categories ) );
-            		echo \Dsc\Request::internal( '\Blog\Site\Controllers\Post->displayTagCloud' );
+            		// display the categories
+            		echo $this->renderView('Blog/Site/Views::categories/widget.php');
+            		
+            		// display the tag cloud
+            		echo $this->renderView('Blog/Site/Views::tags/cloud.php');
             	?>
             </aside>
             <?php } ?>

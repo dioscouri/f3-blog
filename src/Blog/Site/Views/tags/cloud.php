@@ -1,4 +1,4 @@
-<?php if (!empty($tags)) { ?>
+<?php if ($tags = \Blog\Models\Posts::distinctTags()) { ?>
 <div class="widget widget-tags">
     <h4 class="widget-title">Tags</h4>
 	<div class="widget-content">
