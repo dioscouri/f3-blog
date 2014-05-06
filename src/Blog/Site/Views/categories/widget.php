@@ -8,7 +8,7 @@
         $classes = null; 
         ?>
 		<div>
-    		<a href="/blog/category<?php echo $cat->{"path"}; ?>" class="<?php echo $classes; ?>"><?php echo $cat->{'title'}; ?></a>
+    		<a href="./blog/category<?php echo $cat->{"path"}; ?>" class="<?php echo $classes; ?>"><?php echo $cat->{'title'}; ?></a>
 		</div>
     <?php } ?>	
 	

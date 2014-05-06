@@ -4,7 +4,7 @@
 	
 	if( $c_n == 0 ) { // only leaf ?>
 	
-		<li><a href="/blog/category<?php echo $node->element->{"path"};?>" class="<?php echo $highlight; ?>"><?php echo $node->element->{'title'};?></a></li>
+		<li><a href="./blog/category<?php echo $node->element->{"path"};?>" class="<?php echo $highlight; ?>"><?php echo $node->element->{'title'};?></a></li>
 	
 	<?php
 	} else { // this is any node (not a leaf) so render it	

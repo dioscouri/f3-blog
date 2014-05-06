@@ -16,7 +16,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     
                     <p class="byline">
                         <span class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>                            
-                        <span class="author">by <a href="/blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
+                        <span class="author">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
                     </p>
                     
                     <div class="share-wrapper">
@@ -25,7 +25,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
                     <figure>
-                        <img style="width:100%;" class="entry-featured img-responsive" src="/asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                        <img style="width:100%;" class="entry-featured img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
                     </figure>
                     <?php } ?>
                     
@@ -40,7 +40,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 					<?php if(!empty( $item->{'tags'} ) ) { ?>
                         <p class="tags"> 
                             <?php foreach ( $item->{'tags'} as $tag ) { ?>
-                        		<a class="label label-primary tag" href="/blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
+                        		<a class="label label-primary tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag; ?></a>
                             <?php } ?>
                         </p>
                     <?php } ?>                        
@@ -48,7 +48,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     <?php if (!empty($item->{'categories'})) { ?>
                     <p class="categories"> 
                         <?php foreach ($item->{'categories'} as $category) { ?>
-                        <a class="label label-info category" href="/blog/category/<?php echo $category['slug']; ?>"
+                        <a class="label label-info category" href="./blog/category/<?php echo $category['slug']; ?>"
                             title="View all posts in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
                         <?php } ?>
                     </p>
@@ -59,7 +59,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 <?php if( !empty( $author ) ) { ?>
                 <div class="author-box">
                     <div class="name-box">
-                        <h3><a href="/blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>
+                        <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>
                         <ul class="social-href">
                         
                         <?php if( strlen( $author->{'social.facebook.profile.profileURL'} ) ) { ?>
@@ -86,10 +86,10 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     	<?php 
                     		$img = $author->getProfilePicture(); 
                     		if( $img == '' ){
-								$img = '/minify/Users/Assets/images/empty_profile.png';
+								$img = './minify/Users/Assets/images/empty_profile.png';
 							}
                     	?>
-                    	<a href="/blog/author/<?php echo $author->{'username'}; ?>">
+                    	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
 							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'author.name'}; ?>" class="img-rounded">
 						</a>
                     </figure>
@@ -131,11 +131,11 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                                         <?php } ?>
                                 			<div class="col-sm-4">
                                 				<figure>
-                                					<a href="/blog/post/<?php echo $post->{'slug'}; ?>">
-                                						<img src="/asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
+                                					<a href="./blog/post/<?php echo $post->{'slug'}; ?>">
+                                						<img src="./asset/thumb/<?php echo $post->{'featured_image.slug'}; ?>" alt="<?php echo $post->{'title'}; ?>"/>
                                 					</a>
                                 				</figure>
-                                				<h5><a href="/blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h5>
+                                				<h5><a href="./blog/post/<?php echo $post->{'slug'}; ?>"><?php echo $post->{'title'}; ?></a></h5>
                                 			</div>
                                 	<?php
                                 	$i++;
