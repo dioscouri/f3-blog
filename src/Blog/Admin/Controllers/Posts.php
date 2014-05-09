@@ -3,7 +3,16 @@ namespace Blog\Admin\Controllers;
 
 class Posts extends \Admin\Controllers\BaseAuth 
 {
-    public function index()
+    use \Dsc\Traits\Controllers\AdminList;
+		
+    protected $list_route = '/admin/blog/posts';
+
+    protected function getModel()
+    {
+        $model = new \Blog\Models\Posts;
+        return $model;
+    }
+	public function index()
     {
         // when ACL is ready
         //$this->checkAccess( __CLASS__, __FUNCTION__ );
