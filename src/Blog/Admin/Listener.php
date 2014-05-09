@@ -3,38 +3,46 @@ namespace Blog\Admin;
 
 class Listener extends \Prefab 
 {
-		public function onDisplayAdminUserEdit($event){
-			$item = $event->getArgument( 'item'  );
-			$tabs = $event->getArgument( 'tabs' );
-			$content = $event->getArgument( 'content' );
+	public function onDisplayAdminUserEdit($event){
+		$item = $event->getArgument( 'item'  );
+		$tabs = $event->getArgument( 'tabs' );
+		$content = $event->getArgument( 'content' );
 			
-			\Base::instance()->set('item', $item );
-			$view = \Dsc\System::instance()->get('theme');
+		\Base::instance()->set('item', $item );
+		$view = \Dsc\System::instance()->get('theme');
 				
-			$tabs['blog'] = 'Blog';			
-			$content['blog'] = $view->renderLayout('Blog/Admin/Views::users/tab.php');
+		$tabs['blog'] = 'Blog';			
+		$content['blog'] = $view->renderLayout('Blog/Admin/Views::users/tab.php');
 			
-			$event->setArgument( 'tabs', $tabs );
-			$event->setArgument( 'content', $content );
+		$event->setArgument( 'tabs', $tabs );
+		$event->setArgument( 'content', $content );
 	}
 	
 	public function onSystemRebuildMenu( $event )
 	{
-	    if ($mapper = $event->getArgument('mapper'))
-	    {
-	        $mapper->reset();
-	        $mapper->priority = 30;
-	        $mapper->id = 'f3-blog';
-	        $mapper->title = 'Blog';
-	        $mapper->route = '';
-	        $mapper->icon = 'fa fa-keyboard-o';
-	        $mapper->children = array(
-	            json_decode(json_encode(array( 'title'=>'Posts', 'route'=>'/admin/blog/posts', 'icon'=>'fa fa-list' )))
-	            ,json_decode(json_encode(array( 'title'=>'Categories', 'route'=>'/admin/blog/categories', 'icon'=>'fa fa-folder' )))
-	            ,json_decode(json_encode(array( 'title'=>'Add New', 'route'=>'/admin/blog/category/create', 'hidden'=>true )))
-	            ,json_decode(json_encode(array( 'title'=>'Settings', 'route'=>'/admin/blog/settings', 'icon'=>'fa fa-cogs' )))
+		if ($model = $event->getArgument('model'))
+		{
+			$root = $event->getArgument( 'root' );
+			$blog = clone $model;
+			 
+			$blog->insert(
+					array(
+							'type'	=> 'admin.nav',
+							'priority' => 30,
+							'title'	=> 'Blog',
+							'icon'	=> 'fa fa-keyboard-o',
+        					'is_root' => false,
+							'tree'	=> $root,
+							'base' => '/admin/blog/',
+						)
+			);
+	        $children = array(
+	            array( 'title'=>'Posts', 'route'=>'/admin/blog/posts', 'icon'=>'fa fa-list' ),
+	            array( 'title'=>'Categories', 'route'=>'/admin/blog/categories', 'icon'=>'fa fa-folder' ),
+	            array( 'title'=>'Add New', 'route'=>'/admin/blog/category/create', 'hidden'=>true ),
+	            array( 'title'=>'Settings', 'route'=>'/admin/blog/settings', 'icon'=>'fa fa-cogs' ),
 	        );
-	        $mapper->save();
+	        $blog->addChildrenItems( $children, $root, $model );
 	
 	        \Dsc\System::instance()->addMessage('Blog added its admin menu items.');
 	    }
