@@ -12,6 +12,7 @@ class Posts extends \Admin\Controllers\BaseAuth
         $model = new \Blog\Models\Posts;
         return $model;
     }
+
 	public function index()
     {
         // when ACL is ready
