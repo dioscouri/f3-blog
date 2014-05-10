@@ -42,7 +42,7 @@ class Listener extends \Prefab
 	            array( 'title'=>'Add New', 'route'=>'/admin/blog/category/create', 'hidden'=>true ),
 	            array( 'title'=>'Settings', 'route'=>'/admin/blog/settings', 'icon'=>'fa fa-cogs' ),
 	        );
-	        $blog->addChildrenItems( $children, $root, $model );
+	        $blog->addChildrenItems( $children, $root );
 	
 	        \Dsc\System::instance()->addMessage('Blog added its admin menu items.');
 	    }
