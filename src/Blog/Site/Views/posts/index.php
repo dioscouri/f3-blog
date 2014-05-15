@@ -1,5 +1,10 @@
-<?php if (!empty($this->paginated->items)) { ?>    
+<?php
+	$safemode_enabled = \Base::instance()->get('safemode.enabled');
+    $safemode_user = \Base::instance()->get('safemode.username');
+
+	if (!empty($this->paginated->items)) { ?>    
     <?php foreach($this->paginated->items as $item) { 
+    	$display_author = !( $safemode_enabled && ($safemode_user == $item->{'author.username'} ) );
         $item->_url = './blog/post/' . $item->slug; 
     ?>
     <article id="post-<?php echo $item->id; ?>" class="post-<?php echo $item->id; ?>">
@@ -29,7 +34,9 @@
             <div class="col-md-2">
                 <div class="byline">
                     <div class="publication-date"><p><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></p></div>                            
+				<?php if( $display_author ) { ?>
                     <div class="author"><p>by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></p></div>
+                <?php } ?>
                 </div>
                 
                 <div class="entry-meta">

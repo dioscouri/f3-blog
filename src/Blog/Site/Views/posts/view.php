@@ -1,5 +1,8 @@
 <?php
 $settings = \Blog\Models\Settings::fetch(); 
+$safemode_enabled = \Base::instance()->get('safemode.enabled');
+$safemode_user = \Base::instance()->get('safemode.username');
+$display_author = !( $safemode_enabled && ($safemode_user == $item->{'author.username'} ) );
 $aside = false;
 // are there tags?  // are there categories? // TODO: is a module published in the blog-post-aside position? 
 if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find()) {
@@ -16,7 +19,9 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     
                     <p class="byline">
                         <span class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>                            
+<?php if( $display_author ) { ?>                        
                         <span class="author">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
+<?php } ?>
                     </p>
                     
                     <div class="share-wrapper">
@@ -56,7 +61,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
     
                 </div>
                 
-                <?php if( !empty( $author ) ) { ?>
+                <?php if( !empty( $author ) && $display_author ) { ?>
                 <div class="author-box">
                     <div class="name-box">
                         <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>

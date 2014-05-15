@@ -21,9 +21,20 @@ class Author extends \Dsc\Controller
     	// TODO get the slug param.  lookup the category.  Check ACL against both category.
     	// get paginated list of blog posts associated with this category
     	// only posts that are published as of now
+    	 
     	
     	$f3 = \Base::instance();
-    	$id = $this->inputfilter->clean( $f3->get('PARAMS.id'), 'alnum' );
+    	$id = $this->inputfilter->clean( $f3->get('PARAMS.id'), 'alnum' );    	
+    	
+        $safemode_enabled = \Base::instance()->get('safemode.enabled');
+    	$safemode_user = \Base::instance()->get('safemode.username');
+    	// slug contaings safeuser username ==> redirect to home page
+		if( $safemode_enabled && ($safemode_user == $id ) ) {
+			// TODO Change to a normal 404 error
+			\Dsc\System::instance()->addMessage( "Unknown Author", 'error');
+			$f3->reroute( '/' );
+			return;
+		}
     	
     	$model_author = $this->getModel( 'users' )->populateState()
             ->setState('filter.username', $id);
