@@ -7,9 +7,17 @@ class Posts extends \Admin\Controllers\BaseAuth
 		
     protected $list_route = '/admin/blog/posts';
 
-    protected function getModel()
+    protected function getModel($name = 'posts')
     {
-        $model = new \Blog\Models\Posts;
+        $model = null;
+        switch( $name ){
+        	case 'posts' :
+        		$model = new \Blog\Models\Posts;
+        		break;
+        	case 'categories':
+        		$model = new \Blog\Models\Categories;
+        		break;
+        }
         return $model;
     }
 
@@ -21,12 +29,40 @@ class Posts extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('pagetitle', 'Posts');
         \Base::instance()->set('subtitle', '');
         
-        $model = new \Blog\Models\Posts;
+        $model = $this->getModel();
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
         
         $paginated = $model->paginate();
         \Base::instance()->set('paginated', $paginated );
+        
+        $categories_db = (array) $this->getModel( "categories" )->getItems();
+        $categories = array(
+        	array( 'text' => '-- No Filter --', 'value' => ' ' ),
+       		array( 'text' => '- Uncategorize -', 'value' => '--' ),
+        );
+        array_walk( $categories_db, function($cat) use(&$categories) {
+        	$categories []= array(
+        			'text' => $cat->title,
+        			'value' => (string)$cat->slug,
+        	);
+        } );
+        
+        \Base::instance()->set('categories', $categories );
+        
+        $all_tags = array(
+       		array( 'text' => '-- No Filter --', 'value' => ' ' ),
+       		array( 'text' => '- Untagged -', 'value' => '--' ),
+        );
+        $tags = (array) $this->getModel()->getTags();
+        array_walk( $tags, function($tag) use(&$all_tags) {
+        	$all_tags []= array(
+        			'text' => $tag,
+        			'value' => $tag
+        	);
+        } );
+
+        \Base::instance()->set('all_tags', $all_tags );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/list.php');
