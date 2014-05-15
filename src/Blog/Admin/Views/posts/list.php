@@ -28,19 +28,24 @@ jQuery(function(jQuery) {
 
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-                <?php /* ?>
+                
                 <ul class="list-filters list-unstyled list-inline">
-                    <li>
-                        <a class="btn btn-link">Advanced Filtering</a>
+                    <li class="col-md-3">
+						<select name="filter[category][slug]" data-select='1'>
+<?php 
+	echo \Dsc\Html\Select::options($categories, $state->get('filter.category.slug'));
+?>
+						</select>
                     </li>
-                    <li>
-                        <a class="btn btn-link">Quicklink Filter</a>
+                    <li class="col-md-3">
+						<select name="filter[tags]" data-select='1'>
+<?php 
+	echo \Dsc\Html\Select::options($all_tags, $state->get('filter.tags'));
+?>                    			
+						</select>
                     </li>
-                    <li>
-                        <a class="btn btn-link">Quicklink Filter</a>
-                    </li>
-                </ul>
-                */ ?>
+                </ul>    
+                        
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <div class="form-group">
@@ -107,27 +112,6 @@ jQuery(function(jQuery) {
                         <th>Tags</th>
                         <th data-sortable="publication.start_date">Publication</th>
                         <th class="col-md-1"></th>
-                    </tr>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                    	<th>
-                   			<select name="filter[category][slug]" data-select='1'>
-<?php 
-	echo \Dsc\Html\Select::options($categories, $state->get('filter.category.slug'));
-?>                    			
-                   			</select>
-                    	</th>
-	                    <th class="col-md-2">
-                   			<select name="filter[tags]" data-select='1'>
-<?php 
-	echo \Dsc\Html\Select::options($all_tags, $state->get('filter.tags'));
-?>                    			
-                   			</select>
-	                    </th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
                     </tr>
                     </thead>
                 <tbody>    
