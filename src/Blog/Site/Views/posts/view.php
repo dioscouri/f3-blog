@@ -89,7 +89,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     </div>
                     <figure>
                     	<?php 
-                    		$img = $author->getProfilePicture(); 
+                    		$img = $author->profilePicture(); 
                     		if( $img == '' ){
 								$img = './minify/Users/Assets/images/empty_profile.png';
 							}
