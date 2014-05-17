@@ -11,32 +11,27 @@ class Home extends \Dsc\Controller
     
     public function index()
     {
-    	// TODO get the slug param.  lookup the category.  Check ACL against both category.
-    	// get paginated list of blog posts associated with this category
-    	// only posts that are published as of now
-    	
     	$f3 = \Base::instance();
-    	$model = $this->getModel()->populateState()
-    	->setState('filter.publication_status', 'published')
-    	->setState('filter.published_today', true)    	
-    	;
+    	
+    	$model = $this->getModel();
     	
     	try {
-    		$paginated = $model->paginate();
+    		$paginated = $model->populateState()
+        		->setState('filter.publication_status', 'published')
+        		->setState('filter.published_today', true)
+        		->paginate();
+    		
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
+    		\Dsc\System::instance()->addMessage( "Error loading Blog", 'error');
     		$f3->reroute( '/' );
     		return;
     	}
-    	
-    	\Base::instance()->set('pagetitle', 'Blog');
-    	\Base::instance()->set('subtitle', '');
-    	
+
     	$state = $model->getState();
     	\Base::instance()->set('state', $state );
-    	
     	\Base::instance()->set('paginated', $paginated );
+    	
+    	$this->app->set('meta.title', 'Blog');
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::home/index.php');

@@ -18,21 +18,17 @@ class Author extends \Dsc\Controller
     
     public function index()
     {
-    	// TODO get the slug param.  lookup the category.  Check ACL against both category.
-    	// get paginated list of blog posts associated with this category
-    	// only posts that are published as of now
-    	 
-    	
     	$f3 = \Base::instance();
+    	
     	$id = $this->inputfilter->clean( $f3->get('PARAMS.id'), 'alnum' );    	
     	
-        $safemode_enabled = \Base::instance()->get('safemode.enabled');
     	$safemode_user = \Base::instance()->get('safemode.username');
-    	// slug contaings safeuser username ==> redirect to home page
-		if( $safemode_enabled && ($safemode_user == $id ) ) {
-			// TODO Change to a normal 404 error
+    	
+    	// slug contaings safeuser username ==> redirect to blog home page
+		if ( $safemode_user == $id ) 
+		{
 			\Dsc\System::instance()->addMessage( "Unknown Author", 'error');
-			$f3->reroute( '/' );
+			$f3->reroute( '/blog' );
 			return;
 		}
     	
@@ -41,17 +37,12 @@ class Author extends \Dsc\Controller
     	
         try {
     		$author = $model_author->getItem();
+    		if (empty( $author->id )) {
+    			throw new \Exception;
+    		}
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Unknown Author: " . $e->getMessage(), 'error');
-    		$f3->reroute( '/' );
-    		return;
-    	}
-    	
-    	if( empty( $author ) ){
-    		// TODO Change to a normal 404 error
     		\Dsc\System::instance()->addMessage( "Unknown Author", 'error');
-    		$f3->reroute( '/' );
+    		$f3->reroute( '/blog' );
     		return;
     	}
 
@@ -59,22 +50,19 @@ class Author extends \Dsc\Controller
     					->setState('filter.author.username', $id )
     					->setState( 'filter.published_today', true )
     					->setState( 'filter.publication_status', 'published' );
-    	 
     	
     	try {
     		$paginated = $model_posts->paginate();
     	} catch ( \Exception $e ) {
     		$paginated = null;
     	}
-    	
-    	\Base::instance()->set('pagetitle', $author->fullName() . ' | Blog' );
-    	\Base::instance()->set('subtitle', '');
-    	
+
     	$state = $model_posts->getState();
     	\Base::instance()->set('state', $state );
-    	
     	\Base::instance()->set( 'paginated', $paginated );
     	\Base::instance()->set( 'author', $author );
+
+    	$this->app->set('meta.title', $author->fullName() . ' | Blog' );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::author/index.php');

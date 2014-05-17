@@ -11,11 +11,8 @@ class Tag extends \Dsc\Controller
     
     public function index()
     {
-    	// TODO get the slug param.  lookup the category.  Check ACL against both category.
-    	// get paginated list of blog posts associated with this category
-    	// only posts that are published as of now
-    	
     	$f3 = \Base::instance();
+    	
     	$tag = $this->inputfilter->clean( $f3->get('PARAMS.tag') );
     	$model = $this->getModel()->populateState()
             ->setState('filter.tag', $tag)
@@ -24,21 +21,21 @@ class Tag extends \Dsc\Controller
     	 
     	try {
     		$paginated = $model->paginate();
+    		if (empty($paginated->items)) {
+    			throw new \Exception;
+    		}
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
-    		$f3->reroute( '/' );
+    		\Dsc\System::instance()->addMessage( "Invalid Tag", 'error');
+    		$f3->reroute( '/blog' );
     		return;
     	}
     	
-    	\Base::instance()->set('pagetitle', $tag . ' | Blog' );
-    	\Base::instance()->set('subtitle', '');
-    	
     	$state = $model->getState();
     	\Base::instance()->set('state', $state );
-    	
     	\Base::instance()->set('paginated', $paginated );
     	\Base::instance()->set('tag', $tag );
+    	
+    	$this->app->set('meta.title', 'Tag: ' . $tag . ' | Blog');
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::tags/index.php');

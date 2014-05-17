@@ -11,11 +11,8 @@ class Category extends \Dsc\Controller
     
     public function index()
     {
-    	// TODO get the slug param.  lookup the category.  Check ACL against both category.
-    	// get paginated list of blog posts associated with this category
-    	// only posts that are published as of now
-    	
     	$f3 = \Base::instance();
+    	
     	$path = $this->inputfilter->clean( $f3->get('PARAMS.1'), 'string' );
     	$model = $this->getModel();
 		    	 
@@ -31,20 +28,17 @@ class Category extends \Dsc\Controller
         	    ->paginate();
     	    
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
-    		$f3->reroute( '/' );
+    		\Dsc\System::instance()->addMessage( "Invalid Items", 'error');
+    		$f3->reroute( '/blog' );
     		return;
     	}
 
-    	\Base::instance()->set('pagetitle', $category->title . ' | Blog' );
-    	\Base::instance()->set('subtitle', '');
-    	
     	$state = $model->getState();
     	\Base::instance()->set('state', $state );
-    	
         \Base::instance()->set('paginated', $paginated );
         \Base::instance()->set('category', $category );
+        
+        $this->app->set('meta.title', $category->title . ' | Blog');
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::categories/index.php');

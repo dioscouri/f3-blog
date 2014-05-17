@@ -65,6 +65,8 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                 <div class="author-box">
                     <div class="name-box">
                         <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>
+                        
+                        <?php /*?>
                         <ul class="social-href">
                         
                         <?php if( strlen( $author->{'social.facebook.profile.profileURL'} ) ) { ?>
@@ -80,13 +82,12 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                         ?>
                             <li><a href="<?php echo $author->{'social.google.profile.profileURL'} ?>" target="_blank">Google +</a></li>
                         <?php 
-							}
-							if( strlen( $author->{'email'} ) ) {
-                        ?>
-                            <li><a href="mailto:<?php echo $author->{'email'}?>">E-mail</a></li>
-                        <?php } ?>
+							} ?>
                     </ul>
+                    */ ?>
                     </div>
+                    
+                    
                     <figure>
                     	<?php 
                     		$img = $author->profilePicture(); 

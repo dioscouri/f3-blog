@@ -19,8 +19,8 @@ class Post extends \Dsc\Controller
     
     public function read()
     {
-    	// TODO get the slug param.  lookup the blog post.  Check ACL against post.
     	$f3 = \Base::instance();
+    	
     	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
     	$model = $this->getModel()->populateState()
             ->setState('filter.slug', $slug)
@@ -29,31 +29,27 @@ class Post extends \Dsc\Controller
     	 
     	try {
     		$item = $model->getItem();
+    		if (empty($item->id)) {
+    			throw new \Exception;
+    		}
+    		
+    		// increase the view count
+    		$item->hit();
+    		
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Item: " . $e->getMessage(), 'error');
-    		$f3->reroute( '/' );
+    		\Dsc\System::instance()->addMessage( "Invalid Item", 'error');
+    		$f3->reroute( '/blog' );
     		return;
     	}
-    	
-    	if( empty( $item ) ){
-    		// TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Post", 'error');
-    		$f3->reroute( '/' );
-    		return;
-    	}
-    	
-    	// increase the view count
-    	$item->hit();
     	
     	$author = $this->getModel( 'users' )->setState( 'filter.id', $item->{'author.id'} )->getItem();
     	$related = $item->getRelatedPosts();
-    	    	
-    	\Base::instance()->set('pagetitle', $item->title);
-    	\Base::instance()->set('subtitle', '');
+    	
     	\Base::instance()->set( 'item', $item );
     	\Base::instance()->set( 'author', $author );
     	\Base::instance()->set( 'related', $related );
+    	
+    	$this->app->set('meta.title', $item->title . ' | Blog');
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Blog/Site/Views::posts/view.php');

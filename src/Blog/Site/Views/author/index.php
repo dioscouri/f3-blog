@@ -33,6 +33,7 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 							<img src="<?php echo $img; ?>" alt="<?php echo $author->{'username'}; ?>" class="img-rounded">
 							
 	                    </figure>
+	                    <?php /* Disabled for now ?>
 	                    <div class="social-box">
 	                        <ul class="social-href">
 	                        
@@ -59,16 +60,10 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 	                            </li>
 	                        <?php 
 								}
-								/*
-								if( strlen( $author->{'email'} ) ) {
-	                        ?>
-	                            <li>
-	                              	<h4 class="social-network">Email</h4>
-	                            	<a href="mailto:<?php echo $author->{'email'}?>"><?php echo $author->{'email'}?></a>
-	                            </li>
-	                        <?php } */ ?>
-	                    </ul>
+                                ?>
+	                       </ul>
 	                    </div>
+	                    */ ?>
 	                    
 	                    <?php if (!empty($author->{'blog.bio.full'})) { ?>
 	                    <div class="text">
