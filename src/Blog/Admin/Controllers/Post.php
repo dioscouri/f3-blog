@@ -42,7 +42,6 @@ class Post extends \Admin\Controllers\BaseAuth
     protected function displayCreate() 
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Create Post');
         
         $model = new \Blog\Models\Categories;
         $categories = $model->getList();
@@ -67,6 +66,8 @@ class Post extends \Admin\Controllers\BaseAuth
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
         \Base::instance()->set( 'authors', $this->getListAuthors() );
+
+        $this->app->set('meta.title', 'Create Post | Blog');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/create.php');
@@ -93,6 +94,8 @@ class Post extends \Admin\Controllers\BaseAuth
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
         \Base::instance()->set( 'authors', $this->getListAuthors() );
+        
+        $this->app->set('meta.title', 'Edit Post | Blog');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/edit.php');

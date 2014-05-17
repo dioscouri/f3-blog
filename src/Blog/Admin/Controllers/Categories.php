@@ -15,16 +15,13 @@ class Categories extends \Admin\Controllers\BaseAuth
     
     public function index()
     {
-        \Base::instance()->set('pagetitle', 'Categories');
-        \Base::instance()->set('subtitle', '');
-        
         $model = $this->getModel();
-        
         $state = $model->emptyState()->populateState()->getState();
         \Base::instance()->set('state', $state );
         \Base::instance()->set( 'paginated', $model->paginate() );
-        
         \Base::instance()->set('selected', 'null' );
+        
+        $this->app->set('meta.title', 'Categories | Blog');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::categories/list.php');
