@@ -39,17 +39,17 @@ class Listener extends \Prefab
             $children = array(
                 array(
                     'title' => 'Posts',
-                    'route' => '/admin/blog/posts',
+                    'route' => './admin/blog/posts',
                     'icon' => 'fa fa-list'
                 ),
                 array(
                     'title' => 'Categories',
-                    'route' => '/admin/blog/categories',
+                    'route' => './admin/blog/categories',
                     'icon' => 'fa fa-folder'
                 ),
                 array(
                     'title' => 'Settings',
-                    'route' => '/admin/blog/settings',
+                    'route' => './admin/blog/settings',
                     'icon' => 'fa fa-cogs'
                 )
             );
