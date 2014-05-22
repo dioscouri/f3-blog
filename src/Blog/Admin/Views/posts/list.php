@@ -59,123 +59,157 @@ jQuery(function(jQuery) {
                 </div>
             </div>
         </div>
-
-        <div class="widget-body-toolbar">
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
-                    <span class="pagination">
-                        <div class="input-group">
-                            <select id="bulk-actions" name="bulk_action" class="form-control">
-                                <option value="null">-Bulk Actions-</option>
-                                <option value="delete" data-action="./admin/blog/posts/delete">Delete</option>
-                            </select>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default bulk-actions" type="button" data-target="bulk-actions">Apply</button>
-                            </span>
-                        </div>
-                    </span>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                    <div class="row text-align-right">
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                            <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
-                                <?php echo $paginated->serve(); ?>
-                            <?php } ?>
-                        </div>
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <ul class="list-filters list-unstyled list-inline">
+                    <li>
+                        <select name="list[order]" class="form-control" onchange="this.form.submit();">
+                            <option value="title" <?php if ($state->get('list.order') == 'title') { echo "selected='selected'"; } ?>>Title</option>
+                        	<option value="publication.start_date" <?php if ($state->get('list.order') == 'publication.start_date') { echo "selected='selected'"; } ?>>Publication Date</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="list[direction]" class="form-control" onchange="this.form.submit();">
+                            <option value="1" <?php if ($state->get('list.direction') == '1') { echo "selected='selected'"; } ?>>ASC</option>
+                            <option value="-1" <?php if ($state->get('list.direction') == '-1') { echo "selected='selected'"; } ?>>DESC</option>
+                        </select>                        
+                    </li>
+                </ul>            
+            </div>
+            
+            <div class="col-xs-12 col-sm-6">
+                <div class="text-align-right">
+                <ul class="list-filters list-unstyled list-inline">
+                    <li>
                         <?php if (!empty($paginated->items)) { ?>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <span class="pagination">
-                            <?php echo $paginated->getLimitBox( $state->get('list.limit') ); ?>
-                            </span>
-                        </div>
+                        <?php echo $paginated->getLimitBox( $state->get('list.limit') ); ?>
                         <?php } ?>
-                    </div>
+                    </li>                
+                </ul>    
                 </div>
             </div>
-
         </div>
-        <!-- /.widget-body-toolbar -->
+        
+        <div class="widget-body-toolbar">    
+    
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-3">
+                    <span class="pagination">
+                    <div class="input-group">
+                        <select id="bulk-actions" name="bulk_action" class="form-control">
+                            <option value="null">-Bulk Actions-</option>
+                                <option value="delete" data-action="./admin/blog/posts/delete">Delete</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default bulk-actions" type="button" data-target="bulk-actions">Apply</button>
+                        </span>
+                    </div>
+                    </span>
+                </div>    
+                <div class="col-xs-12 col-sm-6 col-lg-6 col-lg-offset-3">
+                    <div class="text-align-right">
+                        <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
+                            <?php echo $paginated->serve(); ?>
+                        <?php } ?>
+                    </div>            
+                </div>
+            </div>
+        
+        </div>
+        <!-- /.widget-body-toolbar -->        
 
         <input type="hidden" name="list[order]" value="<?php echo $state->get('list.order'); ?>" /> 
         <input type="hidden" name="list[direction]" value="<?php echo $state->get('list.direction'); ?>" />
 
-        <div class="table-responsive datatable dt-wrapper dataTables_wrapper">
+        <?php if (!empty($paginated->items)) { ?>
+        <?php foreach($paginated->items as $blog) {
+        	$featured_img = $blog->{'featured_image.slug'};
+        	$has_featured_img = !empty( $featured_img );
+        	?>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="checkbox-column col-xs-1 col-sm-1 col-md-1">
+							<input type="checkbox" class="icheck-input" name="ids[]" value="<?php echo $blog->id; ?>">
+                        </div>
+                    
+                        <div class="col-xs-11 col-sm-11 col-md-11">
+                        	<div class="row">
+                        		<div class="hidden-xs hidden-sm col-md-4 col-lg-4">
+								<?php if( $has_featured_img ) { ?>
+                        			<a href="./admin/blog/post/edit/<?php echo $blog->id; ?>" title="<?php echo $blog->title; ?>">
+                        			<img src="./asset/thumb/<?php echo $featured_img; ?>" style="max-width : 100%"  alt="<?php echo $blog->title; ?>" />
+                        			</a>
+                        		<?php } else { ?>
+                        			&nbsp;
+                        		<?php } ?>
+                        		</div>
+                        		
+                        		<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                        			<div class="row">
+		                        		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        					<legend><a href="./admin/blog/post/edit/<?php echo $blog->id; ?>"><?php echo $blog->title; ?></a></legend>
+		                        		</div>
+                        			</div>
+                        			<div class="row">
+		                        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		                        			<div><h5>Basic</h5></div>
+		                        			<div>
+		                        				<label>/<?php echo $blog->slug; ?></label>
+		                        			</div>
+		                        			<div>
+		                        				<label>Author:</label> <a href="./admin/user/edit/<?php echo $blog->{'author.id'}?>" title="<?php echo $blog->{'author.name'}; ?>"><?php echo $blog->{'author.name'}; ?></a>
+		                        			</div>
+		                        			<div>
+			                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $blog->categories, 'title' ); ?>
+		                        				<label>Categories:</label>
+												<span class='label label-warning'><?php echo implode("</span> <span class='label label-warning'>", (array) $categories ); ?></span>
+		                        			</div>
+		                        			<div>
+		                        				<label>Tags:</label>
+												<span class='label label-success'><?php echo implode("</span> <span class='label label-success'>", (array) $blog->tags); ?></span>
+		                        			</div>
+		                        		</div>
+		                        		
+		                        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		                        			<div><h5>Publication</h5></div>
+				                            <div>
+				                            	<label>Status:</label> <?php echo ucwords( $blog->{'publication.status'} ); ?>
+				                            </div>
+				                            <?php if ($blog->{'publication.start_date'}) { ?>
+				                            <div>
+				                            	<label>Up:</label> <?php echo $blog->{'publication.start_date'}; ?>
+				                            </div>
+				                            <?php } ?>
+				                            <?php if ($blog->{'publication.end_date'}) { ?>
+				                            <div>
+				                            	<label>Down:</label> <?php echo $blog->{'publication.end_date'}; ?>
+				                            <?php } ?>
+				                            <div>
+				                            	<label>By</label> <a href="./admin/user/edit/<?php echo $blog->{'author.id'}; ?>" alt="<?php echo $blog->{'author.name'}; ?>" ><?php echo $blog->{'author.name'}; ?></a>
+				                            </div>
+		                        		</div>
+		                        		
+	                            	</div>
+                        		</div>
 
-            <table class="table table-striped table-bordered table-hover table-highlight table-checkable">
-                <thead>
-                    <tr>
-                        <th class="checkbox-column"><input type="checkbox" class="icheck-input"></th>
-                        <th data-sortable="title">Title</th>
-                        <th>Author</th>
-                        <th>Categories</th>
-                        <th>Tags</th>
-                        <th data-sortable="publication.start_date">Publication</th>
-                        <th class="col-md-1"></th>
-                    </tr>
-                    </thead>
-                <tbody>    
+		                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+			                        <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/delete/<?php echo $blog->id; ?>">
+			                            <i class="fa fa-times"></i>
+			                        </a>
+		                    	</div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
             
-                <?php if (!empty($paginated->items)) { ?>
-            
-                    <?php foreach($paginated->items as $item) { ?>
-                        
-                    <tr>
-                        <td class="checkbox-column"><input type="checkbox" class="icheck-input" name="ids[]" value="<?php echo $item->id; ?>"></td>
-
-                        <td class="">
-                            <h5>
-                                <a href="./admin/blog/post/edit/<?php echo $item->id; ?>">
-                            <?php echo $item->title; ?>
-                            </a>
-                            </h5>
-
-                            <p class="help-block">
-                            /<?php echo $item->slug; ?>
-                            </p>
-                        </td>
-
-                        <td class="">
-                        <?php echo $item->{'metadata.creator.name'}; ?>
-                        </td>
-
-                        <td class="">
-                        <?php echo implode(", ", \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ) ); ?>
-                        </td>
-
-                        <td class="">
-                        <?php echo implode(", ", (array) $item->tags ); ?>
-                        </td>
-
-                        <td class="">
-                            <div><?php echo ucwords( $item->{'publication.status'} ); ?></div>
-                            <div><?php if ($item->{'publication.start_date'}) { echo "Up: " . $item->{'publication.start_date'}; } ?></div>
-                            <div><?php if ($item->{'publication.end_date'}) { echo "Down: " . $item->{'publication.end_date'}; } ?></div>
-                            <div>By <a href="./admin/user/edit/<?php echo $item->{'author.id'}; ?>" alt="<?php echo $item->{'author.name'}; ?>" ><?php echo $item->{'author.name'}; ?></a></a></div>
-                        </td>
-
-                        <td class="text-center"><a class="btn btn-xs btn-secondary" href="./admin/blog/post/edit/<?php echo $item->id; ?>">
-                                <i class="fa fa-pencil"></i>
-                            </a> &nbsp; <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/delete/<?php echo $item->id; ?>">
-                                <i class="fa fa-times"></i>
-                            </a></td>
-                    </tr>
-                <?php } ?>
+        <?php } else { ?>
+           <div class="">No items found.</div>
+        <?php } ?>
                 
-                <?php } else { ?>
-                    <tr>
-                        <td colspan="100">
-                            <div class="">No items found.</div>
-                        </td>
-                    </tr>
-                <?php } ?>
-        
-                </tbody>
-            </table>
-
-        </div>
-        <!-- /.table-responsive .datatable .dt-wrapper -->
-
         <div class="dt-row dt-bottom-row">
             <div class="row">
                 <div class="col-sm-10">
