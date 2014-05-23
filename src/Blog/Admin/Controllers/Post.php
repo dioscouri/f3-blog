@@ -43,6 +43,8 @@ class Post extends \Admin\Controllers\BaseAuth
     {
         $f3 = \Base::instance();
         
+        $item = $this->getItem();
+        
         $model = new \Blog\Models\Categories;
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
@@ -70,6 +72,7 @@ class Post extends \Admin\Controllers\BaseAuth
         $this->app->set('meta.title', 'Create Post | Blog');
         
         $view = \Dsc\System::instance()->get('theme');
+        $view->event = $view->trigger( 'onDisplayBlogPostEdit', array( 'item' => $item, 'tabs' => array(), 'content' => array() ) );
         echo $view->render('Blog/Admin/Views::posts/create.php');
     }
     
@@ -84,7 +87,8 @@ class Post extends \Admin\Controllers\BaseAuth
     protected function displayEdit()
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Edit Post');
+        
+        $item = $this->getItem();
 
         $model = new \Blog\Models\Categories;
         $categories = $model->getList();
@@ -98,6 +102,8 @@ class Post extends \Admin\Controllers\BaseAuth
         $this->app->set('meta.title', 'Edit Post | Blog');
         
         $view = \Dsc\System::instance()->get('theme');
+        $view->event = $view->trigger( 'onDisplayBlogPostEdit', array( 'item' => $item, 'tabs' => array(), 'content' => array() ) );
+        
         echo $view->render('Blog/Admin/Views::posts/edit.php');
     }
     
