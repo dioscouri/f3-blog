@@ -5,7 +5,7 @@ $safemode_user = \Base::instance()->get('safemode.username');
 $display_author = !( $safemode_enabled && ($safemode_user == $item->{'author.username'} ) );
 $aside = false;
 // are there tags?  // are there categories? // TODO: is a module published in the blog-post-aside position? 
-if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find()) {
+if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find() || $item->{'shop.products'}) {
 	$aside = true;
 }
 ?>
@@ -19,9 +19,9 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     
                     <p class="byline">
                         <span class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>                            
-<?php if( $display_author ) { ?>                        
+                        <?php if( $display_author ) { ?>                        
                         <span class="author">by <a href="./blog/author/<?php echo $item->{'author.username'}; ?>"><?php echo $item->{'author.name'}; ?></a></span>
-<?php } ?>
+                        <?php } ?>
                     </p>
                     
                     <div class="share-wrapper">
@@ -176,6 +176,51 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
             		// display the tag cloud
             		echo $this->renderView('Blog/Site/Views::tags/cloud.php');
             	?>
+            	
+                <?php if ($related_products = (array) $item->{'shop.products'}) { ?>
+                    <div class="widget widget-tags">
+                    <h4 class="widget-title">Related Products</h4>
+                    <div class="widget-content">
+                    <?php $n=0; $count = count($related_products); ?>
+                    <?php foreach ($related_products as $product_id) { ?>
+                        <?php $product = (new \Shop\Models\Products)->setState('filter.id', $product_id)->getItem(); ?>
+                        <?php $search_item = $product->toSearchItem(); ?>
+                        <?php if (empty($search_item->url) || !$product->isAvailable()) { continue; } ?>
+                        
+                        <div class="row">
+                            
+                            <div class="col-xs-5">
+                                <?php if ($search_item->image) { ?>
+                                <a href="<?php echo $search_item->url; ?>">
+                                    <img class="img-responsive" src="<?php echo $search_item->image ?>">
+                                </a>
+                                <?php } ?>
+                            </div>
+                            <div class="col-xs-7">
+                                <a href="<?php echo $search_item->url; ?>">
+                                    <b><?php echo $search_item->title; ?></b>
+                                </a>
+                                <div class="price-line">
+                                    <?php if (((int) $product->get('prices.list') > 0) && $product->get('prices.list') != $product->price() ) { ?>
+                                        <span class="list-price price"><strike><?php echo \Shop\Models\Currency::format( $product->{'prices.list'} ); ?></strike></span>
+                                    <?php } ?>
+                                    &nbsp;
+                                    <div class="price">
+                                        <?php echo \Shop\Models\Currency::format( $product->price() ); ?>
+                                    </div>
+            
+                                </div>                        
+                            </div>
+                            
+                        </div>
+                        
+                        <hr/>
+
+                    <?php } ?>
+                    </div>
+                    </div>
+                <?php } ?>
+                            	
             </aside>
             <?php } ?>
         </div>
