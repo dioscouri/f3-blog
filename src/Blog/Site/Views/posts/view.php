@@ -184,10 +184,10 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                     <div class="widget widget-tags">
                     <h4 class="widget-title">Related Products</h4>
                     <div class="widget-content">
-                    <?php $n=0; $count = count($related_products); ?>
-                    <?php foreach ($related_products as $product_id) { ?>
-                        <?php $product = (new \Shop\Models\Products)->setState('filter.id', $product_id)->getItem(); ?>
-                        <?php 
+                    <?php
+                    	$n=0; $count = count($related_products);
+                    	foreach ($related_products as $product_id) {
+                        	$product = (new \Shop\Models\Products)->setState('filter.id', $product_id)->getItem();
                         	$image = (!empty($product->{'featured_image.slug'})) ? './asset/thumb/' . $product->{'featured_image.slug'} : null;
                         	$url = './shop/product/' . $product->slug;
                         	$js = '';
@@ -197,9 +197,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
 								$url .= $js;
 								$image .= $js;
 							}
-							
-                        ?>
-                        <?php if (empty($url) || !$product->isAvailable()) { continue; } ?>
+							if (empty($url) || !$product->isAvailable()) { continue; } ?>
                         
                         <div class="row">
                             
