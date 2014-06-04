@@ -12,6 +12,11 @@ jQuery(document).ready(function(){
     <div class="clearfix">
 
         <div class="pull-right">
+        	<?php if( $allow_preview ) { ?>
+            <a class="btn btn-warning" href="./blog/post/<?php echo $flash->old('slug'); ?>?preview=1" target="_blank">Preview</a>
+            &nbsp;
+            <?php } ?>
+        
             <div class="btn-group">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <input id="primarySubmit" type="hidden" value="save_edit" name="submitType" />

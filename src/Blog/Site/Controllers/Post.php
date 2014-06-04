@@ -3,7 +3,8 @@ namespace Blog\Site\Controllers;
 
 class Post extends \Dsc\Controller
 {
-
+	use \Dsc\Traits\Controllers\SupportPreview;
+	
     protected function getModel($name = 'posts')
     {
         $model = null;
@@ -26,10 +27,17 @@ class Post extends \Dsc\Controller
         $slug = $this->inputfilter->clean($f3->get('PARAMS.slug'), 'cmd');
         $model = $this->getModel()
             ->populateState()
-            ->setState('filter.slug', $slug)
-            ->setState('filter.published_today', true)
-            ->setState('filter.publication_status', 'published');
-        
+            ->setState('filter.slug', $slug);
+       	$preview = $this->input->get( "preview", 0, 'int' );
+       	
+       	
+       	if( $preview ){
+       		$this->canPreview();
+       	} else {
+       		$model->setState('filter.published_today', true)
+       		->setState('filter.publication_status', 'published');
+       	}
+
         try
         {
             $item = $model->getItem();
@@ -57,7 +65,11 @@ class Post extends \Dsc\Controller
         \Base::instance()->set('author', $author);
         \Base::instance()->set('related', $related);
         
-        $this->app->set('meta.title', $item->title . ' | Blog');
+        if( $preview ) {
+        	$this->app->set('meta.title', $item->title . ' | Blog (Preview mode)');
+        } else {
+        	$this->app->set('meta.title', $item->title . ' | Blog');
+        }
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::posts/view.php');

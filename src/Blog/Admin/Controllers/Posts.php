@@ -4,7 +4,8 @@ namespace Blog\Admin\Controllers;
 class Posts extends \Admin\Controllers\BaseAuth
 {
     use\Dsc\Traits\Controllers\AdminList;
-
+    use\Dsc\Traits\Controllers\SupportPreview;
+    
     protected $list_route = '/admin/blog/posts';
 
     protected function getModel($name = 'posts')
@@ -76,6 +77,8 @@ class Posts extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('all_tags', $all_tags);
         
         $this->app->set('meta.title', 'Posts | Blog');
+        $this->app->set( 'allow_preview', $this->canPreview( true ) );
+        
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Admin/Views::posts/list.php');

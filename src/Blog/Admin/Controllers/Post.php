@@ -4,7 +4,8 @@ namespace Blog\Admin\Controllers;
 class Post extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\CrudItemCollection;
-
+    use\Dsc\Traits\Controllers\SupportPreview;
+    
     protected $list_route = '/admin/blog/posts';
     protected $create_item_route = '/admin/blog/post/create';
     protected $get_item_route = '/admin/blog/post/read/{id}';    
@@ -23,8 +24,7 @@ class Post extends \Admin\Controllers\BaseAuth
     
     protected function getItem() 
     {
-        $f3 = \Base::instance();
-        $id = $this->inputfilter->clean( $f3->get('PARAMS.id'), 'alnum' );
+        $id = $this->inputfilter->clean( $this->app->get('PARAMS.id'), 'alnum' );
         $model = $this->getModel()
             ->setState('filter.id', $id);
 
@@ -32,7 +32,7 @@ class Post extends \Admin\Controllers\BaseAuth
             $item = $model->getItem();
         } catch ( \Exception $e ) {
             \Dsc\System::instance()->addMessage( "Invalid Item: " . $e->getMessage(), 'error');
-            $f3->reroute( $this->list_route );
+            $this->app->reroute( $this->list_route );
             return;
         }
 
@@ -41,14 +41,12 @@ class Post extends \Admin\Controllers\BaseAuth
     
     protected function displayCreate() 
     {
-        $f3 = \Base::instance();
-        
         $item = $this->getItem();
         
         $model = new \Blog\Models\Categories;
         $categories = $model->getList();
-        \Base::instance()->set('categories', $categories );
-        \Base::instance()->set('selected', 'null' );
+        $this->app->set('categories', $categories );
+        $this->app->set('selected', 'null' );
 
         $selected = array();
         $flash = \Dsc\Flash::instance();
@@ -66,8 +64,8 @@ class Post extends \Admin\Controllers\BaseAuth
         $flash->store( (array) $flash->get('old') + array('categories'=>$selected));        
 
         $all_tags = $this->getModel()->getTags();
-        \Base::instance()->set('all_tags', $all_tags );
-        \Base::instance()->set( 'authors', $this->getListAuthors() );
+        $this->app->set('all_tags', $all_tags );
+        $this->app->set( 'authors', $this->getListAuthors() );
 
         $this->app->set('meta.title', 'Create Post | Blog');
         
@@ -86,18 +84,17 @@ class Post extends \Admin\Controllers\BaseAuth
     
     protected function displayEdit()
     {
-        $f3 = \Base::instance();
-        
         $item = $this->getItem();
 
         $model = new \Blog\Models\Categories;
         $categories = $model->getList();
-        \Base::instance()->set('categories', $categories );
-        \Base::instance()->set('selected', 'null' );
+        $this->app->set('categories', $categories );
+        $this->app->set('selected', 'null' );
         
         $all_tags = $this->getModel()->getTags();
-        \Base::instance()->set('all_tags', $all_tags );
-        \Base::instance()->set( 'authors', $this->getListAuthors() );
+        $this->app->set('all_tags', $all_tags );
+        $this->app->set( 'authors', $this->getListAuthors() );
+        $this->app->set( 'allow_preview', $this->canPreview( true ) );
         
         $this->app->set('meta.title', 'Edit Post | Blog');
         
@@ -112,10 +109,9 @@ class Post extends \Admin\Controllers\BaseAuth
      */
     protected function doRead(array $data, $key=null) 
     {
-        $f3 = \Base::instance();
         $id = $this->getItem()->get( $this->getItemKey() );
         $route = str_replace('{id}', $id, $this->edit_item_route );
-        $f3->reroute( $route );
+        $this->app->reroute( $route );
     }
     
     protected function displayRead() {}

@@ -191,7 +191,13 @@ jQuery(function(jQuery) {
                         		</div>
 
 		                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
-			                        <a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/delete/<?php echo $item->id; ?>">
+					        	<?php if( $allow_preview ) { ?>
+			                        <a class="btn btn-xs btn-warning" target="_blank" href="./blog/post/<?php echo $item->slug; ?>?preview=1">
+			                            <i class="fa fa-search"></i>
+			                        </a>
+			        	            &nbsp;
+					            <?php } ?>
+		                        	<a class="btn btn-xs btn-danger" data-bootbox="confirm" href="./admin/blog/post/delete/<?php echo $item->id; ?>">
 			                            <i class="fa fa-times"></i>
 			                        </a>
 		                    	</div>
