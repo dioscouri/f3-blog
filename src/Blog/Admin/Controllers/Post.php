@@ -4,7 +4,7 @@ namespace Blog\Admin\Controllers;
 class Post extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\CrudItemCollection;
-    use\Dsc\Traits\Controllers\SupportPreview;
+    use \Dsc\Traits\Controllers\SupportPreview;
     
     protected $list_route = '/admin/blog/posts';
     protected $create_item_route = '/admin/blog/post/create';

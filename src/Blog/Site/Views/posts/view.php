@@ -8,6 +8,9 @@ $aside = false;
 if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categories::find() || $item->{'shop.products'}) {
 	$aside = true;
 }
+
+$settings_admin = \Admin\Models\Settings::fetch();
+$is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
 ?>
 
 <div class="blog-post">
@@ -184,21 +187,32 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
                     <?php $n=0; $count = count($related_products); ?>
                     <?php foreach ($related_products as $product_id) { ?>
                         <?php $product = (new \Shop\Models\Products)->setState('filter.id', $product_id)->getItem(); ?>
-                        <?php $search_item = $product->toSearchItem(); ?>
-                        <?php if (empty($search_item->url) || !$product->isAvailable()) { continue; } ?>
+                        <?php 
+                        	$image = (!empty($product->{'featured_image.slug'})) ? './asset/thumb/' . $product->{'featured_image.slug'} : null;
+                        	$url = './shop/product/' . $product->slug;
+                        	$js = '';
+                        	if( $is_kissmetrics ){
+								$js ="\" onclick=\"javascript:_kmq.push(['record', 'Blog Related Items', {'Product Name' : '".$product->title."', 'SKU' : '".$product->{'tracking.sku'}."' }])";
+								
+								$url .= $js;
+								$image .= $js;
+							}
+							
+                        ?>
+                        <?php if (empty($url) || !$product->isAvailable()) { continue; } ?>
                         
                         <div class="row">
                             
                             <div class="col-xs-5">
-                                <?php if ($search_item->image) { ?>
-                                <a href="<?php echo $search_item->url; ?>">
-                                    <img class="img-responsive" src="<?php echo $search_item->image ?>">
+                                <?php if ($image) { ?>
+                                <a href="<?php echo $url; ?>">
+                                    <img class="img-responsive" src="<?php echo $image ?>">
                                 </a>
                                 <?php } ?>
                             </div>
                             <div class="col-xs-7">
-                                <a href="<?php echo $search_item->url; ?>">
-                                    <b><?php echo $search_item->title; ?></b>
+                                <a href="<?php echo $url; ?>">
+                                    <b><?php echo $product->title; ?></b>
                                 </a>
                                 <div class="price-line">
                                     <?php if (((int) $product->get('prices.list') > 0) && $product->get('prices.list') != $product->price() ) { ?>
