@@ -210,7 +210,7 @@ class Posts extends \Dsc\Mongo\Collections\Content
             'title' => $this->title,
             'subtitle' => '',
             'image' => $image,
-            'summary' => substr($this->copy, 0, 250),
+            'summary' => $this->getAbstract(),
             'datetime' => $this->{'publication.start.local'}
         ));
         

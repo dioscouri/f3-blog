@@ -17,9 +17,11 @@
             </h2>
             
             <?php if ($item->{'featured_image.slug'}) { ?>
-            <a href="<?php echo $item->_url; ?>">
-                <img style="width:100%;" class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
-            </a>
+            <p>
+                <a href="<?php echo $item->_url; ?>">
+                    <img style="width:100%;" class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
+                </a>
+            </p>
             <?php } ?>
         
         </div>

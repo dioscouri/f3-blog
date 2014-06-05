@@ -35,7 +35,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
                     <figure>
-                        <img class="img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                        <img class="img-responsive" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
                     </figure>
                     <?php } ?>
                     
