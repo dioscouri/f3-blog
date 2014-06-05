@@ -181,7 +181,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
             	?>
             	
                 <?php if ($related_products = (array) $item->{'shop.products'}) { ?>
-                    <div class="widget widget-tags">
+                    <div class="widget widget-related-products widget-related-products-blog">
                     <h4 class="widget-title">Related Products</h4>
                     <div class="widget-content">
                     <?php
@@ -209,9 +209,11 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                                 <?php } ?>
                             </div>
                             <div class="col-xs-7">
+                            	<div class="title-line">
                                 <a href="<?php echo $url; ?>">
                                     <b><?php echo $product->title; ?></b>
                                 </a>
+                            	</div>
                                 <div class="price-line">
                                     <?php if (((int) $product->get('prices.list') > 0) && $product->get('prices.list') != $product->price() ) { ?>
                                         <span class="list-price price"><strike><?php echo \Shop\Models\Currency::format( $product->{'prices.list'} ); ?></strike></span>
