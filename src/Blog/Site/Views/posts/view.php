@@ -199,7 +199,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
 							}
 							if (empty($url) || !$product->isAvailable()) { continue; } ?>
                         
-                        <div class="row">
+                        <div class="row related-product-blog">
                             
                             <div class="col-xs-5">
                                 <?php if ($image) { ?>
