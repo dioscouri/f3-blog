@@ -6,9 +6,15 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 ?>
 
 <div id="blog-category" class="blog-posts">
-    <div class="container">    
+    <div class="container">
         <div class="row">
-            <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">    
+            <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">
+            
+            <h1>
+                <?php echo $category->title; ?>
+            </h1>
+
+            <hr/>
             
             <?php $this->paginated = $paginated; echo $this->renderView('Blog/Site/Views::posts/index.php'); ?>
             

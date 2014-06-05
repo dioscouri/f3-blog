@@ -3,11 +3,13 @@
     <h4 class="widget-title">Tags</h4>
 	<div class="widget-content">
 	
-		<p class='tag-cloud'>
+		<ul class='tag-cloud'>
             <?php foreach( $tags as $tag ) { ?>
-				<a class="btn btn-default tag" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag;?></a>
+                <li class="tag">
+				    <a class="btn btn-default" href="./blog/tag/<?php echo $tag; ?>"><?php echo $tag;?></a>
+				</li>
             <?php } ?>
-		</p>
+		</ul>
 		
 	</div>
 </div>

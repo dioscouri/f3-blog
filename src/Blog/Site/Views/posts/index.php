@@ -93,6 +93,6 @@
 
 <?php } else { ?>
     
-        <p>No items found.</p>
+        <p>No posts found.</p>
     
 <?php } ?>
