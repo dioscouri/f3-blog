@@ -16,15 +16,9 @@
                 </a>
             </h2>
             
-            <?php /* TODO Share from list view? or no? ?>
-            <div class="share-wrapper">
-                <?php echo $this->renderLayout('Blog/Site/Views::posts/view_social.php'); ?>
-            </div>   
-            */ ?>                     
-            
             <?php if ($item->{'featured_image.slug'}) { ?>
             <a href="<?php echo $item->_url; ?>">
-                <img style="width:100%;" class="entry-featured img-responsive" width="100%" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                <img style="width:100%;" class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
             </a>
             <?php } ?>
         
@@ -64,7 +58,7 @@
            	
             <div class="col-md-10">                        
                 <div class="copy-wrapper">
-                    <?php echo $item->{'copy'}; ?>
+                    <?php echo $item->getAbstract(); ?>
                 </div>
             </div>
         </div>    

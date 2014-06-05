@@ -2,7 +2,7 @@
     <div class="col-md-2">
     
         <h3>Details</h3>
-        <p class="help-block">Some helpful text</p>
+        <p class="help-block">Required.  Every blog post needs these.</p>
                 
     </div>
     <!-- /.col-md-2 -->
@@ -22,6 +22,30 @@
         
         <div class="form-group">
             <textarea name="copy" class="form-control wysiwyg"><?php echo $flash->old('copy'); ?></textarea>
+        </div>
+        <!-- /.form-group -->
+    
+    </div>
+    <!-- /.col-md-10 -->
+</div>
+<!-- /.row -->
+
+<hr />
+
+<div class="row">
+    <div class="col-md-2">
+    
+        <h3>Abstract</h3>
+        <p class="help-block">Optional.  This is a short version of the blog post that will be used in a list views.  If not provided, the first paragraph from the full text version of your post will be used.</p>
+                
+    </div>
+    <!-- /.col-md-2 -->
+                
+    <div class="col-md-10">
+
+        <div class="form-group">
+            <label>Short Description</label>
+            <textarea name="description" class="form-control wysiwyg"><?php echo $flash->old('description'); ?></textarea>
         </div>
         <!-- /.form-group -->
     

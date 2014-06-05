@@ -1,95 +1,121 @@
-<?php 
+<?php
 namespace Blog\Models;
 
-class Posts extends \Dsc\Mongo\Collections\Content 
+class Posts extends \Dsc\Mongo\Collections\Content
 {
-    use \Search\Traits\SearchItem;
-    
+    use\Search\Traits\SearchItem;
+
     public $categories = array();
+
     public $featured_image = array();
+
     protected $__config = array(
-    		'default_sort' => array(
-    				'publication.start.time' => -1
-    		),
-    );    
-    
+        'default_sort' => array(
+            'publication.start.time' => -1
+        )
+    );
+
     protected $__type = 'blog.posts';
-    
+
     protected function fetchConditions()
     {
         parent::fetchConditions();
         
-        $this->setCondition('type', $this->__type );
+        $this->setCondition('type', $this->__type);
         
-        $filter_category_slug = trim( $this->getState('filter.category.slug') );
+        $filter_category_slug = trim($this->getState('filter.category.slug'));
         if (strlen($filter_category_slug))
         {
-        	if( $filter_category_slug == '--' ){
-        		$this->setCondition('categories', array( '$size' => 0 ) );
-        	} else {
-        		$this->setCondition('categories.slug', $filter_category_slug );
-        	}
+            if ($filter_category_slug == '--')
+            {
+                $this->setCondition('categories', array(
+                    '$size' => 0
+                ));
+            }
+            else
+            {
+                $this->setCondition('categories.slug', $filter_category_slug);
+            }
         }
         
         $filter_category_id = $this->getState('filter.category.id');
         if (strlen($filter_category_id))
         {
-            $this->setCondition('categories.id', new \MongoId( (string) $filter_category_id ) );
+            $this->setCondition('categories.id', new \MongoId((string) $filter_category_id));
         }
-
+        
         $filter_author_id = $this->getState('filter.author.id');
         if (strlen($filter_author_id))
         {
-            $this->setCondition('author.id', new \MongoId( (string) $filter_author_id ) );
+            $this->setCondition('author.id', new \MongoId((string) $filter_author_id));
         }
         
         $filter_author_username = $this->getState('filter.author.username');
         if (strlen($filter_author_username))
         {
-            $this->setCondition('author.username', (string) $filter_author_username  );
+            $this->setCondition('author.username', (string) $filter_author_username);
         }
         return $this;
     }
-    
+
     protected function beforeValidate()
     {
-    	$result = parent::beforeValidate();
-    	
-    	// add username for blog posts so we dont have to look up their usernames all the time
-    	if (!$this->get('author'))
-    	{
-    		$this->{'author.id'} = $this->{'metadata.creator.id'}; 
-    		$this->{'author.name'} = $this->{'metadata.creator.name'}; 
-    		$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->{'metadata.creator.id'} )->getItem();
-    		if( empty( $user ) ){
-    			$act_user = \Dsc\System::instance()->get('auth')->getIdentity();
-    			$this->{'author.username'} = $act_user->username;
-    			$this->{'author.name'} = $act_user->fullName();
-    			$this->{'author.id'} = $act_user->id;
-    		} else {
-    			$this->{'author.username'} = $user->{'username'};
-    		}
-    	} else{
-   			if( $this->get('author.id') ) {
-   				$user = (new \Users\Models\Users)->populateState()->setState( 'filter.id', $this->get('author.id') )->getItem();
-   				if (!empty($user->id)) {
-   				    $this->{'author.name'} = $user->fullName();
-   				    $this->{'author.username'} = $user->username;   					
-   				}
-   			} else {
-   				$this->setError( "Author is required" );
-   			}
-    	}
-    	
+        $result = parent::beforeValidate();
+        
+        // add username for blog posts so we dont have to look up their usernames all the time
+        if (!$this->get('author'))
+        {
+            $this->{'author.id'} = $this->{'metadata.creator.id'};
+            $this->{'author.name'} = $this->{'metadata.creator.name'};
+            $user = (new \Users\Models\Users())->populateState()
+                ->setState('filter.id', $this->{'metadata.creator.id'})
+                ->getItem();
+            if (empty($user))
+            {
+                $act_user = \Dsc\System::instance()->get('auth')->getIdentity();
+                $this->{'author.username'} = $act_user->username;
+                $this->{'author.name'} = $act_user->fullName();
+                $this->{'author.id'} = $act_user->id;
+            }
+            else
+            {
+                $this->{'author.username'} = $user->{'username'};
+            }
+        }
+        else
+        {
+            if ($this->get('author.id'))
+            {
+                $user = (new \Users\Models\Users())->populateState()
+                    ->setState('filter.id', $this->get('author.id'))
+                    ->getItem();
+                if (!empty($user->id))
+                {
+                    $this->{'author.name'} = $user->fullName();
+                    $this->{'author.username'} = $user->username;
+                }
+            }
+            else
+            {
+                $this->setError("Author is required");
+            }
+        }
+        
         if (!empty($this->category_ids))
         {
             $category_ids = $this->category_ids;
             unset($this->category_ids);
-        
+            
             $categories = array();
-            if ($list = (new \Blog\Models\Categories)->setState('select.fields', array('title', 'slug'))->setState('filter.ids', $category_ids)->getList()) 
+            if ($list = (new \Blog\Models\Categories())->setState('select.fields', array(
+                'title',
+                'slug'
+            ))
+                ->setState('filter.ids', $category_ids)
+                ->getList())
             {
-                foreach ($list as $list_item) {
+                foreach ($list as $list_item)
+                {
                     $cat = array(
                         'id' => $list_item->id,
                         'title' => $list_item->title,
@@ -103,34 +129,37 @@ class Posts extends \Dsc\Mongo\Collections\Content
         
         unset($this->parent);
         unset($this->new_category_title);
-
+        
         return $this->checkErrors();
     }
-    
+
     public function validate()
     {
-        if (empty($this->copy)) {
+        if (empty($this->copy))
+        {
             $this->setError('Body copy is required');
         }
         
         return parent::validate();
     }
-    
-    public function generateSlug( $unique=true )
+
+    public function generateSlug($unique = true)
     {
-        if (empty($this->title)) {
+        if (empty($this->title))
+        {
             $this->setError('A title is required for generating the slug');
             return $this->checkErrors();
-        }        
+        }
         
         $created = date('Y-m-d');
-        if (!empty($this->{'created.time'})) {
+        if (!empty($this->{'created.time'}))
+        {
             $created = date('Y-m-d', $this->{'created.time'});
         }
-
-        $slug = \Web::instance()->slug( $created . '-' . $this->title );
         
-        if ($unique) 
+        $slug = \Web::instance()->slug($created . '-' . $this->title);
+        
+        if ($unique)
         {
             $base_slug = $slug;
             $n = 1;
@@ -140,63 +169,82 @@ class Posts extends \Dsc\Mongo\Collections\Content
                 $n++;
             }
         }
-    
+        
         return $slug;
     }
-    
-    public function getRelatedPosts($limit = 12){
-    	$model = clone $this;
-  		$model->emptyState()->populateState()
-  				->setCondition( '_id', array( '$ne' => new \MongoId( (string) $this->id ) ) );
 
-  		$categories = array();
-  		if( !empty( $model->{'categories'} ) ){
-  			$categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $model->{'categories'}, 'id' );  			
-  		}
-   		$model->setCondition( 'categories', array( '$elemMatch' => array( 'id' => array( '$in' => $categories ) ) ) )
-   				->setParam('limit', $limit );
-
-   		return $model->getItems(true);
+    public function getRelatedPosts($limit = 12)
+    {
+        $model = clone $this;
+        $model->emptyState()
+            ->populateState()
+            ->setCondition('_id', array(
+            '$ne' => new \MongoId((string) $this->id)
+        ));
+        
+        $categories = array();
+        if (!empty($model->{'categories'}))
+        {
+            $categories = \Joomla\Utilities\ArrayHelper::getColumn((array) $model->{'categories'}, 'id');
+        }
+        $model->setCondition('categories', array(
+            '$elemMatch' => array(
+                'id' => array(
+                    '$in' => $categories
+                )
+            )
+        ))->setParam('limit', $limit);
+        
+        return $model->getItems(true);
     }
-    
+
     /**
      * Converts this to a search item, used in the search template when displaying each search result
      */
     public function toSearchItem()
     {
         $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
-    
+        
         $item = new \Search\Models\Item(array(
             'url' => './blog/post/' . $this->slug,
             'title' => $this->title,
             'subtitle' => '',
             'image' => $image,
-            'summary' => substr( $this->copy, 0, 250 ),
-            'datetime' => $this->{'publication.start.local'},
+            'summary' => substr($this->copy, 0, 250),
+            'datetime' => $this->{'publication.start.local'}
         ));
-    
+        
         return $item;
     }
-    
+
     /**
-     * This method returns extract of this post. In this case, it looks for the first paragraph
+     * This method returns an abstract of this post.
+     * In this case, it looks for the first paragraph
      */
-    public function getExtract(){
-    	$desc = '';
-	    preg_match('%(<p[^>]*>.*?</p>)%i', $this->{'copy'}, $regs);
-	    if( count( $regs ) ) {
-	    	$desc = $regs[1];
-	    } else {
-	    	$desc = $this->{'copy'};
-	    }
-    	return $desc;
+    public function getAbstract()
+    {
+        $abstract = $this->description;
+        
+        if (empty($abstract)) 
+        {
+            $abstract = $this->{'copy'};
+            
+            preg_match('%(<p[^>]*>.*?</p>)%i', $this->{'copy'}, $regs);
+            if (count($regs))
+            {
+                $abstract = $regs[1];
+            }
+        }
+        
+        return $abstract;
     }
 
     /**
      * This method update number of views for this post
      */
-    public function hit() {
-  		$this->views = (int)$this->views + 1;
-		return $this->save();
+    public function hit()
+    {
+        $this->views = (int) $this->views + 1;
+        return $this->save();
     }
 }
