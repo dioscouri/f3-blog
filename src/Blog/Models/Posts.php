@@ -218,28 +218,6 @@ class Posts extends \Dsc\Mongo\Collections\Content
     }
 
     /**
-     * This method returns an abstract of this post.
-     * In this case, it looks for the first paragraph
-     */
-    public function getAbstract()
-    {
-        $abstract = $this->description;
-        
-        if (empty($abstract)) 
-        {
-            $abstract = $this->{'copy'};
-            
-            preg_match('%(<p[^>]*>.*?</p>)%i', $this->{'copy'}, $regs);
-            if (count($regs))
-            {
-                $abstract = $regs[1];
-            }
-        }
-        
-        return $abstract;
-    }
-
-    /**
      * This method update number of views for this post
      */
     public function hit()
