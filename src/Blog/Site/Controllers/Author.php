@@ -34,13 +34,9 @@ class Author extends \Dsc\Controller
             return;
         }
         
-        $model_author = $this->getModel('users')
-            ->populateState()
-            ->setState('filter.username', $id);
-        
         try
         {
-            $author = $model_author->getItem();
+            $author = $this->getModel('users')->setState('filter.username', $id)->getItem();
             if (empty($author->id))
             {
                 throw new \Exception();

@@ -96,3 +96,14 @@
         <p>No posts found.</p>
     
 <?php } ?>
+
+<script>
+jQuery(document).ready(function(){
+	jQuery('.copy-wrapper').find('img').each(function(){
+		var img = jQuery(this);
+		if (!img.hasClass('img-responsive')) {
+			img.addClass('img-responsive');
+	    }
+	});
+});
+</script>

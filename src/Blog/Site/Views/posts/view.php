@@ -18,7 +18,9 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
         <div class="row">
             <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">
                 <article class="blog-article">
-                    <h2><?php echo $item->{'title'}; ?></h2>
+                    <h1><?php echo $item->{'title'}; ?></h1>
+                    
+                    <hr/>
                     
                     <p class="byline">
                         <span class="publication-date"><?php echo date( 'd F Y', $item->{'publication.start.time'} ); ?></span>                            
@@ -33,7 +35,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                     
                     <?php if ($item->{'featured_image.slug'}) { ?>
                     <figure>
-                        <img style="width:100%;" class="entry-featured img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
+                        <img class="img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'} ?>">
                     </figure>
                     <?php } ?>
                     
@@ -42,6 +44,8 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                     </div>
                     
                 </article>
+                
+                <hr/>
                 
                 <div class="entry-meta">
                 
@@ -64,52 +68,28 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
     
                 </div>
                 
-                <?php if( !empty( $author ) && $display_author ) { ?>
-                <div class="author-box">
-                    <div class="name-box">
-                        <h3><a href="./blog/author/<?php echo $author->{'username'}; ?>"><?php echo $item->{'author.name'}; ?></a></h3>
+                <?php if (!empty( $author ) && $display_author ) { ?>
+                    <?php $img = $author->profilePicture(); ?>
+                    <?php if ($img || $author->{'blog.bio.short'}) { ?>
+                    <div class="author-box">
+                        <?php if ($img) { ?>
+                        <figure>
+                        	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
+    							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'author.name'}; ?>" class="img-rounded">
+    						</a>
+                        </figure>
+                        <?php } ?>
                         
-                        <?php /*?>
-                        <ul class="social-href">
-                        
-                        <?php if( strlen( $author->{'social.facebook.profile.profileURL'} ) ) { ?>
-                            <li><a href="<?php echo $author->{'social.facebook.profile.profileURL'}; ?>" target="_blank">Facebook</a></li>
-                        <?php 
-							}
-							if( strlen( $author->{'social.twitter.profile.profileURL'} ) ) {
-                        ?>
-                            <li><a href="<?php echo $author->{'social.twitter.profile.profileURL'}; ?>" target="_blank">Twitter</a></li>
-                        <?php 
-							}
-							if( strlen( $author->{'social.google.profile.profileURL'} ) ) {
-                        ?>
-                            <li><a href="<?php echo $author->{'social.google.profile.profileURL'} ?>" target="_blank">Google +</a></li>
-                        <?php 
-							} ?>
-                    </ul>
-                    */ ?>
-                    </div>
-                    
-                    
-                    <figure>
-                    	<?php 
-                    		$img = $author->profilePicture(); 
-                    		if( $img == '' ){
-								$img = './minify/Users/Assets/images/empty_profile.png';
-							}
-                    	?>
-                    	<a href="./blog/author/<?php echo $author->{'username'}; ?>">
-							<img src="<?php echo $img; ?>" alt="<?php echo $item->{'author.name'}; ?>" class="img-rounded">
-						</a>
-                    </figure>
-                    <div class="text">
-                        <h4>About the author</h4>
-                        <div>
-                        	<strong><?php echo $item->{'author.name'}; ?></strong> /
-                        	<?php echo $author->{'blog.bio.short'}?>
+                        <?php if ($author->{'blog.bio.short'}) { ?>
+                        <div class="text">
+                            <h4>About the author</h4>
+                            <div>
+                            	<?php echo $author->{'blog.bio.short'}; ?>
+                            </div>
                         </div>
+                        <?php } ?>
                     </div>
-                </div>
+                    <?php } ?>
                 <?php }?>
                 
                 <?php if( !empty( $related ) ) { ?>
@@ -240,3 +220,14 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
         </div>
     </div>
 </div>
+
+<script>
+jQuery(document).ready(function(){
+	jQuery('.copy-wrapper').find('img').each(function(){
+		var img = jQuery(this);
+		if (!img.hasClass('img-responsive')) {
+			img.addClass('img-responsive');
+	    }
+	});
+});
+</script>

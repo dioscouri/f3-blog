@@ -18,21 +18,23 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
             <aside class="col-sm-3">
                 <div class="widget">
                     <div class="widget-title">
-                        <h3><?php echo $author->fullName(); ?></h3>
+                        <h2><?php echo $author->fullName(); ?></h2>
                     </div>
                     
                     <div class="widget-content">
+                        <?php if ($img = $author->profilePicture()) { ?>
 	                    <figure>
-	                    	<?php 
-	                    		$img = $author->profilePicture(); 
-	                    		if( $img == '' ){
-									$img = './minify/Users/Assets/images/empty_profile.png';
-								}
-	                    	?>
-	                    	
 							<img src="<?php echo $img; ?>" alt="<?php echo $author->{'username'}; ?>" class="img-rounded">
-							
 	                    </figure>
+	                    <?php } ?>
+	                    
+	                    <?php if (!empty($author->{'blog.bio.full'})) { ?>
+	                    <div class="text">
+	                        <h3>About the author</h3>
+                        	<?php echo $author->{'blog.bio.full'}; ?>
+	                    </div>
+	                    <?php } ?>
+	                    
 	                    <?php /* Disabled for now ?>
 	                    <div class="social-box">
 	                        <ul class="social-href">
@@ -64,13 +66,6 @@ if ($tags = \Blog\Models\Posts::distinctTags() || $cats = \Blog\Models\Categorie
 	                       </ul>
 	                    </div>
 	                    */ ?>
-	                    
-	                    <?php if (!empty($author->{'blog.bio.full'})) { ?>
-	                    <div class="text">
-	                        <h3>About the author</h3>
-                        	<?php echo $author->{'blog.bio.full'}; ?>
-	                    </div>
-	                    <?php } ?>
 	                    
                     </div>
                 </div>
