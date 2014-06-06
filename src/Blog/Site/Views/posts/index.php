@@ -62,6 +62,8 @@
                 <div class="copy-wrapper">
                     <?php echo $item->getAbstract(); ?>
                 </div>
+                
+                <a href="<?php echo $item->_url; ?>" class="pull-right btn btn-link">Read Mode <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>    
         
