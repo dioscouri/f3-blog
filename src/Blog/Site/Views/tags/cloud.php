@@ -1,4 +1,6 @@
-<?php if ($tags = \Blog\Models\Posts::distinctTags()) { ?>
+<?php if ($tags = \Blog\Models\Posts::distinctTags(array(
+	'publication.status' => 'published'
+))) { ?>
 <div class="widget widget-tags">
     <h4 class="widget-title">Tags</h4>
 	<div class="widget-content">
