@@ -122,7 +122,7 @@ jQuery(function(jQuery) {
 
         <?php if (!empty($paginated->items)) { ?>
         <?php foreach($paginated->items as $item) { ?>
-            <div class="panel panel-default">
+            <div class="list-group-item">
                 <div class="panel-body">
                     <div class="row">
                         <div class="checkbox-column col-xs-1 col-sm-1 col-md-1">
@@ -163,15 +163,17 @@ jQuery(function(jQuery) {
 		                        			</div>
 		                        			<div>
 		                        				<label>Tags:</label>
-												<span class='label label-success'><?php echo implode("</span> <span class='label label-success'>", (array) $item->tags); ?></span>
+												<span class='label label-info'><?php echo implode("</span> <span class='label label-info'>", (array) $item->tags); ?></span>
 		                        			</div>
 		                        		</div>
 		                        		
 		                        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		                        			<h5>Publication</h5>
-				                            <div>
-				                            	<label>Status:</label> <?php echo ucwords( $item->{'publication.status'} ); ?>
-				                            </div>
+				                            <p>
+                                                <span class="label <?php echo $item->publishableStatusLabel(); ?>">
+                                                <?php echo $item->{'publication.status'}; ?>
+                                                </span>				                            	
+				                            </p>
 				                            <?php if ($item->{'publication.start_date'}) { ?>
 				                            <div>
 				                            	<label>Up:</label> <?php echo $item->{'publication.start_date'}; ?>
