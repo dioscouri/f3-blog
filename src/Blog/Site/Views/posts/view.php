@@ -198,7 +198,6 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                                     <?php if (((int) $product->get('prices.list') > 0) && $product->get('prices.list') != $product->price() ) { ?>
                                         <span class="list-price price"><strike><?php echo \Shop\Models\Currency::format( $product->{'prices.list'} ); ?></strike></span>
                                     <?php } ?>
-                                    &nbsp;
                                     <div class="price">
                                         <?php echo \Shop\Models\Currency::format( $product->price() ); ?>
                                     </div>
