@@ -43,7 +43,7 @@ class Category extends \Dsc\Controller
         \Base::instance()->set('category', $category);
         
         $this->app->set('meta.title', $category->seoTitle() . ' | Blog');
-        $this->app->set('meta.description', $item->seoDescription() );
+        $this->app->set('meta.description', $category->seoDescription() );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::categories/index.php');
