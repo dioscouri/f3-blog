@@ -56,6 +56,10 @@
 
 <hr />
 
+<?php echo $this->renderLayout('Blog/Admin/Views::posts/fields_seo.php'); ?>
+
+<hr />
+
 <?php echo $this->renderLayout('Blog/Admin/Views::posts/fields_basics_publication.php'); ?>
 
 <hr />

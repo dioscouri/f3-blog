@@ -37,7 +37,21 @@
                 <div class="alert alert-info">
                     <p><b>URL:</b> <a href="./blog/category<?php echo $flash->old('path'); ?>" target="_blank">./blog/category<?php echo $flash->old('path'); ?></a></p>
                 </div>
+        
+            </div>
             
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+            
+                <h3>Basics</h3>
+                        
+            </div>
+            <!-- /.col-md-2 -->
+                        
+            <div class="col-md-10">
+        
                 <div class="form-group">
                 <label>Title</label>
                      <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
@@ -52,11 +66,37 @@
                 <div class="form-group">
                     <?php echo $this->renderLayout('Blog/Admin/Views::categories/list_parents.php'); ?>
                 </div>
-                <!-- /.form-group -->     
-        
-            </div>
+                <!-- /.form-group -->
+                
+                <div class="form-group">
+                    <label>Display</label>
+                    <select name="display[view]" class="form-control">
+                        <option value="" <?php if (!$flash->old('display.view')) { echo "selected"; } ?>>-- Default --</option>
+                        <?php $variants = \Dsc\System::instance()->get('theme')->variants( 'Blog/Site/Views::categories/index.php' ); ?>
+                        <?php foreach ($variants as $group=>$views) { ?>
+                            <optgroup label="<?php echo $group; ?>">
+                                <?php foreach ($views as $view) { ?>
+                                <option value="<?php echo $view; ?>" <?php if ($flash->old('display.view') == $view) { echo "selected"; } ?>><?php echo $view; ?></option>
+                                <?php } ?>
+                            </optgroup>
+                        <?php } ?>
+                    </select>
+                </div>
+                <!-- /.form-group -->
             
+            </div>
+            <!-- /.col-md-10 -->
         </div>
+        <!-- /.row -->        
+        
+        <hr />
+        
+        <?php echo $this->renderLayout('Blog/Admin/Views::categories/fields_seo.php'); ?>
+        
+        <hr />
+        
+        <?php echo $this->renderLayout('Blog/Admin/Views::categories/fields_featuredimage.php'); ?>
+           
     </form>
 
 </div>

@@ -42,7 +42,8 @@ class Category extends \Dsc\Controller
         \Base::instance()->set('paginated', $paginated);
         \Base::instance()->set('category', $category);
         
-        $this->app->set('meta.title', $category->title . ' | Blog');
+        $this->app->set('meta.title', $category->seoTitle() . ' | Blog');
+        $this->app->set('meta.description', $item->seoDescription() );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::categories/index.php');

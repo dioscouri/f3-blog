@@ -65,11 +65,8 @@ class Post extends \Dsc\Controller
         \Base::instance()->set('author', $author);
         \Base::instance()->set('related', $related);
         
-        if( $preview ) {
-        	$this->app->set('meta.title', $item->title . ' | Blog (Preview mode)');
-        } else {
-        	$this->app->set('meta.title', $item->title . ' | Blog');
-        }
+        $this->app->set('meta.title', $item->seoTitle() . ' | Blog');
+        $this->app->set('meta.description', $item->seoDescription() );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::posts/view.php');
