@@ -14,7 +14,7 @@ class Tumblr extends \Blog\Lib\Tools\Tool{
 	public function base( $options ){
 		if( $this->requiresAdding( 'base' ) ) {
 			$this->setAdded( 'base' );
-			return '<script src="http://platform.tumblr.com/v1/share.js"></script>';
+			return '<script src="//platform.tumblr.com/v1/share.js"></script>';
 		}
 		return '';
 	}
@@ -62,7 +62,7 @@ class Tumblr extends \Blog\Lib\Tools\Tool{
 				}
 		}
 		
-		$result .= '<a href="http://www.tumblr.com/share/photo?source='.$source.'&caption='.$caption.'&clickthru='.$click_through.'" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:'.$css_style.'px; height:20px; background:url(\'http://platform.tumblr.com/v1/'.$img.'.png\') top left no-repeat transparent;">'.$text.'</a>';
+		$result .= '<a href="https://www.tumblr.com/share/photo?source='.$source.'&caption='.$caption.'&clickthru='.$click_through.'" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:'.$css_style.'px; height:20px; background:url(\'http://platform.tumblr.com/v1/'.$img.'.png\') top left no-repeat transparent;">'.$text.'</a>';
 		return $result;
 	}
 	
