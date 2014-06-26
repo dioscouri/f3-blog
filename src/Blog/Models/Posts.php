@@ -175,27 +175,33 @@ class Posts extends \Dsc\Mongo\Collections\Content
 
     public function getRelatedPosts($limit = 12)
     {
-        $model = clone $this;
-        $model->emptyState()
-            ->populateState()
-            ->setCondition('_id', array(
-            '$ne' => new \MongoId((string) $this->id)
-        ));
+        $model = new static;
+        $model->setState('filter.published_today', true)->setState('filter.publication_status', 'published');
+        $conditions = $model->conditions(); // convert the set states to conditions
+                    
+        $model->setCondition('_id', array(
+                '$ne' => new \MongoId((string) $this->id)
+            ))
+            ->setParam('limit', $limit);
         
         $categories = array();
-        if (!empty($model->{'categories'}))
+        if (!empty($this->{'categories'}))
         {
-            $categories = \Joomla\Utilities\ArrayHelper::getColumn((array) $model->{'categories'}, 'id');
+            $categories = \Joomla\Utilities\ArrayHelper::getColumn((array) $this->{'categories'}, 'id');
         }
-        $model->setCondition('categories', array(
-            '$elemMatch' => array(
-                'id' => array(
-                    '$in' => $categories
-                )
-            )
-        ))->setParam('limit', $limit);
         
-        return $model->getItems(true);
+        if (!empty($categories)) 
+        {
+            $model->setCondition('categories', array(
+                '$elemMatch' => array(
+                    'id' => array(
+                        '$in' => $categories
+                    )
+                )
+            ));
+        }
+        
+        return $model->getItems();
     }
 
     /**
