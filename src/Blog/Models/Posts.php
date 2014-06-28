@@ -222,6 +222,25 @@ class Posts extends \Dsc\Mongo\Collections\Content
         
         return $item;
     }
+    
+    /**
+     * Converts this to a search item, used in the search template when displaying each search result
+     */
+    public function toAdminSearchItem()
+    {
+        $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
+    
+        $item = new \Search\Models\Item(array(
+            'url' => './admin/blog/post/edit/' . $this->id,
+            'title' => $this->title,
+            'subtitle' => '',
+            'image' => $image,
+            'summary' => $this->getAbstract(),
+            'datetime' => $this->{'publication.start.local'}
+        ));
+    
+        return $item;
+    }
 
     /**
      * This method update number of views for this post
