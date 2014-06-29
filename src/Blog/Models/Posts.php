@@ -233,10 +233,10 @@ class Posts extends \Dsc\Mongo\Collections\Content
         $item = new \Search\Models\Item(array(
             'url' => './admin/blog/post/edit/' . $this->id,
             'title' => $this->title,
-            'subtitle' => '',
+            'subtitle' => 'By: ' . $this->{'metadata.creator.name'},
             'image' => $image,
             'summary' => $this->getAbstract(),
-            'datetime' => $this->{'publication.start.local'}
+            'datetime' => 'Published: ' . date('Y-m-d', $this->{'publication.start.time'} )
         ));
     
         return $item;
