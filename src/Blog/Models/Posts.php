@@ -229,14 +229,15 @@ class Posts extends \Dsc\Mongo\Collections\Content
     public function toAdminSearchItem()
     {
         $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
-    
+        $published_status = '<span class="label ' . $this->publishableStatusLabel() . '">' . $this->{'publication.status'} . '</span>';
+        
         $item = new \Search\Models\Item(array(
             'url' => './admin/blog/post/edit/' . $this->id,
             'title' => $this->title,
             'subtitle' => 'By: ' . $this->{'metadata.creator.name'},
             'image' => $image,
             'summary' => $this->getAbstract(),
-            'datetime' => 'Published: ' . date('Y-m-d', $this->{'publication.start.time'} )
+            'datetime' => $published_status . ' ' . date('Y-m-d', $this->{'publication.start.time'} ),
         ));
     
         return $item;
