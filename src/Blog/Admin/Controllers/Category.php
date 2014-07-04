@@ -38,7 +38,7 @@ class Category extends \Admin\Controllers\BaseAuth
     {
         $f3 = \Base::instance();
 
-        $model = new \Blog\Models\Categories;
+        $model = $this->getModel();
         $all = $model->emptyState()->getList();
         \Base::instance()->set('all', $all );
         \Base::instance()->set('selected', null );
@@ -53,7 +53,7 @@ class Category extends \Admin\Controllers\BaseAuth
     {
         $f3 = \Base::instance();
 
-        $model = new \Blog\Models\Categories;
+        $model = $this->getModel();
         $categories = $model->emptyState()->getList();
         \Base::instance()->set('categories', $categories );
         

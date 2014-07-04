@@ -11,15 +11,20 @@ class Post extends \Admin\Controllers\BaseAuth
     protected $get_item_route = '/admin/blog/post/read/{id}';    
     protected $edit_item_route = '/admin/blog/post/edit/{id}';
     
-    protected function getModel( $name = 'post' ) 
+	protected function getModel($name = 'posts')
     {
-    	$model = null;
-    	switch( $name ) {
-    		case 'post' :
-    			$model = new \Blog\Models\Posts;
-    			break;
-    	}
-        return $model; 
+        $model = null;
+        switch ($name)
+        {	
+        	case 'post':
+            case 'posts':
+                $model = new \Blog\Models\Posts();
+                break;
+            case 'categories':
+                $model = new \Blog\Models\Categories();
+                break;
+        }
+        return $model;
     }
     
     protected function getItem() 
@@ -43,7 +48,7 @@ class Post extends \Admin\Controllers\BaseAuth
     {
         $item = $this->getItem();
         
-        $model = new \Blog\Models\Categories;
+        $model = $this->getModel('categories');
         $categories = $model->getList();
         $this->app->set('categories', $categories );
         $this->app->set('selected', 'null' );
@@ -86,7 +91,7 @@ class Post extends \Admin\Controllers\BaseAuth
     {
         $item = $this->getItem();
 
-        $model = new \Blog\Models\Categories;
+        $model = $this->getModel('categories');
         $categories = $model->getList();
         $this->app->set('categories', $categories );
         $this->app->set('selected', 'null' );
