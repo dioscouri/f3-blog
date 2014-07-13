@@ -172,7 +172,7 @@ $is_kissmetrics = $settings_admin->enabledIntegration( 'kissmetrics' );
                         	$url = './shop/product/' . $product->slug;
                         	$js = '';
                         	if( $is_kissmetrics ){
-								$js ="\" onclick=\"javascript:_kmq.push(['record', 'Blog Related Items', {'Product Name' : '".$product->title."', 'SKU' : '".$product->{'tracking.sku'}."' }])";
+								$js ="\" onclick=\"javascript:_kmq.push(['record', 'Blog Related Items', {'Product Name' : '".$product->title."', 'SKU' : '".$product->{'tracking.sku'}."', 'Blog Post' : '".$item->title."' }])";
 								
 								$url .= $js;
 								$image .= $js;
