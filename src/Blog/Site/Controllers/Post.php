@@ -68,6 +68,11 @@ class Post extends \Dsc\Controller
         $this->app->set('meta.title', $item->seoTitle() . ' | Blog');
         $this->app->set('meta.description', $item->seoDescription() );
         
+        \Blog\Models\Activities::track('Viewed Blog Post', array(
+            'Blog Title' => $item->seoTitle(),
+            'post_id' => (string) $item->id
+        ));        
+        
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::posts/view.php');
     }
