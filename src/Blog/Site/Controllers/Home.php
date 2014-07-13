@@ -36,6 +36,10 @@ class Home extends \Dsc\Controller
         
         $this->app->set('meta.title', 'Blog');
         
+        \Blog\Models\Activities::track('Viewed Blog Home', array(
+            'page_number' => $paginated->current_page
+        ));        
+        
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Blog/Site/Views::home/index.php');
     }
