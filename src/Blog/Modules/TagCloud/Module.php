@@ -3,7 +3,7 @@ namespace Blog\Modules\TagCloud;
 
 class Module extends \Modules\Abstracts\Module 
 {
-    public $tags = array(); // unprocessed list of menu items, typically straight from the data source
+    public $tags = array();
     
     public function __construct($options=array()) 
     {
