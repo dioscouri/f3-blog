@@ -16,6 +16,8 @@ class Posts extends \Dsc\Mongo\Collections\Content
     );
 
     protected $__type = 'blog.posts';
+    
+    protected $__enable_trash = true;
 
     protected function fetchConditions()
     {
@@ -250,5 +252,17 @@ class Posts extends \Dsc\Mongo\Collections\Content
     {
         $this->views = (int) $this->views + 1;
         return $this->save();
+    }
+    
+    /**
+     * enables trash
+     */
+    protected function beforeDelete()
+    {	
+   		if(!empty($this->__enable_trash)) {
+   		\Dsc\Mongo\Collections\Trash::trash($this);  	
+    	}
+    	parent::beforeDelete();
+   
     }
 }
