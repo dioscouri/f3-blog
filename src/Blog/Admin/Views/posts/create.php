@@ -40,11 +40,11 @@ jQuery(document).ready(function(){
         <li class="active">
             <a href="#tab-basics" data-toggle="tab"> Basics </a>
         </li>
-        <?php /* ?>
+   
         <li class="">
-            <a href="#tab-videos" data-toggle="tab"> Videos </a>
+            <a href="#tab-video" data-toggle="tab"> Video </a>
         </li>
-        */ ?>
+      
         <?php if (!empty($this->event)) { foreach ((array) $this->event->getArgument('tabs') as $key => $title ) { ?>
         <li>
             <a href="#tab-<?php echo $key; ?>" data-toggle="tab"> <?php echo $title; ?> </a>
@@ -59,9 +59,9 @@ jQuery(document).ready(function(){
             <?php echo $this->renderLayout('Blog/Admin/Views::posts/fields_basics.php'); ?>
         
         </div>
-         <div class="tab-pane" id="tab-videos">
+         <div class="tab-pane " id="tab-video">
         
-            <?php // echo $this->renderLayout('Blog/Admin/Views::posts/fields_videos.php'); ?>
+            <?php echo $this->renderLayout('Blog/Admin/Views::posts/fields_video.php'); ?>
         
         </div>
         <!-- /.tab-pane -->
