@@ -157,7 +157,7 @@ jQuery(function(jQuery) {
 		                        				<label>Author:</label> <a href="./admin/user/edit/<?php echo $item->{'author.id'}?>" title="<?php echo $item->{'author.name'}; ?>"><?php echo $item->{'author.name'}; ?></a>
 		                        			</div>
 		                        			<div>
-			                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
+			                        			<?php $categories = \DscArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
 		                        				<label>Categories:</label>
 												<span class='label label-warning'><?php echo implode("</span> <span class='label label-warning'>", (array) $categories ); ?></span>
 		                        			</div>

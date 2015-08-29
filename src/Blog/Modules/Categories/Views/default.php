@@ -31,7 +31,7 @@
 
 			<?php			
 			} else {
-				$selected_categories = \Joomla\Utilities\ArrayHelper::getColumn( $selected_categories, 'id' );
+				$selected_categories = \DscArrayHelper::getColumn( $selected_categories, 'id' );
 				
 				$keys = array_keys( $tree->nodes );
 				$c_n = count( $tree->nodes );
