@@ -189,7 +189,7 @@ class Posts extends \Dsc\Mongo\Collections\Content
         $categories = array();
         if (!empty($this->{'categories'}))
         {
-            $categories = \DscArrayHelper::getColumn((array) $this->{'categories'}, 'id');
+            $categories = \Dsc\ArrayHelper::getColumn((array) $this->{'categories'}, 'id');
         }
         
         if (!empty($categories)) 
